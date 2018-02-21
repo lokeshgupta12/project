@@ -2,3 +2,13 @@
 a:hover{
 	text-decoration: none !important;
 }
+a {
+    cursor: pointer;
+}
+input.ng-invalid.ng-touched {
+	border: 1px solid red;
+}
+.redItalic {
+	color: red;
+    font-style: italic;
+}
