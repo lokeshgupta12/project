@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-	addClassFlag = false;
-	xyz(){
-		this.addClassFlag = !this.addClassFlag;
+	
+	menuToggel(){
+		document.querySelector('.side-navbar').classList.toggle('small');
+		document.querySelector('.main-section').classList.toggle('small');
 	}
 }

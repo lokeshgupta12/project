@@ -67,10 +67,13 @@
     margin-right: 10px;
 }
 .treeview-menu {
-    display: block;
+    display: none;
     background: #2c3b41;
     margin: 0;
     padding-left: 5px;
+}
+.sidebar-menu >li.active .treeview-menu {
+    display: block;
 }
 .treeview-menu > li > a {
     padding: 5px 5px 8px 15px;
@@ -86,7 +89,9 @@
 
 
 /* For Small Desktop */
-
+.small .sidebar-menu >li.active .treeview-menu {
+    display: none;
+}
 .small.side-navbar {
     position: absolute;
     top: 0;
