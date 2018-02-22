@@ -45,8 +45,6 @@
 .main-header .sidebar-toggle .icon-bar {
     display: none;
 }
-
-
 .main-header .logo {
     background-color: #367fa9;
     color: #fff;
@@ -60,4 +58,84 @@
 }
 .main-header .navbigation .sidebar-toggle {
     color: #fff;
+}
+
+
+
+
+.profile {
+    float: right; 
+    margin-right: 15px;
+    position: relative;
+}
+a.profilelink {
+    position: relative;
+    display: block;
+    padding: 13px 15px;
+    color: #fff;
+}
+a.profilelink:hover{
+    background: #367fa9;
+}
+
+.user-name{
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    font-size: 14px;
+}
+
+.user-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+    border-radius: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #dddddd;
+    padding: 0;
+    min-width: 120px;
+    max-width: 300px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 0;
+    font-size: 14px;
+    list-style: none;
+}
+.dropdown-menu > li {
+    margin: 0;
+}
+
+.dropdown-menu > li > a {
+    padding: 10px 5px 10px 5px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #575757;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    line-height: 1.428571429;
+}
+.dropdown-menu > li > a:hover{
+    background: #f6f6f6;
+}
+.dropdown-menu > li:last-child > a{
+    border-bottom: 0;
+}
+.dropdown-menu > li > a i {
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: middle;
 }
