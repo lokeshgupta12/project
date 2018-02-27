@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+import { DemoService } from '../demo.service';
+
 //import { AlertService, AuthenticationService } from '../_services/index';
 
 @Component({
@@ -14,10 +16,12 @@ export class LoginComponent implements OnInit {
     @ViewChild('f') loginForm : NgForm;
     loading = false;
     returnUrl: string;
+    demousers : Array<any>;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private demoService : DemoService
         //private authenticationService: AuthenticationService,
         //private alertService: AlertService
         ) { }
@@ -28,6 +32,10 @@ export class LoginComponent implements OnInit {
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+        // Access the Data Service's getUsers() method we defined
+        this.demoService.getUsers()
+            .subscribe(res => this.demousers = res);
     }
 
     login() {

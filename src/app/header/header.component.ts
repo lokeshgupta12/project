@@ -6,8 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-	
-	menuToggel(){
+	logout() {
+		localStorage.removeItem('currentUser');
+		// clear service of controllers as well.
+		// deregister routes too
+	}
+	menuToggel() {
 		document.querySelector('.side-navbar').classList.toggle('small');
 		document.querySelector('.main-section').classList.toggle('small');
 	}
