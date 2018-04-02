@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
-import { DemoService } from '../demo.service';
+// import { DemoService } from '../demo.service';
+import { CommonService } from '../service/common.service';
 
 //import { AlertService, AuthenticationService } from '../_services/index';
 
@@ -14,14 +16,16 @@ import { DemoService } from '../demo.service';
 
 export class LoginComponent implements OnInit {
     @ViewChild('f') loginForm : NgForm;
-    loading = false;
+    loading : boolean = false;
     returnUrl: string;
-    demousers : Array<any>;
+    //demousers : Array<any>;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private demoService : DemoService
+        private commonService : CommonService,
+        private http : HttpClient /*,
+        private demoService : DemoService*/
         //private authenticationService: AuthenticationService,
         //private alertService: AlertService
         ) { }
@@ -29,24 +33,30 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         //this.authenticationService.logout();
-
+        
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
+        if (localStorage.getItem('currentUser')) {
+            (this.returnUrl === "login") && (this.returnUrl = '/');
+            this.router.navigate([this.returnUrl]);
+        }
+
         // Access the Data Service's getUsers() method we defined
-        this.demoService.getUsers()
-            .subscribe(res => this.demousers = res);
+        // this.demoService.getUsers()
+        //     .subscribe(res => this.demousers = res);
     }
 
     login() {
-    	
-    	console.log(this.loginForm)
         this.loading = true;
-        //setTimeout(function(this) {
-        	localStorage.setItem('currentUser',this.loginForm.value.email);
-        	this.loading = false;
-        	this.router.navigate([this.returnUrl]);
-        //},2000)
+        this.http.get('assets/WSResponses/getLoginDataByMailAndPwd.json').subscribe((data : any) => {
+            this.loading = false;
+            localStorage.setItem('currentUser',this.loginForm.value.email);
+            this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
+            this.router.navigate([this.returnUrl]);
+            // heroesUrl: data['heroesUrl'],
+            // textfile:  data['textfile']
+        });
         //this.authenticationService.login(this.model.username, this.model.password)
             // .subscribe(
             //     data => {

@@ -1,3 +1,5 @@
+@import '~angular-tree-component/dist/angular-tree-component.css';
+
 /* You can add global styles to this file, and also import other style files */
 a:hover{
 	text-decoration: none !important;
@@ -12,3 +14,6 @@ input.ng-invalid.ng-touched {
 	color: red;
     font-style: italic;
 }
+
+
+/* For diplay block and display none */
