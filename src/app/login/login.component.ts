@@ -54,8 +54,6 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('currentUser',this.loginForm.value.email);
             this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
             this.router.navigate([this.returnUrl]);
-            // heroesUrl: data['heroesUrl'],
-            // textfile:  data['textfile']
         });
         //this.authenticationService.login(this.model.username, this.model.password)
             // .subscribe(

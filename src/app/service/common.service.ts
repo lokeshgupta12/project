@@ -1,9 +1,16 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-// @Injectable()
+@Injectable()
 export class CommonService {
 	// Store Application Menus after login and clear after logout
-	appMenus : {name : string, path : string}[];
+	constructor(private http : HttpClient){}
+
+    appMenus : {name : string, path : string}[] = [];
+
+    getLoginData(url) {
+        return this.http.get(url);
+    }
 
 	// Convert Linear to Multi Level
 	getNestedChildren(arr, primKey, ParKey, parent? : any) {

@@ -6,6 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { TreeModule } from 'angular-tree-component';
+// import { TREE_ACTIONS, KEYS, IActionMapping } from 'angular-tree-component';
+// const actionMapping:IActionMapping = {
+//   mouse: {
+//     click: TREE_ACTIONS.TOGGLE_SELECTED
+//   },
+//   keys: {
+//     [KEYS.ENTER]: (tree, node, $event) => alert(`This is ${node.data.name}`)
+//   }  
+// }
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 // import { DemoService } from './demo.service';
 import { CommonService } from './service/common.service';
+import { LoginResolver } from './guards/login.resolve';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
 
 
@@ -41,7 +51,7 @@ import { WelcomeComponent } from './home/main-section/welcome/welcome.component'
     AppRouting,
     TreeModule
   ],
-  providers: [AuthGuard, CommonService /*DemoService*/],
+  providers: [AuthGuard, CommonService, LoginResolver /*DemoService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

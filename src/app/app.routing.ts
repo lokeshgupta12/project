@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuard } from './guards/auth.guard';
+import { LoginResolver } from './guards/login.resolve';
+
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MainSection } from './home/main-section/main-section-component';
@@ -10,7 +13,7 @@ let routes : Routes = [
 		{path : '', component : WelcomeComponent},
 		{path : 'main', component : MainSection}
 	]},
-	{path : 'login', component : LoginComponent},
+	{path : 'login', component : LoginComponent, resolve : LoginResolver},
 	{path : '**', redirectTo : '' }
 ]
 @NgModule({
