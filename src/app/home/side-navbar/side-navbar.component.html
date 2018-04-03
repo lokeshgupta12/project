@@ -1,5 +1,5 @@
-<!-- <aside class="side-navbar"> -->
-    <!-- <section class="sidebar"> -->
+<aside class="side-navbar">
+    <section class="sidebar">
 <!-- <tree-root [nodes]="nodes" [focused]="true"></tree-root> -->
 <input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="filter nodes"/>
 <tree-root [nodes]="nodes"  [(state)]="state" #tree [options]="options" (initialized)="treeRootEvent($event)">
@@ -51,5 +51,5 @@
             </li>
             <li  (click)="onClickLi()"><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
         </ul> -->
-    <!-- </section> -->
-<!-- </aside> -->
+    </section>
+</aside>
