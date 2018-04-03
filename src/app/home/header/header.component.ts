@@ -19,7 +19,8 @@ export class HeaderComponent {
 		// deregister routes too
 	}
 	menuToggel() {
-		document.querySelector('.side-navbar').classList.toggle('small');
-		document.querySelector('.main-section').classList.toggle('small');
+		this.commonService.showFullSideBar = !this.commonService.showFullSideBar;
+		// document.querySelector('.side-navbar').classList.toggle('small');
+		// document.querySelector('.main-section').classList.toggle('small');
 	}
 }

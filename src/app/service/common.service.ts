@@ -6,6 +6,7 @@ export class CommonService {
 	// Store Application Menus after login and clear after logout
 	constructor(private http : HttpClient){}
 
+    showFullSideBar : boolean = true;
     appMenus : {name : string, path : string}[] = [];
 
     getLoginData(url) {
