@@ -49,14 +49,14 @@ export class SideNavbar {
 		});
 	}*/
 
-	private activateAndNavigateRoute(tree, node, $event) {
+	private activateAndNavigateRoute(node) {
 		this.treeRef.treeModel.collapseAll();
 		setTimeout(()=>{
 		 //TREE_ACTIONS.ACTIVATE(tree, node, $event);
 	     this.treeRef.treeModel.getNodeById(node.data.id)
       		.setActiveAndVisible();
 	     this.router.navigate([node.data.route]);
-		},0)
+		},0);
 		
 
 	}
@@ -128,7 +128,7 @@ export class SideNavbar {
 		      //$event.preventDefault();
 		      node.hasChildren
 		      	? TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event)
-		      	: this.activateAndNavigateRoute(tree, node, $event);
+		      	: this.activateAndNavigateRoute(node);
 		      	
 		      // $event.shiftKey
 		      //   ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(tree, node, $event)
@@ -138,7 +138,7 @@ export class SideNavbar {
 		  keys: {
 		    [KEYS.ENTER]: (tree, node, $event) => {
 		    	if (!node.hasChildren)
-		    		this.activateAndNavigateRoute(tree, node, $event);
+		    		this.activateAndNavigateRoute(node);
 		    	//alert(`This is ${node.data.name}`)
 		    }
 		  }
