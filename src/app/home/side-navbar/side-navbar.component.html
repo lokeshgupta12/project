@@ -5,11 +5,10 @@
 <tree-root [nodes]="nodes"  [(state)]="state" #tree [options]="options" (initialized)="treeRootEvent($event)">
   <ng-template #treeNodeTemplate let-node let-index="index">
     <span [ngClass]="{'fa fa-circle-o' : !node.hasChildren}">{{ isSidebarVisible ? node.data.name : '' }}</span>
-    <!-- <button *ngIf="!node.hasChildren" (click)="go($event)">Custom Action</button> -->
   </ng-template>
 </tree-root>
 
-<button (click)="setNode(3)">Set Node</button>
+<!-- <button (click)="setNode(3)">Set Node</button> -->
         <!-- <ul class="sidebar-menu">
             <li class="treeview active" (click)="onClickLi()">
                 <a href="#">

@@ -50,43 +50,51 @@ export class SideNavbar {
 	}*/
 
 	private activateAndNavigateRoute(tree, node, $event) {
-		//this.treeRef.treeModel.collapseAll()
-		this.setNode(node.data.id);
-		// TREE_ACTIONS.ACTIVATE(tree, node, $event);
-		// this.treeRef.treeModel.getNodeById(node.data.id)
-  //     		.setActiveAndVisible();
-	 //    this.router.navigate([node.data.route]);
+		this.treeRef.treeModel.collapseAll();
+		setTimeout(()=>{
+		 //TREE_ACTIONS.ACTIVATE(tree, node, $event);
+	     this.treeRef.treeModel.getNodeById(node.data.id)
+      		.setActiveAndVisible();
+	     this.router.navigate([node.data.route]);
+		},0)
+		
 
 	}
-
+	// Get State of tree
 	get state(): ITreeState {
 	    return localStorage.treeState && JSON.parse(localStorage.treeState);
 	}
-
+	// Set State of tree
 	set state(state: ITreeState) {
 	    localStorage.treeState = JSON.stringify(state);
 	}
 
-	setNode(id) {
-		console.log("id",id)
-    	this.treeRef.treeModel.collapseAll()
-    	//this.treeRef.treeModel.getNodeBy((node) => node.data.name === 'Home')
-    	this.treeRef.treeModel.getNodeById(id)
-      		.setActiveAndVisible();
-    }
-
+	// setNode() {
+	// 	/*Collapse All Nodes*/
+ //    	this.treeRef.treeModel.collapseAll();
+ //    	/*Set Active Node By Id*/
+ //    	//this.treeRef.treeModel.getNodeById(3)
+ //    	/*Set Active Node By name or as you want*/
+ //    	this.treeRef.treeModel.getNodeBy((node) => node.data.name === 'Home')
+ //      		.setActiveAndVisible();
+ //    }
+ 	// Call On initialization of tree component
 	treeRootEvent (data) {
 		switch (data.eventName) {
-			case "initialized":
+			case "initialized": {
 				console.log("initialized",data);
+				var selectedNode = data.treeModel.getActiveNode();
+				selectedNode && this.router.navigate([selectedNode.data.route]);
 				break;
+			}
 			default:
 				// code...
 				break;
 		}
 	}
-
+	// Provide Menu Array to tree component
 	nodes = this.commonService.appMenus;
+	// Provide options Object to tree component
 	options: ITreeOptions = {
 	 //    displayField: 'nodeName',
 	 //    isExpandedField: 'expanded',
@@ -117,7 +125,7 @@ export class SideNavbar {
 		    // },
 		    click: (tree, node, $event) => {
 		      //tree.collapseAll();
-		      $event.preventDefault();
+		      //$event.preventDefault();
 		      node.hasChildren
 		      	? TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event)
 		      	: this.activateAndNavigateRoute(tree, node, $event);
