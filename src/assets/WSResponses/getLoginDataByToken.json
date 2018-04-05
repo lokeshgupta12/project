@@ -7,8 +7,9 @@
       },
       "token" : "DGHFGDF67648762JHDGKGF"
   },
+  "email" : "agrawal.lovelesh@gmail.com",
   "appMenus" : [
-    { "id": 1, "name": "root1"},
+    { "id": 1, "name": "root1" },
     { "id": 2,"route": "main",  "name": "Main", "parent" : 1 },
     { "id": 3,"route": "",  "name": "Home", "parent" : 1 },
     { "id": 4, "name": "root2" },

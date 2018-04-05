@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.http.get('assets/WSResponses/getLoginDataByMailAndPwd.json').subscribe((data : any) => {
+        this.commonService.getData('assets/WSResponses/getLoginDataByMailAndPwd.json').subscribe((data : any) => {
             this.loading = false;
             localStorage.setItem('currentUser',this.loginForm.value.email);
             this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");

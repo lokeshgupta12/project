@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
                 return true;
             else {
                 return new Promise((resolve, reject)=>{
-                    this.commonService.getLoginData('/assets/WSResponses/getLoginDataByToken.json').subscribe((data : any)=>{
+                    this.commonService.getData('/assets/WSResponses/getLoginDataByToken.json').subscribe((data : any)=>{
                         this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
                         resolve(true);
                     },(err)=>{
