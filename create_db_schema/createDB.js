@@ -5,7 +5,7 @@ var tableArray = require("./queryForNewTable")
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: ""
+    password: "123456"
 });
 
 con.connect(function(err) {
@@ -20,6 +20,8 @@ con.connect(function(err) {
                     if (err) throw err;
                 });
             }
+            console.log("Succesfully Created!!");
+            // process.exit(-1);
         });
     })
 });
