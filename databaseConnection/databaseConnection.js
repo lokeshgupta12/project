@@ -1,9 +1,11 @@
-const mysql = require('mysql')
-var connection=mysql.createPool({
- connectionLimit : 100,
- host:'localhost',
- user:'root',
- database:'mydb'
- 
+const mysql = require('mysql');
+
+var connection = mysql.createPool({
+    connectionLimit: 100,
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'mydb'
 });
-module.exports=connection;
+
+module.exports = connection;
