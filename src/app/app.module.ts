@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './http-interceptor'
 
 
 import { TreeModule } from 'angular-tree-component';
@@ -51,7 +52,11 @@ import { WelcomeComponent } from './home/main-section/welcome/welcome.component'
     AppRouting,
     TreeModule
   ],
-  providers: [AuthGuard, CommonService, LoginResolver /*DemoService*/],
+  providers: [{ 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: MyHttpInterceptor, 
+      multi: true 
+    }, AuthGuard, CommonService, LoginResolver /*DemoService*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

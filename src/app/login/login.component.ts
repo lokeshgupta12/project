@@ -49,13 +49,11 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        var headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'*'
-        });
-        this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}, {
-        headers: headers
-      }).subscribe((data : any) => {
+        // var headers = new HttpHeaders({
+        //     'Content-Type': 'application/json',
+        //     'Access-Control-Allow-Origin':'*'
+        // });
+        this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}).subscribe((data : any) => {
     
             this.loading = false;
             localStorage.setItem('currentUser',this.loginForm.value.email);
