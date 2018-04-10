@@ -225,9 +225,6 @@ var AuthGuard = /** @class */ (function () {
         this.router = router;
         this.commonService = commonService;
     }
-    // abc() {
-    //     var promise = 
-    // }
     AuthGuard.prototype.canActivate = function (route, state) {
         var _this = this;
         if (localStorage.getItem('currentUser')) {
@@ -236,7 +233,7 @@ var AuthGuard = /** @class */ (function () {
                 return true;
             else {
                 return new Promise(function (resolve, reject) {
-                    _this.commonService.getLoginData('/assets/WSResponses/getLoginDataByToken.json').subscribe(function (data) {
+                    _this.commonService.getData('/assets/WSResponses/getLoginDataByToken.json').subscribe(function (data) {
                         _this.commonService.appMenus = _this.commonService.getNestedChildren(data.appMenus, "id", "parent");
                         resolve(true);
                     }, function (err) {
@@ -528,7 +525,7 @@ module.exports = "/* For Larg Desktop */\n.side-navbar {\n    position: absolute
 /***/ "./src/app/home/side-navbar/side-navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<aside class=\"side-navbar\">\n    <section class=\"sidebar\">\n<!-- <tree-root [nodes]=\"nodes\" [focused]=\"true\"></tree-root> -->\n<input id=\"filter\" #filter (keyup)=\"tree.treeModel.filterNodes(filter.value)\" placeholder=\"filter nodes\"/>\n<tree-root [nodes]=\"nodes\"  [(state)]=\"state\" #tree [options]=\"options\" (initialized)=\"treeRootEvent($event)\">\n  <ng-template #treeNodeTemplate let-node let-index=\"index\">\n    <span [ngClass]=\"{'fa fa-circle-o' : !node.hasChildren}\">{{ isSidebarVisible ? node.data.name : '' }}</span>\n  </ng-template>\n</tree-root>\n\n<!-- <button (click)=\"setNode(3)\">Set Node</button> -->\n        <!-- <ul class=\"sidebar-menu\">\n            <li class=\"treeview active\" (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-dashboard\"></i> \n                    <span>Dashboard</span>\n                    <span class=\"pull-right-container\">\n                      <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li class=\"active\"><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Dashboard v1</a></li>\n                    <li class=\"active\"><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Dashboard v1</a></li>\n                </ul>\n            </li>\n            <li class=\"treeview\"  (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-files-o\"></i>\n                    <span>Layout Options</span>\n                    <span class=\"pull-right-container\">\n                        <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Top Navigation</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Top Navigation</a></li>\n                </ul>\n            </li>\n            <li class=\"treeview\"  (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-laptop\"></i>\n                    <span>UI Elements</span>\n                    <span class=\"pull-right-container\">\n                        <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> General</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> General</a></li>\n                </ul>\n            </li>\n            <li  (click)=\"onClickLi()\"><a href=\"#\"><i class=\"fa fa-circle-o text-aqua\"></i> <span>Information</span></a></li>\n        </ul> -->\n    </section>\n</aside>\n"
+module.exports = "<aside class=\"side-navbar\">\n    <section class=\"sidebar\">\n<!-- <tree-root [nodes]=\"nodes\" [focused]=\"true\"></tree-root> -->\n<input id=\"filter\" #filter (keyup)=\"tree.treeModel.filterNodes(filter.value)\" placeholder=\"Search menus\"/>\n<tree-root [nodes]=\"nodes\" [focused]=\"true\" [(state)]=\"state\" #tree [options]=\"options\" (initialized)=\"treeRootEvent($event)\">\n  <ng-template #treeNodeTemplate let-node let-index=\"index\">\n    <span [ngClass]=\"{'fa fa-circle-o' : !node.hasChildren}\">{{ isSidebarVisible ? node.data.name : '' }}</span>\n  </ng-template>\n</tree-root>\n\n<!-- <button (click)=\"setNode(3)\">Set Node</button> -->\n        <!-- <ul class=\"sidebar-menu\">\n            <li class=\"treeview active\" (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-dashboard\"></i> \n                    <span>Dashboard</span>\n                    <span class=\"pull-right-container\">\n                      <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li class=\"active\"><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Dashboard v1</a></li>\n                    <li class=\"active\"><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Dashboard v1</a></li>\n                </ul>\n            </li>\n            <li class=\"treeview\"  (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-files-o\"></i>\n                    <span>Layout Options</span>\n                    <span class=\"pull-right-container\">\n                        <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Top Navigation</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Top Navigation</a></li>\n                </ul>\n            </li>\n            <li class=\"treeview\"  (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-laptop\"></i>\n                    <span>UI Elements</span>\n                    <span class=\"pull-right-container\">\n                        <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> General</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> General</a></li>\n                </ul>\n            </li>\n            <li  (click)=\"onClickLi()\"><a href=\"#\"><i class=\"fa fa-circle-o text-aqua\"></i> <span>Information</span></a></li>\n        </ul> -->\n    </section>\n</aside>\n"
 
 /***/ }),
 
@@ -560,6 +557,8 @@ var SideNavbar = /** @class */ (function () {
         this.renderer = renderer;
         this.commonService = commonService;
         this.router = router;
+        this.treeInitializeFlag = false;
+        this.currentRoute = '';
         // Provide Menu Array to tree component
         this.nodes = this.commonService.appMenus;
         // Provide options Object to tree component
@@ -611,8 +610,24 @@ var SideNavbar = /** @class */ (function () {
                     _a)
             }
         };
+        // Call on route change
+        router.events.subscribe(function (event) {
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* NavigationEnd */]) {
+                // Save current route in currentRoute var
+                _this.currentRoute = event.urlAfterRedirects.replace('/', '');
+                _this.treeInitializeFlag && _this.collapseAndSetActiveNode();
+            }
+        });
         var _a;
     }
+    SideNavbar.prototype.collapseAndSetActiveNode = function () {
+        var _this = this;
+        this.treeRef.treeModel.collapseAll();
+        setTimeout(function () {
+            _this.treeRef.treeModel.getNodeBy(function (node) { return node.data.route === _this.currentRoute; })
+                .setActiveAndVisible();
+        }, 0);
+    };
     Object.defineProperty(SideNavbar.prototype, "isSidebarVisible", {
         get: function () {
             return this.commonService.showFullSideBar;
@@ -642,14 +657,14 @@ var SideNavbar = /** @class */ (function () {
         });
     }*/
     SideNavbar.prototype.activateAndNavigateRoute = function (node) {
-        var _this = this;
-        this.treeRef.treeModel.collapseAll();
-        setTimeout(function () {
-            //TREE_ACTIONS.ACTIVATE(tree, node, $event);
-            _this.treeRef.treeModel.getNodeById(node.data.id)
-                .setActiveAndVisible();
-            _this.router.navigate([node.data.route]);
-        }, 0);
+        this.router.navigate([node.data.route]);
+        // this.treeRef.treeModel.collapseAll();
+        // setTimeout(()=>{
+        //  //TREE_ACTIONS.ACTIVATE(tree, node, $event);
+        //     this.treeRef.treeModel.getNodeById(node.data.id)
+        //     		.setActiveAndVisible();
+        //this.router.navigate([node.data.route]);
+        // },0);
     };
     Object.defineProperty(SideNavbar.prototype, "state", {
         // Get State of tree
@@ -676,9 +691,12 @@ var SideNavbar = /** @class */ (function () {
     SideNavbar.prototype.treeRootEvent = function (data) {
         switch (data.eventName) {
             case "initialized": {
-                console.log("initialized", data);
+                this.treeInitializeFlag = true;
                 var selectedNode = data.treeModel.getActiveNode();
-                selectedNode && this.router.navigate([selectedNode.data.route]);
+                if (selectedNode)
+                    this.router.navigate([selectedNode.data.route]);
+                else if (this.currentRoute)
+                    this.collapseAndSetActiveNode();
                 break;
             }
             default:
@@ -784,11 +802,10 @@ var LoginComponent = /** @class */ (function () {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-        this.http.post('http://localhost:3000/login', { "name": "lokesh" }, {
+        this.http.post('http://localhost:3000/login', { "name": this.loginForm.value.email, "password": this.loginForm.value.password }, {
             headers: headers
         }).subscribe(function (data) {
             _this.loading = false;
-            console.log("dataResult", data);
             localStorage.setItem('currentUser', _this.loginForm.value.email);
             _this.commonService.appMenus = _this.commonService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
             _this.router.navigate([_this.returnUrl]);
@@ -835,8 +852,7 @@ var LoginComponent = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -847,22 +863,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
+// import { Router, Event, NavigationEnd } from '@angular/router';
 
 var CommonService = /** @class */ (function () {
-    // Store Application Menus after login and clear after logout
-    function CommonService(http, router) {
+    function CommonService(http) {
         this.http = http;
-        this.router = router;
         this.showFullSideBar = true;
+        // Store Application Menus after login and clear after logout
         this.appMenus = [];
-        router.events.subscribe(function (event) {
-            if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* NavigationEnd */]) {
-                console.log("val", event);
-            }
-        });
     }
-    CommonService.prototype.getLoginData = function (url) {
+    CommonService.prototype.getData = function (url) {
         return this.http.get(url);
     };
     CommonService.prototype.getRoutingData = function () {
@@ -883,7 +893,7 @@ var CommonService = /** @class */ (function () {
     };
     CommonService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], CommonService);
     return CommonService;
 }());

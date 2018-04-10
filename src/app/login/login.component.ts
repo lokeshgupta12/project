@@ -53,12 +53,11 @@ export class LoginComponent implements OnInit {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin':'*'
         });
-        this.http.post('http://localhost:3000/login', {"name": "lokesh"}, {
+        this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}, {
         headers: headers
       }).subscribe((data : any) => {
     
             this.loading = false;
-            console.log("dataResult", data)
             localStorage.setItem('currentUser',this.loginForm.value.email);
             this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
             this.router.navigate([this.returnUrl]);

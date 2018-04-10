@@ -84,7 +84,7 @@ workflow.on('collectUserInput', function(){
       };
       cb();
     });
-  }*/], function(err, res){
+  }*/], function(err, res) {
     if(err){
       console.log('Error collecting config info, please try again.');
       process.exit(-1);
@@ -153,7 +153,7 @@ workflow.on('collectUserInput', function(){
 //     // insert one user doc
 //     db.collection('admins').findOne(function(err, admin){
 //       if(err) return cb(err);
-//       db.collection('accounts').findOne(function(err, account){
+//       db.collection('accounts').findOne(function(err, account) {
 //         if(err) return cb(err);
 //         var user = {
 //           username: workflow.admin.username,
