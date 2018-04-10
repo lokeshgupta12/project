@@ -15,8 +15,8 @@ con.connect(function(err) {
         if (err) throw err;
         con.query('USE mydb', function(err) {
             if (err) throw err;
-            for (var i in tableArray) {
-                con.query(tableArray[i], function(err) {
+            for (var q of tableArray) {
+                con.query(q, function(err) {
                     if (err) throw err;
                 });
             }
