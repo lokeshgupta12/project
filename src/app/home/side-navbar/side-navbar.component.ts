@@ -1,4 +1,4 @@
-import { Component, ViewChild  /*, Input*/, Renderer } from '@angular/core';
+import { Component, ViewChild  /*, Input*/, Renderer, OnDestroy } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 
 import { TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions, ITreeState } from 'angular-tree-component';
@@ -18,6 +18,7 @@ export class SideNavbar {
 
 	private treeInitializeFlag : boolean = false;
 	private currentRoute : string  = '';
+	private routerSubscriber;
 	
 	constructor(
 		private renderer:Renderer,
@@ -25,13 +26,17 @@ export class SideNavbar {
 		private router : Router
 		) {
 		// Call on route change
-        router.events.subscribe( (event: Event) => {
+        this.routerSubscriber = router.events.subscribe( (event: Event) => {
            if (event instanceof NavigationEnd) {
            		// Save current route in currentRoute var
                 this.currentRoute = event.urlAfterRedirects.replace('/','');
                 this.treeInitializeFlag && this.collapseAndSetActiveNode();
             }
         });
+	}
+
+	ngOnDestroy() {
+		this.routerSubscriber.unsubscribe();
 	}
 
 	private collapseAndSetActiveNode() {
@@ -165,6 +170,8 @@ export class SideNavbar {
 		  }
 		}
 	};
+
+
 }
 
 
