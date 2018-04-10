@@ -4,11 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "start": "ng build && node server",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start" : "ng build && git add . && git commit -m \"start By npm commit command\" && git pull && git push" 
+    "test" : "ng build && git add . && git commit -m \"start By npm test command\" && git pull && git push" 
   },
   "private": true,
   "dependencies": {
