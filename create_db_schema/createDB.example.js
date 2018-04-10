@@ -3,9 +3,9 @@ const mysql = require("mysql")
 var tableArray = require("./queryForNewTable")
 
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: ""
+    host: "{{MYSQL_HOST}}",
+    user: "{{MYSQL_USER}}",
+    password: "{{MYSQL_PASSWORD}}"
 });
 
 con.connect(function(err) {

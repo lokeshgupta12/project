@@ -3,13 +3,15 @@ var jwt = require('jsonwebtoken');
 var configData = require('../databaseConnection/config')
 var pool = require('../databaseConnection/databaseConnection')
 var sess;
+
 methods.checkTokenValidOrNot = function(token) {
     var isTokenValidFlag = false
     isTokenValidFlag = jwt.verify(token, configData.secretKeyForToken, function(err, decoded) {
         return err ? false : true;
     });
-    return isTokenValidFlag
+    return isTokenValidFlag;
 }
+
 methods.checkRoutingParams = function(req, res, next) {
     if (!sess || req.url == '/login') {
         if (req.url == '/login') {
@@ -32,6 +34,7 @@ methods.checkRoutingParams = function(req, res, next) {
         }
     }
 }
+
 methods.checkLoginCredintilas = function(req, res, next) {
     sess = req.session;
     pool.getConnection(function(err, connection) {
@@ -74,6 +77,7 @@ methods.checkLoginCredintilas = function(req, res, next) {
         })
     })
 }
+
 methods.gettingListOfAllUser = function(req, res, next) {
     pool.getConnection(function(err, connection) {
         if (err) throw err;
@@ -87,4 +91,5 @@ methods.gettingListOfAllUser = function(req, res, next) {
         })
     })
 }
+
 module.exports = methods;

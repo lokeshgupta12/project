@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "angular-tree-component": "^7.1.0",
+    "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
@@ -31,6 +32,7 @@
     "fontawesome": "^4.7.2",
     "mongodb": "^2.2.33",
     "morgan": "^1.9.0",
+    "prompt": "^1.0.0",
     "rxjs": "^5.5.6",
     "serve-favicon": "^2.4.5",
     "zone.js": "^0.8.19"

@@ -1,3 +1,16 @@
+## 1.Install Dependency
+```
+npm install
+```
+## 2.Setup(Interactively setup basic website and necessary database configurations.)
+```
+node init.js
+```
+## 3.Create DB Schema
+```
+node ./create_db_schema/createDB.js
+```
+
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
