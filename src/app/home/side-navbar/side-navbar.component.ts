@@ -1,5 +1,5 @@
 import { Component, ViewChild  /*, Input*/, Renderer } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 
 import { TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions, ITreeState } from 'angular-tree-component';
 
@@ -15,12 +15,31 @@ import { CommonService } from '../../service/common.service';
 
 export class SideNavbar {
 	@ViewChild('tree') treeRef : any;
+
+	private treeInitializeFlag : boolean = false;
+	private currentRoute : string  = '';
 	
 	constructor(
 		private renderer:Renderer,
 		private commonService : CommonService,
 		private router : Router
 		) {
+		// Call on route change
+        router.events.subscribe( (event: Event) => {
+           if (event instanceof NavigationEnd) {
+           		// Save current route in currentRoute var
+                this.currentRoute = event.urlAfterRedirects.replace('/','');
+                this.treeInitializeFlag && this.collapseAndSetActiveNode();
+            }
+        });
+	}
+
+	private collapseAndSetActiveNode() {
+		this.treeRef.treeModel.collapseAll();
+        setTimeout(() => {
+	     this.treeRef.treeModel.getNodeBy((node) => node.data.route === this.currentRoute)
+      		.setActiveAndVisible();
+		},0);
 	}
 
 	get isSidebarVisible(): boolean {
@@ -50,15 +69,14 @@ export class SideNavbar {
 	}*/
 
 	private activateAndNavigateRoute(node) {
-		this.treeRef.treeModel.collapseAll();
-		setTimeout(()=>{
-		 //TREE_ACTIONS.ACTIVATE(tree, node, $event);
-	     this.treeRef.treeModel.getNodeById(node.data.id)
-      		.setActiveAndVisible();
-	     this.router.navigate([node.data.route]);
-		},0);
-		
-
+		this.router.navigate([node.data.route]);
+		// this.treeRef.treeModel.collapseAll();
+		// setTimeout(()=>{
+		//  //TREE_ACTIONS.ACTIVATE(tree, node, $event);
+	 //     this.treeRef.treeModel.getNodeById(node.data.id)
+  //     		.setActiveAndVisible();
+			//this.router.navigate([node.data.route]);
+		// },0);
 	}
 	// Get State of tree
 	get state(): ITreeState {
@@ -82,9 +100,12 @@ export class SideNavbar {
 	treeRootEvent (data) {
 		switch (data.eventName) {
 			case "initialized": {
-				console.log("initialized",data);
+				this.treeInitializeFlag = true;
 				var selectedNode = data.treeModel.getActiveNode();
-				selectedNode && this.router.navigate([selectedNode.data.route]);
+				if (selectedNode)
+					this.router.navigate([selectedNode.data.route]);
+				else if(this.currentRoute)
+					this.collapseAndSetActiveNode();
 				break;
 			}
 			default:

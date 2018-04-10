@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Router, Event, NavigationEnd } from '@angular/router';
+// import { Router, Event, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class CommonService {
-	// Store Application Menus after login and clear after logout
-	constructor(private http : HttpClient, private router : Router){
-        router.events.subscribe( (event: Event) => {
-           if (event instanceof NavigationEnd) {
-                console.log("val", event) 
-            }
-        });
+    constructor(private http : HttpClient){
+        
     }
 
     showFullSideBar : boolean = true;
+	// Store Application Menus after login and clear after logout
     appMenus : {name : string, path : string}[] = [];
 
-    getLoginData(url) {
+    getData(url) {
         return this.http.get(url);
     }
     getRoutingData() {

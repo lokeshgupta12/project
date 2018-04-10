@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
         this.http.post('http://localhost:3000/login', {"name": "lokesh"}, {
         headers: headers
       }).subscribe((data : any) => {
+    
             this.loading = false;
             console.log("dataResult", data)
             localStorage.setItem('currentUser',this.loginForm.value.email);

@@ -1,8 +1,8 @@
 <aside class="side-navbar">
     <section class="sidebar">
 <!-- <tree-root [nodes]="nodes" [focused]="true"></tree-root> -->
-<input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="filter nodes"/>
-<tree-root [nodes]="nodes"  [(state)]="state" #tree [options]="options" (initialized)="treeRootEvent($event)">
+<input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search menus"/>
+<tree-root [nodes]="nodes" [focused]="true" [(state)]="state" #tree [options]="options" (initialized)="treeRootEvent($event)">
   <ng-template #treeNodeTemplate let-node let-index="index">
     <span [ngClass]="{'fa fa-circle-o' : !node.hasChildren}">{{ isSidebarVisible ? node.data.name : '' }}</span>
   </ng-template>
