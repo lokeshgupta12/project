@@ -19,7 +19,10 @@ export class CommonService {
     getLoginData(url) {
         return this.http.get(url);
     }
-
+    getRoutingData() {
+        let routingResult = [{pathUrl:"", componentName:"HomeComponent", canActivatedGaurd:[], children: [{path : '', component : "WelcomeComponent"}, {path : 'main', component : "MainSection"}] }]
+      return routingResult
+    }
 	// Convert Linear to Multi Level
 	getNestedChildren(arr, primKey, ParKey, parent? : any) {
         var out = []

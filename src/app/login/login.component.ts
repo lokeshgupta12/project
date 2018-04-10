@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // import { DemoService } from '../demo.service';
 import { CommonService } from '../service/common.service';
@@ -49,10 +49,17 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.http.get('assets/WSResponses/getLoginDataByMailAndPwd.json').subscribe((data : any) => {
+        var headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*'
+        });
+        this.http.post('http://localhost:3000/login', {"name": "lokesh"}, {
+        headers: headers
+      }).subscribe((data : any) => {
             this.loading = false;
+            console.log("dataResult", data)
             localStorage.setItem('currentUser',this.loginForm.value.email);
-            this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
+            this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
             this.router.navigate([this.returnUrl]);
         });
         //this.authenticationService.login(this.model.username, this.model.password)
