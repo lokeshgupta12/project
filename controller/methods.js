@@ -1,6 +1,7 @@
 const methods = {};
 var jwt = require('jsonwebtoken');
 var configData = require('../databaseConnection/config')
+var md5 = require("md5")
 var pool = require('../databaseConnection/databaseConnection')
 var sess;
 
@@ -37,13 +38,31 @@ methods.checkRoutingParams = function(req, res, next) {
 
 methods.checkLoginCredintilas = function(req, res, next) {
     sess = req.session;
-    pool.getConnection(function(err, connection) {
+    if(!req.body.name){
+        res.send({
+                "status": "fail",
+                "result": "Please provide username"
+            })
+    } else if(!req.body.password) {
+        res.send({
+            "status": "fail",
+            "result": "Please provide password"
+        })
+    } else if(!req.body.name && !req.body.password) {
+        res.send({
+            "status": "fail",
+            "result": "Please provide username and password"
+        })
+    } else {
+        pool.getConnection(function(err, connection) {
         if (err) throw err;
-        var sql = "SELECT * FROM user where name =?";
-        connection.query(sql, [req.body.name], function(error, firstresult) {
-            if (error) throw error;
-            var token = jwt.sign({
-                id: firstresult[0].id
+        var sql = "SELECT * FROM user where email = ? and password = ?";
+        var password = md5(req.body.password)
+        connection.query(sql, [req.body.name, password], function(error, userResult) {
+            if (error) throw error; 
+            if(userResult.length > 0) {
+                var token = jwt.sign({
+                id: userResult[0].id
             }, configData.secretKeyForToken, {
                 expiresIn: 600
             });
@@ -52,41 +71,50 @@ methods.checkLoginCredintilas = function(req, res, next) {
             ]
             connection.query("INSERT INTO login_history (login_time, user_name, auth_token) values ?", [values], function(error, result) {
                 if (error) throw error;
-                if (firstresult[0].user_type == 1) {
+                if (userResult[0].user_type == 1) {
                     var query = "SELECT * FROM controller"
                 } else {
-                    var query = "SELECT * FROM controller where user_id =" + firstresult[0].id;
+                    var query = "SELECT * FROM controller where user_id =" + userResult[0].id;
                 }
                 connection.query(query, function(error, secondresult) {
-                    if (error) throw error;
+                   // if (error) throw error;
                     connection.release();
                     sess.userDeatil = {
-                        userId: firstresult[0].id,
+                        userId: userResult[0].id,
                         authToken: token,
-                        name: firstresult[0].name
+                        name: userResult[0].name
                     }
                     res.send({
                         "status": "ok",
-                        "result": firstresult,
+                        "result": userResult,
                         "auth_token": token,
                         "appMenus": secondresult
                     })
                 })
             })
+        } else {
+             res.send({
+                        "status": "fail",
+                        "result": "username not exist"
+                    })
+           } 
 
         })
+        
     })
+    }
+    
 }
 
 methods.gettingListOfAllUser = function(req, res, next) {
     pool.getConnection(function(err, connection) {
         if (err) throw err;
         var sql = "SELECT * FROM user"
-        connection.query(sql, function(error, firstresult) {
+        connection.query(sql, function(error, userResult) {
             if (error) throw error;
             res.send({
                 "status": "ok",
-                "result": firstresult
+                "result": userResult
             })
         })
     })
