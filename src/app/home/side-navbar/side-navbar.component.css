@@ -7,12 +7,30 @@
     min-height: 100%;
     width: 230px;
     z-index: 1;
-    background-color: #222d32;
+    background-color: #377ea9;
     -webkit-transition: width .3s ease-in-out;
     -o-transition: width .3s ease-in-out;
     transition: width .3s ease-in-out;
 }
-.sidebar-menu{
+.menu-holder {
+    height: calc(100vh - 118px);
+    overflow-y: auto;    
+}
+
+input {
+    width: 100%;
+}
+
+.menu-toggle {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: #87bcde;
+    text-align: center;
+    padding-top: 7px;
+}
+
+/*.sidebar-menu{
     white-space: nowrap;
     list-style: none;
     margin: 0;
@@ -84,12 +102,12 @@
 }
 .sidebar-menu > li:hover > a .fa-angle-left{
     transform: rotate(-90deg);
-}
+}*/
 
 
 
 /* For Small Desktop */
-.small .sidebar-menu >li.active .treeview-menu {
+/*.small .sidebar-menu >li.active .treeview-menu {
     display: none;
 }
 .small.side-navbar {
@@ -145,6 +163,6 @@
     position: absolute;
     width: 180px;
     left: 50px;
-} 
+} */
 
 

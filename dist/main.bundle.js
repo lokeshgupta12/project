@@ -71,19 +71,20 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__http_interceptor__ = __webpack_require__("./src/app/http-interceptor.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__material_module__ = __webpack_require__("./src/app/material.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular_tree_component__ = __webpack_require__("./node_modules/angular-tree-component/dist/angular-tree-component.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("./src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_header_header_component__ = __webpack_require__("./src/app/home/header/header.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_side_navbar_side_navbar_component__ = __webpack_require__("./src/app/home/side-navbar/side-navbar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_main_section_main_section_component__ = __webpack_require__("./src/app/home/main-section/main-section-component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptor__ = __webpack_require__("./src/app/http-interceptor.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -97,15 +98,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-// import { TREE_ACTIONS, KEYS, IActionMapping } from 'angular-tree-component';
-// const actionMapping:IActionMapping = {
-//   mouse: {
-//     click: TREE_ACTIONS.TOGGLE_SELECTED
-//   },
-//   keys: {
-//     [KEYS.ENTER]: (tree, node, $event) => alert(`This is ${node.data.name}`)
-//   }  
-// }
 
 
 
@@ -114,7 +106,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-// import { DemoService } from './demo.service';
+
 
 
 
@@ -122,28 +114,34 @@ var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["K" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__home_header_header_component__["a" /* HeaderComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__home_side_navbar_side_navbar_component__["a" /* SideNavbar */],
                 __WEBPACK_IMPORTED_MODULE_9__home_main_section_main_section_component__["a" /* MainSection */],
                 __WEBPACK_IMPORTED_MODULE_10__login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_11__app_routing__["a" /* AppRouting */],
+                __WEBPACK_IMPORTED_MODULE_13__app_routing__["a" /* AppRouting */],
+                __WEBPACK_IMPORTED_MODULE_4__material_module__["a" /* MaterialModule */],
                 __WEBPACK_IMPORTED_MODULE_5_angular_tree_component__["c" /* TreeModule */]
             ],
-            providers: [{
+            providers: [
+                {
                     provide: __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HTTP_INTERCEPTORS */],
-                    useClass: __WEBPACK_IMPORTED_MODULE_4__http_interceptor__["a" /* MyHttpInterceptor */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_15__http_interceptor__["a" /* MyHttpInterceptor */],
                     multi: true
-                }, __WEBPACK_IMPORTED_MODULE_13__guards_auth_guard__["a" /* AuthGuard */], __WEBPACK_IMPORTED_MODULE_14__service_common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_15__guards_login_resolve__["a" /* LoginResolver */] /*DemoService*/],
+                },
+                __WEBPACK_IMPORTED_MODULE_14__guards_auth_guard__["a" /* AuthGuard */],
+                __WEBPACK_IMPORTED_MODULE_16__service_common_service__["a" /* CommonService */],
+                __WEBPACK_IMPORTED_MODULE_17__guards_login_resolve__["a" /* LoginResolver */]
+            ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -193,7 +191,7 @@ var AppRouting = /** @class */ (function () {
     function AppRouting() {
     }
     AppRouting = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
             declarations: [],
             imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* RouterModule */].forRoot(routes, { useHash: true })],
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* RouterModule */]]
@@ -256,7 +254,7 @@ var AuthGuard = /** @class */ (function () {
         }
     };
     AuthGuard = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */],
             __WEBPACK_IMPORTED_MODULE_2__service_common_service__["a" /* CommonService */]])
     ], AuthGuard);
@@ -300,7 +298,7 @@ var LoginResolver = /** @class */ (function () {
         this.router.navigate(['']);
     };
     LoginResolver = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
     ], LoginResolver);
     return LoginResolver;
@@ -320,7 +318,7 @@ module.exports = ".main-header {\n    position: relative;\n    max-height: 100px
 /***/ "./src/app/home/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"main-header\">\n  <a routerLink=\"/\" class=\"logo\">New Dashboard</a>\n  <nav class=\"navbigation navbar-static-top\">\n    <a href=\"javascript:void(0)\" class=\"sidebar-toggle\" data-toggle=\"push-menu\" role=\"button\" (click)='menuToggel()'>\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n    </a>\n    <div class=\"profile\">\n        <a class=\"profilelink\" (click)=\"open = !open\">\n            <img src=\"./assets/user.jpg\" class=\"user-image\">\n            <span class=\"user-name\">Alexander Pierce</span>\n        </a>\n        <ul class=\"dropdown-menu\" [ngClass]=\"open ? 'd-block' : 'd-none'\" >\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-user\"></i> My Account\n                </a>\n            </li>\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-gear\"></i> Account Settings\n                </a>\n            </li>\n            <li>\n                <a routerLink=\"/login\" (click)=\"logout()\">\n                    <i class=\"fa fa-sign-out\"></i>Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n  </nav>\n</header>\n"
+module.exports = "<header class=\"main-header\">\n  <!-- <a routerLink=\"/\" class=\"logo\">New Dashboard</a> -->\n  <a routerLink=\"/\" class=\"logo\"><mat-icon>home</mat-icon></a>\n  <nav class=\"navbigation navbar-static-top\">\n    <a href=\"javascript:void(0)\" class=\"sidebar-toggle\" data-toggle=\"push-menu\" role=\"button\" (click)='menuToggel()'>\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n    </a>\n    <div class=\"profile\">\n        <a class=\"profilelink\" (click)=\"open = !open\">\n            <img src=\"./assets/user.jpg\" class=\"user-image\">\n            <span class=\"user-name\">Alexander Pierce</span>\n        </a>\n        <ul class=\"dropdown-menu\" [ngClass]=\"open ? 'd-block' : 'd-none'\" >\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-user\"></i> My Account\n                </a>\n            </li>\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-gear\"></i> Account Settings\n                </a>\n            </li>\n            <li>\n                <a routerLink=\"/login\" (click)=\"logout()\">\n                    <i class=\"fa fa-sign-out\"></i>Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n  </nav>\n</header>\n"
 
 /***/ }),
 
@@ -425,7 +423,7 @@ var HomeComponent = /** @class */ (function () {
 /***/ "./src/app/home/main-section/main-section-component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".main-section{\n\tmargin-left: 230px;\n    -webkit-transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n\tbackground-color: #ecf0f5;\n}\n.small.main-section{\n\tmargin-left: 50px;\n}\n.content {\n    padding: 15px;\n}\n.content-header {\n    position: relative;\n    padding: 15px 15px 0 15px;\n}\n.content-header>h1 {\n    margin: 0;\n    font-size: 24px;\n}\n.content-header>h1>small {\n    font-size: 15px;\n    display: inline-block;\n    padding-left: 4px;\n    font-weight: 300;\n}\n.content-header>.breadcrumb {\n    float: right;\n    background: transparent;\n    margin-top: 0;\n    margin-bottom: 0;\n    font-size: 12px;\n    padding: 7px 5px;\n    position: absolute;\n    top: 15px;\n    right: 10px;\n    border-radius: 2px;\n    list-style: none;\n}\n.breadcrumb>li {\n    display: inline-block;\n}\n.content-header>.breadcrumb>li>a {\n    color: #444;\n    text-decoration: none;\n    display: inline-block;\n}\n.breadcrumb>.active {\n    color: #777;\n}\n.content-header>.breadcrumb>li+li:before {\n    content: '>\\00a0';\n}\n.breadcrumb>li+li:before {\n    padding: 0 5px;\n    color: #ccc;\n    content: \"/\\00a0\";\n}\n.content-header>.breadcrumb>li>a>.fa {\n    margin-right: 5px;\n}\n.box {\n    position: relative;\n    border-radius: 3px;\n    background: #ffffff;\n    border-top: 3px solid #d2d6de;\n    margin-bottom: 20px;\n    width: 100%;\n    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);\n            box-shadow: 0 1px 1px rgba(0,0,0,0.1);\n}\n.box-header {\n    color: #444;\n    display: block;\n    padding: 10px;\n    position: relative;\n}\n.box-header:before, .box-body:before, .box-footer:before, .box-header:after, .box-body:after, .box-footer:after {\n    content: \" \";\n    display: table;\n}\n.box-header .box-title {\n    display: inline-block;\n    font-size: 18px;\n    margin: 0;\n    line-height: 1;\n}\n.box-body {\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 3px;\n    border-bottom-left-radius: 3px;\n    padding: 10px;\n}\n.margin-top32{\n    margin-top: 32px;\n}"
+module.exports = "\n.small.main-section{\n\tmargin-left: 50px;\n}\n\n.content {\n    padding: 15px;\n}\n\n.content-header {\n    position: relative;\n    padding: 15px 15px 0 15px;\n}\n\n.content-header>h1 {\n    margin: 0;\n    font-size: 24px;\n}\n\n.content-header>h1>small {\n    font-size: 15px;\n    display: inline-block;\n    padding-left: 4px;\n    font-weight: 300;\n}\n\n.content-header>.breadcrumb {\n    float: right;\n    background: transparent;\n    margin-top: 0;\n    margin-bottom: 0;\n    font-size: 12px;\n    padding: 7px 5px;\n    position: absolute;\n    top: 15px;\n    right: 10px;\n    border-radius: 2px;\n    list-style: none;\n}\n\n.breadcrumb>li {\n    display: inline-block;\n}\n\n.content-header>.breadcrumb>li>a {\n    color: #444;\n    text-decoration: none;\n    display: inline-block;\n}\n\n.breadcrumb>.active {\n    color: #777;\n}\n\n.content-header>.breadcrumb>li+li:before {\n    content: '>\\00a0';\n}\n\n.breadcrumb>li+li:before {\n    padding: 0 5px;\n    color: #ccc;\n    content: \"/\\00a0\";\n}\n\n.content-header>.breadcrumb>li>a>.fa {\n    margin-right: 5px;\n}\n\n.box {\n    position: relative;\n    border-radius: 3px;\n    background: #ffffff;\n    border-top: 3px solid #d2d6de;\n    margin-bottom: 20px;\n    width: 100%;\n    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);\n            box-shadow: 0 1px 1px rgba(0,0,0,0.1);\n}\n\n.box-header {\n    color: #444;\n    display: block;\n    padding: 10px;\n    position: relative;\n}\n\n.box-header:before, .box-body:before, .box-footer:before, .box-header:after, .box-body:after, .box-footer:after {\n    content: \" \";\n    display: table;\n}\n\n.box-header .box-title {\n    display: inline-block;\n    font-size: 18px;\n    margin: 0;\n    line-height: 1;\n}\n\n.box-body {\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 3px;\n    border-bottom-left-radius: 3px;\n    padding: 10px;\n}\n\n.margin-top32{\n    margin-top: 32px;\n}"
 
 /***/ }),
 
@@ -474,7 +472,7 @@ var MainSection = /** @class */ (function () {
 /***/ "./src/app/home/main-section/welcome/welcome.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".main-section{\n\tmargin-left: 230px;\n    -webkit-transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n\tbackground-color: #ecf0f5;\n}"
+module.exports = ""
 
 /***/ }),
 
@@ -524,14 +522,14 @@ var WelcomeComponent = /** @class */ (function () {
 /***/ "./src/app/home/side-navbar/side-navbar.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* For Larg Desktop */\n.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 230px;\n    z-index: 1;\n    background-color: #222d32;\n    -webkit-transition: width .3s ease-in-out;\n    transition: width .3s ease-in-out;\n}\n.sidebar-menu{\n    white-space: nowrap;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    margin-top: 10px;\n}\n.sidebar-menu a{\n\tfont-size: 14px;\n    color: #b8c7ce;\n}\n.sidebar-menu > li {\n    position: relative;\n}\n.sidebar-menu > li > a {\n    padding: 0px 5px 0px 15px;\n    display: block;\n    position: relative;\n}\n.sidebar-menu > li a .fa{\n    width: 20px;\n}\n.sidebar-menu > li > a {\n    border-left: 3px solid transparent;\n}\n.sidebar-menu>li:hover > a{\n    background: #1e282c;\n    color: #fff;\n}\n.sidebar-menu >li.active > a {\n    border-left-color: #3c8dbc;\n    color: #fff;\n}\n.sidebar-menu > li > a span{\n    display: inline-block;\n    padding: 12px 5px 12px 0;\n    \n}\n.sidebar-menu > li:not(.treeview) > a >span {\n    border-bottom-right-radius: 4px;\n}\n.sidebar-menu > li > a span.pull-right-container {\n    float: right;\n    margin-top: 4px;\n}\n.sidebar-menu li > a > .pull-right-container > .fa-angle-left {\n    width: auto;\n    height: auto;\n    padding: 0;\n    margin-right: 10px;\n}\n.treeview-menu {\n    display: none;\n    background: #2c3b41;\n    margin: 0;\n    padding-left: 5px;\n}\n.sidebar-menu >li.active .treeview-menu {\n    display: block;\n}\n.treeview-menu > li > a {\n    padding: 5px 5px 8px 15px;\n    display: block;\n}\n.treeview-menu li:hover a{\n    color: #fff;\n}\n.sidebar-menu > li:hover > a .fa-angle-left{\n    -webkit-transform: rotate(-90deg);\n            transform: rotate(-90deg);\n}\n/* For Small Desktop */\n.small .sidebar-menu >li.active .treeview-menu {\n    display: none;\n}\n.small.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 50px;\n    z-index: 1;\n    background-color: #222d32;\n    \n}\n.small .sidebar-menu > li > a {\n    padding: 12px 5px 12px 15px;\n    display: block;\n    position: relative;\n}\n.small .sidebar-menu > li > a span{\n    display: none;\n}\n.small .sidebar-menu > li:hover > a span{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n    border-top-right-radius: 4px;\n    top: 4px;\n    margin-left: -3px;\n    padding: 12px 5px 12px 20px;\n    background-color: #1e282c;\n}\n.small .sidebar-menu > li:hover > a span.pull-right-container {\n    position: relative;\n    float: right;\n    width: auto;\n    left: 180px;\n    top: -30px;\n    z-index: 3;\n}\n.small .treeview-menu {\n    display: none;\n    list-style: none;\n    padding: 5px 0;\n    margin: 0;\n    padding-left: 5px;\n    border-bottom-right-radius: 4px;\n    background: #2c3b41;\n}\n.small .sidebar-menu>li:hover .treeview-menu{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n} \n\n\n"
+module.exports = "/* For Larg Desktop */\n.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 230px;\n    z-index: 1;\n    background-color: #377ea9;\n    -webkit-transition: width .3s ease-in-out;\n    transition: width .3s ease-in-out;\n}\n.menu-holder {\n    height: calc(100vh - 118px);\n    overflow-y: auto;    \n}\ninput {\n    width: 100%;\n}\n.menu-toggle {\n    width: 100%;\n    position: absolute;\n    bottom: 0;\n    background-color: #87bcde;\n    text-align: center;\n    padding-top: 7px;\n}\n/*.sidebar-menu{\n    white-space: nowrap;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    margin-top: 10px;\n}\n.sidebar-menu a{\n\tfont-size: 14px;\n    color: #b8c7ce;\n}\n.sidebar-menu > li {\n    position: relative;\n}\n.sidebar-menu > li > a {\n    padding: 0px 5px 0px 15px;\n    display: block;\n    position: relative;\n}\n.sidebar-menu > li a .fa{\n    width: 20px;\n}\n.sidebar-menu > li > a {\n    border-left: 3px solid transparent;\n}\n\n.sidebar-menu>li:hover > a{\n    background: #1e282c;\n    color: #fff;\n}\n.sidebar-menu >li.active > a {\n    border-left-color: #3c8dbc;\n    color: #fff;\n}\n\n.sidebar-menu > li > a span{\n    display: inline-block;\n    padding: 12px 5px 12px 0;\n    \n}\n\n.sidebar-menu > li:not(.treeview) > a >span {\n    border-bottom-right-radius: 4px;\n}\n.sidebar-menu > li > a span.pull-right-container {\n    float: right;\n    margin-top: 4px;\n}\n.sidebar-menu li > a > .pull-right-container > .fa-angle-left {\n    width: auto;\n    height: auto;\n    padding: 0;\n    margin-right: 10px;\n}\n.treeview-menu {\n    display: none;\n    background: #2c3b41;\n    margin: 0;\n    padding-left: 5px;\n}\n.sidebar-menu >li.active .treeview-menu {\n    display: block;\n}\n.treeview-menu > li > a {\n    padding: 5px 5px 8px 15px;\n    display: block;\n}\n.treeview-menu li:hover a{\n    color: #fff;\n}\n.sidebar-menu > li:hover > a .fa-angle-left{\n    transform: rotate(-90deg);\n}*/\n/* For Small Desktop */\n/*.small .sidebar-menu >li.active .treeview-menu {\n    display: none;\n}\n.small.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 50px;\n    z-index: 1;\n    background-color: #222d32;\n    \n}\n.small .sidebar-menu > li > a {\n    padding: 12px 5px 12px 15px;\n    display: block;\n    position: relative;\n}\n.small .sidebar-menu > li > a span{\n    display: none;\n}\n\n.small .sidebar-menu > li:hover > a span{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n    border-top-right-radius: 4px;\n    top: 4px;\n    margin-left: -3px;\n    padding: 12px 5px 12px 20px;\n    background-color: #1e282c;\n}\n.small .sidebar-menu > li:hover > a span.pull-right-container {\n    position: relative;\n    float: right;\n    width: auto;\n    left: 180px;\n    top: -30px;\n    z-index: 3;\n}\n.small .treeview-menu {\n    display: none;\n    list-style: none;\n    padding: 5px 0;\n    margin: 0;\n    padding-left: 5px;\n    border-bottom-right-radius: 4px;\n    background: #2c3b41;\n}\n.small .sidebar-menu>li:hover .treeview-menu{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n} */\n\n\n"
 
 /***/ }),
 
 /***/ "./src/app/home/side-navbar/side-navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<aside class=\"side-navbar\">\n    <section class=\"sidebar\">\n<!-- <tree-root [nodes]=\"nodes\" [focused]=\"true\"></tree-root> -->\n<input id=\"filter\" #filter (keyup)=\"tree.treeModel.filterNodes(filter.value)\" placeholder=\"Search menus\"/>\n<tree-root [nodes]=\"nodes\" [focused]=\"true\" [(state)]=\"state\" #tree [options]=\"options\" (initialized)=\"treeRootEvent($event)\">\n  <ng-template #treeNodeTemplate let-node let-index=\"index\">\n    <span [ngClass]=\"{'fa fa-circle-o' : !node.hasChildren}\">{{ isSidebarVisible ? node.data.name : '' }}</span>\n  </ng-template>\n</tree-root>\n\n<!-- <button (click)=\"setNode(3)\">Set Node</button> -->\n        <!-- <ul class=\"sidebar-menu\">\n            <li class=\"treeview active\" (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-dashboard\"></i> \n                    <span>Dashboard</span>\n                    <span class=\"pull-right-container\">\n                      <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li class=\"active\"><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Dashboard v1</a></li>\n                    <li class=\"active\"><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Dashboard v1</a></li>\n                </ul>\n            </li>\n            <li class=\"treeview\"  (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-files-o\"></i>\n                    <span>Layout Options</span>\n                    <span class=\"pull-right-container\">\n                        <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Top Navigation</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Top Navigation</a></li>\n                </ul>\n            </li>\n            <li class=\"treeview\"  (click)=\"onClickLi()\">\n                <a href=\"#\">\n                    <i class=\"fa fa-laptop\"></i>\n                    <span>UI Elements</span>\n                    <span class=\"pull-right-container\">\n                        <i class=\"fa fa-angle-left pull-right\"></i>\n                    </span>\n                </a>\n                <ul class=\"treeview-menu\">\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> General</a></li>\n                    <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> General</a></li>\n                </ul>\n            </li>\n            <li  (click)=\"onClickLi()\"><a href=\"#\"><i class=\"fa fa-circle-o text-aqua\"></i> <span>Information</span></a></li>\n        </ul> -->\n    </section>\n</aside>\n"
+module.exports = "<aside class=\"side-navbar\">\n    <input id=\"filter\" #filter (keyup)=\"tree.treeModel.filterNodes(filter.value)\" placeholder=\"Search menus\"/>\n    <div class=\"menu-holder\">\n        <tree-root [nodes]=\"nodes\" [focused]=\"true\" [(state)]=\"state\" #tree [options]=\"options\" (initialized)=\"treeRootEvent($event)\">\n          <ng-template #treeNodeTemplate let-node let-index=\"index\">\n            <span [hidden]=\"!isSidebarVisible\"><mat-icon>{{node.data.iconName}}</mat-icon>{{node.data.name}}</span>\n            <div [hidden]=\"isSidebarVisible\">\n                <span matTooltip=\"{{node.data.name}}\" matTooltipPosition=\"after\"><mat-icon>{{node.data.iconName}}</mat-icon></span>    \n            </div>\n          </ng-template>\n        </tree-root>\n    </div>\n    <div class=\"menu-toggle\">\n        <a href=\"javascript:void(0)\" class=\"material-icons\">keyboard_arrow_left</a>\n    </div>\n</aside>"
 
 /***/ }),
 
@@ -590,6 +588,11 @@ var SideNavbar = /** @class */ (function () {
                     // contextMenu: (tree, node, $event) => {
                     //   $event.preventDefault();
                     //   alert(`context menu for ${node.data.name}`);
+                    // },
+                    // dblClick: (tree, node, $event) => {
+                    //   if (node.hasChildren) {
+                    //     TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
+                    //   }
                     // },
                     // dblClick: (tree, node, $event) => {
                     //   if (node.hasChildren) {
@@ -714,7 +717,7 @@ var SideNavbar = /** @class */ (function () {
         }
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])('tree'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])('tree'),
         __metadata("design:type", Object)
     ], SideNavbar.prototype, "treeRef", void 0);
     SideNavbar = __decorate([
@@ -723,7 +726,7 @@ var SideNavbar = /** @class */ (function () {
             template: __webpack_require__("./src/app/home/side-navbar/side-navbar.component.html"),
             styles: [__webpack_require__("./src/app/home/side-navbar/side-navbar.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["W" /* Renderer */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["X" /* Renderer */],
             __WEBPACK_IMPORTED_MODULE_3__service_common_service__["a" /* CommonService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
     ], SideNavbar);
@@ -779,7 +782,7 @@ var MyHttpInterceptor = /** @class */ (function () {
         });
     };
     MyHttpInterceptor = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])()
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
     ], MyHttpInterceptor);
     return MyHttpInterceptor;
 }());
@@ -798,7 +801,7 @@ module.exports = ".login{\n    width: 500px;\n    position: absolute;\n    top: 
 /***/ "./src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ul>\n  <li *ngFor=\"let user of demousers\">{{ user.email }}</li>\n</ul> -->\n\n<div class=\"login\">\n    <div class=\"panel panel-info\">\n    <div class=\"panel-heading\">\n        <div class=\"panel-title\">Sign In</div>\n        <div class=\"forgot\"><a href=\"#\">Forgot password?</a></div>\n    </div>\n    <div class=\"panel-body\">\n    <form  (ngSubmit)=\"login()\" #f=\"ngForm\" novalidate>\n        <div class=\"form-group\">\n            <label for=\"username\">Email</label>\n            <input type=\"email\" class=\"form-control\" name=\"email\" ngModel #email=\"ngModel\" required email />\n            <div *ngIf=\"email.errors && email.touched\">\n\t            <span *ngIf=\"email.errors.required\" class=\"redItalic\">Email required.</span>\n\t            <span *ngIf=\"!email.errors.required && email.errors.email\" class=\"redItalic\">Email not valid.</span>\n            </div>\n            <!-- <div *ngIf=\"(email.touched && !email.valid) || (f.submitted && !email.valid)\" class=\"help-block\">Email is required</div> -->\n        </div>\n        <div class=\"form-group\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" class=\"form-control\" name=\"password\" ngModel #password=\"ngModel\" required minlength=\"6\" maxlength=\"15\" />\n            <div *ngIf=\"password.errors && password.touched\">\n\t            <span *ngIf=\"password.errors.required\" class=\"redItalic\">Password required.</span>\n\t            <span *ngIf=\"!password.errors.required && (password.errors.minlength || password.errors.maxlength)\" class=\"redItalic\">Password length must be in between of 6 and 15.</span>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <button [disabled]=\"loading || !f.valid\" class=\"btn btn-success\">Login</button>\n            <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n        </div>\n    </form>\n    </div>\n    </div>\n</div>\n"
+module.exports = "<!-- <ul>\n  <li *ngFor=\"let user of demousers\">{{ user.email }}</li>\n</ul> -->\n<div class=\"login\">\n    <div class=\"panel panel-info\">\n    <div class=\"panel-heading\">\n        <div class=\"panel-title\">Sign In</div>\n        <div class=\"forgot\"><a href=\"#\">Forgot password?</a></div>\n    </div>\n    <div class=\"panel-body\">\n    <form  (ngSubmit)=\"login()\" #f=\"ngForm\" novalidate>\n        <div class=\"form-group\">\n            <label for=\"username\">Email</label>\n            <input type=\"email\" class=\"form-control\" name=\"email\" ngModel #email=\"ngModel\" required email />\n            <div *ngIf=\"email.errors && email.touched\">\n\t            <span *ngIf=\"email.errors.required\" class=\"redItalic\">Email required.</span>\n\t            <span *ngIf=\"!email.errors.required && email.errors.email\" class=\"redItalic\">Email not valid.</span>\n            </div>\n            <!-- <div *ngIf=\"(email.touched && !email.valid) || (f.submitted && !email.valid)\" class=\"help-block\">Email is required</div> -->\n        </div>\n        <div class=\"form-group\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" class=\"form-control\" name=\"password\" ngModel #password=\"ngModel\" required minlength=\"6\" maxlength=\"15\" />\n            <div *ngIf=\"password.errors && password.touched\">\n\t            <span *ngIf=\"password.errors.required\" class=\"redItalic\">Password required.</span>\n\t            <span *ngIf=\"!password.errors.required && (password.errors.minlength || password.errors.maxlength)\" class=\"redItalic\">Password length must be in between of 6 and 15.</span>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <button [disabled]=\"loading || !f.valid\" class=\"btn btn-success\">Login</button>\n            <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n        </div>\n    </form>\n    </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -879,8 +882,8 @@ var LoginComponent = /** @class */ (function () {
         //     });
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])('f'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* NgForm */])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])('f'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* NgForm */])
     ], LoginComponent.prototype, "loginForm", void 0);
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -898,6 +901,72 @@ var LoginComponent = /** @class */ (function () {
         ])
     ], LoginComponent);
     return LoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/material.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MaterialModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_animations__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MaterialModule = /** @class */ (function () {
+    function MaterialModule() {
+    }
+    MaterialModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["a" /* MatAutocompleteModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["c" /* MatButtonToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatChipsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatStepperModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["i" /* MatDividerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatExpansionModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["k" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["m" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["n" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MatNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["r" /* MatProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["s" /* MatProgressSpinnerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatRippleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["y" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatSlideToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatTooltipModule */],
+            ]
+        })
+    ], MaterialModule);
+    return MaterialModule;
 }());
 
 
@@ -950,7 +1019,7 @@ var CommonService = /** @class */ (function () {
         return out;
     };
     CommonService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
     ], CommonService);
     return CommonService;
@@ -990,7 +1059,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_15" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });

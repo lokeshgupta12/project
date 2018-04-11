@@ -149,6 +149,11 @@ export class SideNavbar {
 		    //     TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
 		    //   }
 		    // },
+		    // dblClick: (tree, node, $event) => {
+		    //   if (node.hasChildren) {
+		    //     TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
+		    //   }
+		    // },
 		    click: (tree, node, $event) => {
 		      //tree.collapseAll();
 		      //$event.preventDefault();
