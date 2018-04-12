@@ -15,17 +15,8 @@ input.ng-invalid.ng-touched {
 	color: red;
     font-style: italic;
 }
-.main-section{
-	margin-left: 230px;
-    transition: transform .3s ease-in-out,margin .3s ease-in-out;
-	background-color: #ecf0f5;
-    height: calc(100vh - 50px);
-    overflow-y: auto;
-}
-.collapse-menu.main-section{
-	margin-left: 100px; 
-}
-.collapse-menu.side-navbar{
-	width: 100px; 
+
+.toggle-children,.toggle-children-placeholder {
+    display: none;   
 }
 /* For diplay block and display none */

@@ -1,16 +1,17 @@
-<aside class="side-navbar">
-    <input id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search menus"/>
+<aside class="side-navbar" [ngClass]="{'collapse-menu':!commonService.showFullSideBar}">
+    <input [hidden]="!commonService.showFullSideBar" id="filter" #filter (keyup)="tree.treeModel.filterNodes(filter.value)" placeholder="Search menus"/>
     <div class="menu-holder">
         <tree-root [nodes]="nodes" [focused]="true" [(state)]="state" #tree [options]="options" (initialized)="treeRootEvent($event)">
           <ng-template #treeNodeTemplate let-node let-index="index">
-            <span [hidden]="!isSidebarVisible"><mat-icon>{{node.data.iconName}}</mat-icon>{{node.data.name}}</span>
-            <div [hidden]="isSidebarVisible">
+            <span [hidden]="!commonService.showFullSideBar"><mat-icon>{{node.data.iconName}}</mat-icon>{{node.data.name}}</span>
+            <div [hidden]="commonService.showFullSideBar">
                 <span matTooltip="{{node.data.name}}" matTooltipPosition="after"><mat-icon>{{node.data.iconName}}</mat-icon></span>    
             </div>
           </ng-template>
         </tree-root>
     </div>
-    <div class="menu-toggle">
-        <a href="javascript:void(0)" class="material-icons">keyboard_arrow_left</a>
+    <div class="menu-toggle-icon">
+        <a href="javascript:void(0)" 
+        (click)="commonService.showFullSideBar=!commonService.showFullSideBar;menuToggle()" class="material-icons">{{commonService.showFullSideBar ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}</a>
     </div>
 </aside>

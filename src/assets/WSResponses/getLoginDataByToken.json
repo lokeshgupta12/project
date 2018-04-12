@@ -29,7 +29,7 @@
     { "id": 18, "name": "User Management", "iconName": "feedback"},
       { "id": 19, "name": "User", "route":"user", "parent" : 18 , "iconName": "https"},
       { "id": 20, "name": "Permission","route":"permission", "parent" : 18 , "iconName": "info"},
-    { "id": 8, "name": "Company Management" , "iconName": "label"},
-    { "id": 10, "name": "Menu Management" , "iconName": "language"}
+    { "id": 8, "name": "Company Management" , "route":"user", "iconName": "label"},
+    { "id": 10, "name": "Menu Management" ,"route":"user", "iconName": "language"}
   ]
 }

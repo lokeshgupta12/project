@@ -1,4 +1,4 @@
-import { Component, ViewChild  /*, Input*/, Renderer, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 
 import { TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions, ITreeState } from 'angular-tree-component';
@@ -19,9 +19,9 @@ export class SideNavbar {
 	private treeInitializeFlag : boolean = false;
 	private currentRoute : string  = '';
 	private routerSubscriber;
+	private needToCollapseAfterNavigate : boolean = false;
 	
 	constructor(
-		private renderer:Renderer,
 		private commonService : CommonService,
 		private router : Router
 		) {
@@ -34,54 +34,23 @@ export class SideNavbar {
             }
         });
 	}
-
+	// Unsubscribe routerSubscriber
 	ngOnDestroy() {
 		this.routerSubscriber.unsubscribe();
 	}
-
+	// Collapse All node and set active node
 	private collapseAndSetActiveNode() {
 		this.treeRef.treeModel.collapseAll();
         setTimeout(() => {
-	     this.treeRef.treeModel.getNodeBy((node) => node.data.route === this.currentRoute)
-      		.setActiveAndVisible();
+         // this.treeRef.treeModel.getNodeById(node.data.id);
+	     this.commonService.showFullSideBar && this.treeRef.treeModel.getNodeBy((node) => node.data.route === this.currentRoute).setActiveAndVisible();
 		},0);
 	}
-
-	get isSidebarVisible(): boolean {
-        return this.commonService.showFullSideBar;
-    }
-
-	/*onClickLi() {
-		this.renderer.listen('document', 'click', (event)=>{
-			event.preventDefault();
-			var element = document.getElementsByClassName("active");
-
-			[].forEach.call(element, function(el) {
-			    el.className = el.className.replace('active', "");
-			});
-
-
-			if(event.path[1].localName=='li'){
-				event.path[1].className='active';
-			}
-			if(event.path[2].localName=='li'){
-				event.path[2].className='active';
-			}
-			if(event.path[3].localName=='li'){
-				event.path[3].className='active';
-			}
-		});
-	}*/
-
-	private activateAndNavigateRoute(node) {
-		this.router.navigate([node.data.route]);
-		// this.treeRef.treeModel.collapseAll();
-		// setTimeout(()=>{
-		//  //TREE_ACTIONS.ACTIVATE(tree, node, $event);
-	 //     this.treeRef.treeModel.getNodeById(node.data.id)
-  //     		.setActiveAndVisible();
-			//this.router.navigate([node.data.route]);
-		// },0);
+ 	// On collapse Menu collapse all node otherwise 
+    menuToggle() {
+    	this.needToCollapseAfterNavigate = false;
+		this.commonService.showFullSideBar ? this.collapseAndSetActiveNode() : this.treeRef.treeModel.collapseAll();
+		// userPre
 	}
 	// Get State of tree
 	get state(): ITreeState {
@@ -91,16 +60,6 @@ export class SideNavbar {
 	set state(state: ITreeState) {
 	    localStorage.treeState = JSON.stringify(state);
 	}
-
-	// setNode() {
-	// 	/*Collapse All Nodes*/
- //    	this.treeRef.treeModel.collapseAll();
- //    	/*Set Active Node By Id*/
- //    	//this.treeRef.treeModel.getNodeById(3)
- //    	/*Set Active Node By name or as you want*/
- //    	this.treeRef.treeModel.getNodeBy((node) => node.data.name === 'Home')
- //      		.setActiveAndVisible();
- //    }
  	// Call On initialization of tree component
 	treeRootEvent (data) {
 		switch (data.eventName) {
@@ -113,9 +72,6 @@ export class SideNavbar {
 					this.collapseAndSetActiveNode();
 				break;
 			}
-			default:
-				// code...
-				break;
 		}
 	}
 	// Provide Menu Array to tree component
@@ -157,9 +113,20 @@ export class SideNavbar {
 		    click: (tree, node, $event) => {
 		      //tree.collapseAll();
 		      //$event.preventDefault();
-		      node.hasChildren
-		      	? TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event)
-		      	: this.activateAndNavigateRoute(node);
+		      if (node.hasChildren) {
+		      	TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
+		      	if (!this.commonService.showFullSideBar) {
+	      			this.commonService.showFullSideBar = true;
+	      			this.needToCollapseAfterNavigate = true;
+		      	}
+		      } else {
+		      	TREE_ACTIONS.ACTIVATE(tree, node, $event);
+		      	this.router.navigate([node.data.route]);
+		      	if (this.needToCollapseAfterNavigate) {
+		      		this.commonService.showFullSideBar = false;
+		      		this.menuToggle();
+		      	}
+		      }
 		      	
 		      // $event.shiftKey
 		      //   ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(tree, node, $event)
@@ -169,18 +136,13 @@ export class SideNavbar {
 		  keys: {
 		    [KEYS.ENTER]: (tree, node, $event) => {
 		    	if (!node.hasChildren)
-		    		this.activateAndNavigateRoute(node);
+		    		this.router.navigate([node.data.route]);
 		    	//alert(`This is ${node.data.name}`)
 		    }
 		  }
 		}
 	};
-
-
 }
-
-
-
 
 // nodes
 // hasChildren: For async data load. Denotes that this node might have children, even when 'children' attr is empty.

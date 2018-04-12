@@ -17,10 +17,5 @@ export class HeaderComponent {
 
 		// clear service of controllers as well.
 		// deregister routes too
-	}
-	menuToggel() {
-		this.commonService.showFullSideBar = !this.commonService.showFullSideBar;
-		// document.querySelector('.side-navbar').classList.toggle('small');
-		// document.querySelector('.main-section').classList.toggle('small');
-	}
+	}	
 }
