@@ -80,11 +80,13 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptor__ = __webpack_require__("./src/app/http-interceptor.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__http_interceptors_index__ = __webpack_require__("./src/app/http-interceptors/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -109,6 +111,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//import { RequestCache, RequestCacheWithMap } from './service/request-cache.service';
+
+
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -122,27 +127,27 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__home_main_section_main_section_component__["a" /* MainSection */],
                 __WEBPACK_IMPORTED_MODULE_10__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */]
+                __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["i" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_13__app_routing__["a" /* AppRouting */],
+                __WEBPACK_IMPORTED_MODULE_14__app_routing__["a" /* AppRouting */],
                 __WEBPACK_IMPORTED_MODULE_4__material_module__["a" /* MaterialModule */],
                 __WEBPACK_IMPORTED_MODULE_5_angular_tree_component__["c" /* TreeModule */]
             ],
             providers: [
-                {
-                    provide: __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HTTP_INTERCEPTORS */],
-                    useClass: __WEBPACK_IMPORTED_MODULE_15__http_interceptor__["a" /* MyHttpInterceptor */],
-                    multi: true
-                },
-                __WEBPACK_IMPORTED_MODULE_14__guards_auth_guard__["a" /* AuthGuard */],
-                __WEBPACK_IMPORTED_MODULE_16__service_common_service__["a" /* CommonService */],
-                __WEBPACK_IMPORTED_MODULE_17__guards_login_resolve__["a" /* LoginResolver */]
+                __WEBPACK_IMPORTED_MODULE_16__http_interceptors_index__["a" /* httpInterceptorProviders */],
+                __WEBPACK_IMPORTED_MODULE_15__guards_auth_guard__["a" /* AuthGuard */],
+                __WEBPACK_IMPORTED_MODULE_17__service_common_service__["a" /* CommonService */],
+                __WEBPACK_IMPORTED_MODULE_18__service_reusable_functions_service__["a" /* ReusableFunctionsService */],
+                __WEBPACK_IMPORTED_MODULE_19__guards_login_resolve__["a" /* LoginResolver */],
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]],
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -204,6 +209,82 @@ var AppRouting = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/course-dialog/course-dialog.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "\n\n.mat-form-field {\n    display: block;\n}\n\ntextarea {\n    height: 100px;\n    resize: vertical;\n}"
+
+/***/ }),
+
+/***/ "./src/app/course-dialog/course-dialog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n<h2 mat-dialog-title>{{description}}</h2>\n\n\n<mat-dialog-content [formGroup]=\"form\">\n\n    <mat-form-field>\n\n        <input matInput\n                placeholder=\"Course Description\"\n               formControlName=\"description\">\n\n    </mat-form-field>\n\n    <mat-form-field>\n\n        <mat-select placeholder=\"Select category\"\n            formControlName=\"category\">\n\n            <mat-option value=\"BEGINNER\">\n                Beginner</mat-option>\n            <mat-option value=\"INTERMEDIATE\">\n                Intermediate</mat-option>\n            <mat-option value=\"ADVANCED\">\n                Advanced</mat-option>\n\n        </mat-select>\n\n    </mat-form-field>\n\n    <!-- <mat-form-field>\n\n        <input matInput [matDatepicker]=\"myDatepicker\"\n            formControlName=\"releasedAt\">\n\n        <mat-datepicker-toggle matSuffix\n                               [for]=\"myDatepicker\">\n\n        </mat-datepicker-toggle>\n\n        <mat-datepicker #myDatepicker></mat-datepicker>\n\n    </mat-form-field> -->\n\n    <mat-form-field>\n\n        <textarea matInput placeholder=\"Description\"\n            formControlName=\"longDescription\">\n\n        </textarea>\n\n    </mat-form-field>\n\n\n</mat-dialog-content>\n\n<mat-dialog-actions>\n\n    <button class=\"mat-raised-button\"\n            (click)=\"close()\">\n        Close\n    </button>\n\n    <button class=\"mat-raised-button mat-primary\"\n            (click)=\"save()\">\n        Save\n    </button>\n\n</mat-dialog-actions>\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/course-dialog/course-dialog.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourseDialogComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+// import * as moment from 'moment';
+var CourseDialogComponent = /** @class */ (function () {
+    function CourseDialogComponent(fb, dialogRef, _a) {
+        var description = _a.description, longDescription = _a.longDescription, category = _a.category;
+        this.fb = fb;
+        this.dialogRef = dialogRef;
+        this.description = description;
+        this.form = fb.group({
+            description: [description, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required],
+            category: [category, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required],
+            //releasedAt: [moment(), Validators.required],
+            longDescription: [longDescription, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required]
+        });
+    }
+    CourseDialogComponent.prototype.ngOnInit = function () {
+    };
+    CourseDialogComponent.prototype.save = function () {
+        this.dialogRef.close(this.form.value);
+    };
+    CourseDialogComponent.prototype.close = function () {
+        this.dialogRef.close();
+    };
+    CourseDialogComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'course-dialog',
+            template: __webpack_require__("./src/app/course-dialog/course-dialog.component.html"),
+            styles: [__webpack_require__("./src/app/course-dialog/course-dialog.component.css")]
+        }),
+        __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_material__["k" /* MatDialogRef */], Object])
+    ], CourseDialogComponent);
+    return CourseDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/guards/auth.guard.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -224,6 +305,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+/*import { LoginResponse } from '../models/login_response.model';*/
 var AuthGuard = /** @class */ (function () {
     function AuthGuard(router, commonService) {
         this.router = router;
@@ -236,14 +318,20 @@ var AuthGuard = /** @class */ (function () {
             if (this.commonService.appMenus.length)
                 return true;
             else {
-                return new Promise(function (resolve, reject) {
-                    _this.commonService.getData('/assets/WSResponses/getLoginDataByToken.json').subscribe(function (data) {
-                        _this.commonService.appMenus = _this.commonService.getNestedChildren(data.appMenus, "id", "parent");
+                return new Promise(function (resolve) {
+                    _this.commonService.getLoginData('/assets/WSResponses/getLoginDataByToken.json').then(function (res) {
                         resolve(true);
-                    }, function (err) {
+                    }, function () {
                         _this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
                         resolve(false);
                     });
+                    /*subscribe((data : any)=>{
+                        this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
+                        resolve(true);
+                    },(err)=>{
+                        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+                        resolve(false);
+                    })*/
                 });
             }
         }
@@ -375,7 +463,7 @@ module.exports = ".main-section{\n\tmargin-left: 230px;\n    -webkit-transition:
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\n<app-side-navbar></app-side-navbar>\n<section class=\"main-section\" [ngClass]=\"{'collapse-menu':!commonService.showFullSideBar}\">\n\t<router-outlet></router-outlet>\n</section>"
+module.exports = "<app-header></app-header>\n<app-side-navbar></app-side-navbar>\n<section class=\"main-section\" [ngClass]=\"{'collapse-menu':!commonService.isSideBarExpand}\">\n\t<router-outlet></router-outlet>\n</section>"
 
 /***/ }),
 
@@ -428,7 +516,7 @@ module.exports = "\n.small.main-section{\n\tmargin-left: 50px;\n}\n\n.content {\
 /***/ "./src/app/home/main-section/main-section-component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"content-header\">\n  <h1> Data Tables </h1>\n  <ol class=\"breadcrumb\">\n    <li><a href=\"#\"><i class=\"fa fa-dashboard\"></i> Home</a></li>\n    <li><a href=\"#\">Tables</a></li>\n    <li class=\"active\">Data tables</li>\n  </ol>\n</section>\n<section class=\"content\">\n  <div class=\"box\">\n    <div class=\"box-body\">\n      <div class=\"row\">\n        <div class=\"col-4\">\n          <form>\n            <div class=\"form-group\">\n              <label for=\"exampleInputEmail1\">Email address</label>\n              <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Enter email\">\n              <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"exampleInputPassword1\">Password</label>\n              <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n            </div>\n            <div class=\"form-check\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck1\">\n              <label class=\"form-check-label\" for=\"exampleCheck1\">Check me out</label>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n        <div class=\"col-4\">\n          <form>\n            <div class=\"form-group\">\n              <label for=\"exampleInputEmail2\">Email address</label>\n              <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Enter email\">\n              <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"exampleInputPassword2\">Password</label>\n              <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword2\" placeholder=\"Password\">\n            </div>\n            <div class=\"form-check\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck2\">\n              <label class=\"form-check-label\" for=\"exampleCheck2\">Check me out</label>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n        <div class=\"col-4\">\n          <form>\n            <div class=\"form-group\">\n              <label for=\"exampleInputEmail3\">Email address</label>\n              <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail3\" placeholder=\"Enter email\">\n              <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"exampleInputPassword3\">Password</label>\n              <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword3\" placeholder=\"Password\">\n            </div>\n            <div class=\"form-check\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck3\">\n              <label class=\"form-check-label\" for=\"exampleCheck3\">Check me out</label>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n       \n      </div>\n    </div>\n  </div>\n  <div class=\"box\">\n    <div class=\"box-body\">\n\n<div class=\"row\">\n      <div class=\"col-4\">\n            <div class=\"form-group\">\n              <label >Search</label>\n              <input type=\"email\" class=\"form-control\" placeholder=\"Enter email\">\n            </div>\n      </div>\n      <div class=\"col-4\">\n            <div class=\"form-group\">\n              <label >Search</label>\n              <input type=\"email\" class=\"form-control\" placeholder=\"Enter email\">\n            </div>\n      </div>\n      <div class=\"col-4\">\n          <button type=\"submit\" class=\"btn btn-primary margin-top32\">Submit</button>\n      </div>\n    </div>\n      \n\n\n      <table id=\"example2\" class=\"table table-bordered table-hover dataTable\">\n        <thead>\n          <tr>\n            <th>Rendering engine</th>\n            <th>Browser</th>\n            <th>Platform(s)</th>\n            <th>Engine version</th>\n            <th>CSS grade</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>Trident</td>\n            <td>Internet Explorer 4.0\n            </td>\n            <td>Win 95+</td>\n            <td> 4</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Trident</td>\n            <td>Internet Explorer 5.0\n            </td>\n            <td>Win 95+</td>\n            <td>5</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Trident</td>\n            <td>Internet Explorer 5.5\n            </td>\n            <td>Win 95+</td>\n            <td>5.5</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Trident</td>\n            <td>Internet Explorer 6\n            </td>\n            <td>Win 98+</td>\n            <td>6</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Trident</td>\n            <td>Internet Explorer 7</td>\n            <td>Win XP SP2+</td>\n            <td>7</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Trident</td>\n            <td>AOL browser (AOL desktop)</td>\n            <td>Win XP</td>\n            <td>6</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Firefox 1.0</td>\n            <td>Win 98+ / OSX.2+</td>\n            <td>1.7</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Firefox 1.5</td>\n            <td>Win 98+ / OSX.2+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Firefox 2.0</td>\n            <td>Win 98+ / OSX.2+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Firefox 3.0</td>\n            <td>Win 2k+ / OSX.3+</td>\n            <td>1.9</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Camino 1.0</td>\n            <td>OSX.2+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Camino 1.5</td>\n            <td>OSX.3+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Netscape 7.2</td>\n            <td>Win 95+ / Mac OS 8.6-9.2</td>\n            <td>1.7</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Netscape Browser 8</td>\n            <td>Win 98SE+</td>\n            <td>1.7</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Netscape Navigator 9</td>\n            <td>Win 98+ / OSX.2+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.0</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.1</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1.1</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.2</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1.2</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.3</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1.3</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.4</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1.4</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.5</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1.5</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.6</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>1.6</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.7</td>\n            <td>Win 98+ / OSX.1+</td>\n            <td>1.7</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Mozilla 1.8</td>\n            <td>Win 98+ / OSX.1+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Seamonkey 1.1</td>\n            <td>Win 98+ / OSX.2+</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Gecko</td>\n            <td>Epiphany 2.20</td>\n            <td>Gnome</td>\n            <td>1.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>Safari 1.2</td>\n            <td>OSX.3</td>\n            <td>125.5</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>Safari 1.3</td>\n            <td>OSX.3</td>\n            <td>312.8</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>Safari 2.0</td>\n            <td>OSX.4+</td>\n            <td>419.3</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>Safari 3.0</td>\n            <td>OSX.4+</td>\n            <td>522.1</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>OmniWeb 5.5</td>\n            <td>OSX.4+</td>\n            <td>420</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>iPod Touch / iPhone</td>\n            <td>iPod</td>\n            <td>420.1</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Webkit</td>\n            <td>S60</td>\n            <td>S60</td>\n            <td>413</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 7.0</td>\n            <td>Win 95+ / OSX.1+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 7.5</td>\n            <td>Win 95+ / OSX.2+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 8.0</td>\n            <td>Win 95+ / OSX.2+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 8.5</td>\n            <td>Win 95+ / OSX.2+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 9.0</td>\n            <td>Win 95+ / OSX.3+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 9.2</td>\n            <td>Win 88+ / OSX.3+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera 9.5</td>\n            <td>Win 88+ / OSX.3+</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Opera for Wii</td>\n            <td>Wii</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Nokia N800</td>\n            <td>N800</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Presto</td>\n            <td>Nintendo DS browser</td>\n            <td>Nintendo DS</td>\n            <td>8.5</td>\n            <td>C/A<sup>1</sup></td>\n          </tr>\n          <tr>\n            <td>KHTML</td>\n            <td>Konqureror 3.1</td>\n            <td>KDE 3.1</td>\n            <td>3.1</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>KHTML</td>\n            <td>Konqureror 3.3</td>\n            <td>KDE 3.3</td>\n            <td>3.3</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>KHTML</td>\n            <td>Konqureror 3.5</td>\n            <td>KDE 3.5</td>\n            <td>3.5</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Tasman</td>\n            <td>Internet Explorer 4.5</td>\n            <td>Mac OS 8-9</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Tasman</td>\n            <td>Internet Explorer 5.1</td>\n            <td>Mac OS 7.6-9</td>\n            <td>1</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Tasman</td>\n            <td>Internet Explorer 5.2</td>\n            <td>Mac OS 8-X</td>\n            <td>1</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>NetFront 3.1</td>\n            <td>Embedded devices</td>\n            <td>-</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>NetFront 3.4</td>\n            <td>Embedded devices</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>Dillo 0.8</td>\n            <td>Embedded devices</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>Links</td>\n            <td>Text only</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>Lynx</td>\n            <td>Text only</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>IE Mobile</td>\n            <td>Windows Mobile 6</td>\n            <td>-</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>PSP browser</td>\n            <td>PSP</td>\n            <td>-</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Other browsers</td>\n            <td>All others</td>\n            <td>-</td>\n            <td>-</td>\n            <td>U</td>\n          </tr>\n        </tbody>\n        <tfoot>\n          <tr>\n            <th>Rendering engine</th>\n            <th>Browser</th>\n            <th>Platform(s)</th>\n            <th>Engine version</th>\n            <th>CSS grade</th>\n          </tr>\n        </tfoot>\n      </table>\n    </div>\n  </div>\n</section>\n"
+module.exports = "<!-- Name: {{data.name}}\n<input type=\"text\" [(ngModel)]=\"data.name\"> -->\n<section class=\"content-header\">\n  <h1> Data Tables </h1>\n  <ol class=\"breadcrumb\">\n    <li><a href=\"#\"><i class=\"fa fa-dashboard\"></i> Home</a></li>\n    <li><a href=\"#\">Tables</a></li>\n    <li class=\"active\">Data tables</li>\n  </ol>\n</section>\n<section class=\"content\">\n  <div class=\"box\">\n    <div class=\"box-body\">\n      <div class=\"row\">\n        <div class=\"col-4\">\n          <form>\n            <div class=\"form-group\">\n              <label for=\"exampleInputEmail1\">Email address</label>\n              <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Enter email\">\n              <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"exampleInputPassword1\">Password</label>\n              <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n            </div>\n            <div class=\"form-check\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck1\">\n              <label class=\"form-check-label\" for=\"exampleCheck1\">Check me out</label>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n        <div class=\"col-4\">\n          <form>\n            <div class=\"form-group\">\n              <label for=\"exampleInputEmail2\">Email address</label>\n              <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail2\" placeholder=\"Enter email\">\n              <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"exampleInputPassword2\">Password</label>\n              <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword2\" placeholder=\"Password\">\n            </div>\n            <div class=\"form-check\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck2\">\n              <label class=\"form-check-label\" for=\"exampleCheck2\">Check me out</label>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n        <div class=\"col-4\">\n          <form>\n            <div class=\"form-group\">\n              <label for=\"exampleInputEmail3\">Email address</label>\n              <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail3\" placeholder=\"Enter email\">\n              <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"exampleInputPassword3\">Password</label>\n              <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword3\" placeholder=\"Password\">\n            </div>\n            <div class=\"form-check\">\n              <input type=\"checkbox\" class=\"form-check-input\" id=\"exampleCheck3\">\n              <label class=\"form-check-label\" for=\"exampleCheck3\">Check me out</label>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n          </form>\n        </div>\n       \n      </div>\n    </div>\n  </div>\n  <div class=\"box\">\n    <div class=\"box-body\">\n\n<div class=\"row\">\n      <div class=\"col-4\">\n            <div class=\"form-group\">\n              <label >Search</label>\n              <input type=\"email\" class=\"form-control\" placeholder=\"Enter email\">\n            </div>\n      </div>\n      <div class=\"col-4\">\n            <div class=\"form-group\">\n              <label >Search</label>\n              <input type=\"email\" class=\"form-control\" placeholder=\"Enter email\">\n            </div>\n      </div>\n      <div class=\"col-4\">\n          <button type=\"submit\" class=\"btn btn-primary margin-top32\">Submit</button>\n      </div>\n    </div>\n      <table id=\"example2\" class=\"table table-bordered table-hover dataTable\">\n        <thead>\n          <tr>\n            <th>Rendering engine</th>\n            <th>Browser</th>\n            <th>Platform(s)</th>\n            <th>Engine version</th>\n            <th>CSS grade</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>Misc</td>\n            <td>NetFront 3.4</td>\n            <td>Embedded devices</td>\n            <td>-</td>\n            <td>A</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>Dillo 0.8</td>\n            <td>Embedded devices</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>Links</td>\n            <td>Text only</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>Lynx</td>\n            <td>Text only</td>\n            <td>-</td>\n            <td>X</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>IE Mobile</td>\n            <td>Windows Mobile 6</td>\n            <td>-</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Misc</td>\n            <td>PSP browser</td>\n            <td>PSP</td>\n            <td>-</td>\n            <td>C</td>\n          </tr>\n          <tr>\n            <td>Other browsers</td>\n            <td>All others</td>\n            <td>-</td>\n            <td>-</td>\n            <td>U</td>\n          </tr>\n        </tbody>\n        <tfoot>\n          <tr>\n            <th>Rendering engine</th>\n            <th>Browser</th>\n            <th>Platform(s)</th>\n            <th>Engine version</th>\n            <th>CSS grade</th>\n          </tr>\n        </tfoot>\n      </table>\n    </div>\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -444,21 +532,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 
 var MainSection = /** @class */ (function () {
     function MainSection() {
-        // code...
     }
     MainSection = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-main-section',
             template: __webpack_require__("./src/app/home/main-section/main-section-component.html"),
             styles: [__webpack_require__("./src/app/home/main-section/main-section-component.css")]
-        }),
-        __metadata("design:paramtypes", [])
+        })
     ], MainSection);
     return MainSection;
 }());
@@ -477,7 +560,7 @@ module.exports = ""
 /***/ "./src/app/home/main-section/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">  \n"
+module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick one</button> -->\n<!-- <img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">   -->\n\n\n<mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n\n"
 
 /***/ }),
 
@@ -487,6 +570,9 @@ module.exports = "<img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__main_section_component__ = __webpack_require__("./src/app/home/main-section/main-section-component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -497,10 +583,59 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var WelcomeComponent = /** @class */ (function () {
-    function WelcomeComponent() {
+    function WelcomeComponent(dialog) {
+        this.dialog = dialog;
+        this.courses = [
+            {
+                id: 1,
+                description: "Angular for Beginners",
+                iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
+                courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
+                longDescription: "Establish a solid layer of fundamentals, learn what's under the hood of Angular",
+                category: 'BEGINNER',
+                lessonsCount: 10
+            },
+            {
+                id: 2,
+                description: 'Angular Security Course - Web Security Fundamentals',
+                longDescription: "Learn Web Security Fundamentals and apply them to defend an Angular / Node Application from multiple types of attacks.",
+                iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/security-cover-small-v2.png',
+                courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/lock-v2.png',
+                category: 'ADVANCED',
+                lessonsCount: 11
+            }
+        ];
     }
     WelcomeComponent.prototype.ngOnInit = function () {
+    };
+    WelcomeComponent.prototype.editCourse = function (_a) {
+        var description = _a.description, longDescription = _a.longDescription, category = _a.category;
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */], {
+            disableClose: true,
+            autoFocus: true,
+            data: {
+                description: description, longDescription: longDescription, category: category
+            }
+        });
+        dialogRef.afterClosed().subscribe(function (val) { return console.log("Dialog output:", val); });
+    };
+    WelcomeComponent.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__main_section_component__["a" /* MainSection */], {
+            //width: '100%',
+            height: '600px',
+            disableClose: true,
+            data: {
+                name: "Lovelesh",
+                animal: "Rabbit"
+            }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed', result);
+        });
     };
     WelcomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -508,7 +643,7 @@ var WelcomeComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/home/main-section/welcome/welcome.component.html"),
             styles: [__webpack_require__("./src/app/home/main-section/welcome/welcome.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialog */]])
     ], WelcomeComponent);
     return WelcomeComponent;
 }());
@@ -520,14 +655,14 @@ var WelcomeComponent = /** @class */ (function () {
 /***/ "./src/app/home/side-navbar/side-navbar.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "\n/* For Larg Desktop */\n.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 230px;\n    z-index: 1;\n    background-color: #377ea9;\n    -webkit-transition: width .3s ease-in-out;\n    transition: width .3s ease-in-out;\n}\n.collapse-menu.side-navbar{\n    width: 45px; \n}\n.menu-holder {\n    height: calc(100vh - 118px);\n    overflow-y: auto;    \n}\n.menu-toggle-icon {\n    width: 100%;\n    position: absolute;\n    bottom: 0;\n    background-color: #87bcde;\n    text-align: center;\n    padding-top: 7px;\n}\n/*Overwrite Angular-Tree-Component CSS*/\ninput {\n    width: 100%;\n}\n/*.sidebar-menu{\n    white-space: nowrap;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    margin-top: 10px;\n}\n.sidebar-menu a{\n\tfont-size: 14px;\n    color: #b8c7ce;\n}\n.sidebar-menu > li {\n    position: relative;\n}\n.sidebar-menu > li > a {\n    padding: 0px 5px 0px 15px;\n    display: block;\n    position: relative;\n}\n.sidebar-menu > li a .fa{\n    width: 20px;\n}\n.sidebar-menu > li > a {\n    border-left: 3px solid transparent;\n}\n\n.sidebar-menu>li:hover > a{\n    background: #1e282c;\n    color: #fff;\n}\n.sidebar-menu >li.active > a {\n    border-left-color: #3c8dbc;\n    color: #fff;\n}\n\n.sidebar-menu > li > a span{\n    display: inline-block;\n    padding: 12px 5px 12px 0;\n    \n}\n\n.sidebar-menu > li:not(.treeview) > a >span {\n    border-bottom-right-radius: 4px;\n}\n.sidebar-menu > li > a span.pull-right-container {\n    float: right;\n    margin-top: 4px;\n}\n.sidebar-menu li > a > .pull-right-container > .fa-angle-left {\n    width: auto;\n    height: auto;\n    padding: 0;\n    margin-right: 10px;\n}\n.treeview-menu {\n    display: none;\n    background: #2c3b41;\n    margin: 0;\n    padding-left: 5px;\n}\n.sidebar-menu >li.active .treeview-menu {\n    display: block;\n}\n.treeview-menu > li > a {\n    padding: 5px 5px 8px 15px;\n    display: block;\n}\n.treeview-menu li:hover a{\n    color: #fff;\n}\n.sidebar-menu > li:hover > a .fa-angle-left{\n    transform: rotate(-90deg);\n}*/\n/* For Small Desktop */\n/*.small .sidebar-menu >li.active .treeview-menu {\n    display: none;\n}\n.small.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 50px;\n    z-index: 1;\n    background-color: #222d32;\n    \n}\n.small .sidebar-menu > li > a {\n    padding: 12px 5px 12px 15px;\n    display: block;\n    position: relative;\n}\n.small .sidebar-menu > li > a span{\n    display: none;\n}\n\n.small .sidebar-menu > li:hover > a span{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n    border-top-right-radius: 4px;\n    top: 4px;\n    margin-left: -3px;\n    padding: 12px 5px 12px 20px;\n    background-color: #1e282c;\n}\n.small .sidebar-menu > li:hover > a span.pull-right-container {\n    position: relative;\n    float: right;\n    width: auto;\n    left: 180px;\n    top: -30px;\n    z-index: 3;\n}\n.small .treeview-menu {\n    display: none;\n    list-style: none;\n    padding: 5px 0;\n    margin: 0;\n    padding-left: 5px;\n    border-bottom-right-radius: 4px;\n    background: #2c3b41;\n}\n.small .sidebar-menu>li:hover .treeview-menu{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n} */\n\n\n"
+module.exports = "\n/* For Larg Desktop */\n.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 230px;\n    z-index: 1;\n    background-color: #377ea9;\n    -webkit-transition: width .3s ease-in-out;\n    transition: width .3s ease-in-out;\n}\n.collapse-menu.side-navbar{\n    width: 45px; \n}\n.menu-holder {\n    height: calc(100vh - 118px);\n    overflow-y: auto;    \n}\n.menu-toggle-icon {\n    width: 100%;\n    position: absolute;\n    bottom: 0;\n    background-color: #87bcde;\n    text-align: center;\n    padding-top: 7px;\n}\n/*.sidebar-menu{\n    white-space: nowrap;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    margin-top: 10px;\n}\n.sidebar-menu a{\n\tfont-size: 14px;\n    color: #b8c7ce;\n}\n.sidebar-menu > li {\n    position: relative;\n}\n.sidebar-menu > li > a {\n    padding: 0px 5px 0px 15px;\n    display: block;\n    position: relative;\n}\n.sidebar-menu > li a .fa{\n    width: 20px;\n}\n.sidebar-menu > li > a {\n    border-left: 3px solid transparent;\n}\n\n.sidebar-menu>li:hover > a{\n    background: #1e282c;\n    color: #fff;\n}\n.sidebar-menu >li.active > a {\n    border-left-color: #3c8dbc;\n    color: #fff;\n}\n\n.sidebar-menu > li > a span{\n    display: inline-block;\n    padding: 12px 5px 12px 0;\n    \n}\n\n.sidebar-menu > li:not(.treeview) > a >span {\n    border-bottom-right-radius: 4px;\n}\n.sidebar-menu > li > a span.pull-right-container {\n    float: right;\n    margin-top: 4px;\n}\n.sidebar-menu li > a > .pull-right-container > .fa-angle-left {\n    width: auto;\n    height: auto;\n    padding: 0;\n    margin-right: 10px;\n}\n.treeview-menu {\n    display: none;\n    background: #2c3b41;\n    margin: 0;\n    padding-left: 5px;\n}\n.sidebar-menu >li.active .treeview-menu {\n    display: block;\n}\n.treeview-menu > li > a {\n    padding: 5px 5px 8px 15px;\n    display: block;\n}\n.treeview-menu li:hover a{\n    color: #fff;\n}\n.sidebar-menu > li:hover > a .fa-angle-left{\n    transform: rotate(-90deg);\n}*/\n/* For Small Desktop */\n/*.small .sidebar-menu >li.active .treeview-menu {\n    display: none;\n}\n.small.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 50px;\n    z-index: 1;\n    background-color: #222d32;\n    \n}\n.small .sidebar-menu > li > a {\n    padding: 12px 5px 12px 15px;\n    display: block;\n    position: relative;\n}\n.small .sidebar-menu > li > a span{\n    display: none;\n}\n\n.small .sidebar-menu > li:hover > a span{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n    border-top-right-radius: 4px;\n    top: 4px;\n    margin-left: -3px;\n    padding: 12px 5px 12px 20px;\n    background-color: #1e282c;\n}\n.small .sidebar-menu > li:hover > a span.pull-right-container {\n    position: relative;\n    float: right;\n    width: auto;\n    left: 180px;\n    top: -30px;\n    z-index: 3;\n}\n.small .treeview-menu {\n    display: none;\n    list-style: none;\n    padding: 5px 0;\n    margin: 0;\n    padding-left: 5px;\n    border-bottom-right-radius: 4px;\n    background: #2c3b41;\n}\n.small .sidebar-menu>li:hover .treeview-menu{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n} */\n\n\n"
 
 /***/ }),
 
 /***/ "./src/app/home/side-navbar/side-navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<aside class=\"side-navbar\" [ngClass]=\"{'collapse-menu':!commonService.showFullSideBar}\">\n    <input [hidden]=\"!commonService.showFullSideBar\" id=\"filter\" #filter (keyup)=\"tree.treeModel.filterNodes(filter.value)\" placeholder=\"Search menus\"/>\n    <div class=\"menu-holder\">\n        <tree-root [nodes]=\"nodes\" [focused]=\"true\" [(state)]=\"state\" #tree [options]=\"options\" (initialized)=\"treeRootEvent($event)\">\n          <ng-template #treeNodeTemplate let-node let-index=\"index\">\n            <span [hidden]=\"!commonService.showFullSideBar\"><mat-icon>{{node.data.iconName}}</mat-icon>{{node.data.name}}</span>\n            <div [hidden]=\"commonService.showFullSideBar\">\n                <span matTooltip=\"{{node.data.name}}\" matTooltipPosition=\"after\"><mat-icon>{{node.data.iconName}}</mat-icon></span>    \n            </div>\n          </ng-template>\n        </tree-root>\n    </div>\n    <div class=\"menu-toggle-icon\">\n        <a href=\"javascript:void(0)\" \n        (click)=\"commonService.showFullSideBar=!commonService.showFullSideBar;menuToggle()\" class=\"material-icons\">{{commonService.showFullSideBar ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}</a>\n    </div>\n</aside>"
+module.exports = "<aside class=\"side-navbar\" [ngClass]=\"{'collapse-menu':!commonService.isSideBarExpand}\">\n    <input style=\"width: 100%;\" [hidden]=\"!commonService.isSideBarExpand\" id=\"filter\" #filter (keyup)=\"tree.treeModel.filterNodes(filter.value)\" placeholder=\"Search menus\"/>\n    <div class=\"menu-holder\">\n        <tree-root [nodes]=\"nodes\" [focused]=\"true\" [(state)]=\"state\" #tree [options]=\"options\" (initialized)=\"treeRootEvent($event)\">\n          <ng-template #treeNodeTemplate let-node let-index=\"index\">\n            <span [hidden]=\"!commonService.isSideBarExpand\">\n                <mat-icon>{{node.data.iconName}}</mat-icon>\n                {{node.data.name}}\n            </span>\n            <div [hidden]=\"commonService.isSideBarExpand\">\n                <span matTooltip=\"{{node.data.name}}\" matTooltipPosition=\"after\"><mat-icon>{{node.data.iconName}}</mat-icon></span>    \n            </div>\n          </ng-template>\n        </tree-root>\n    </div>\n    <div class=\"menu-toggle-icon\">\n        <a href=\"javascript:void(0)\" \n        (click)=\"commonService.isSideBarExpand=!commonService.isSideBarExpand;menuToggle()\" class=\"material-icons\">{{commonService.isSideBarExpand ? 'keyboard_arrow_left' : 'keyboard_arrow_right'}}</a>\n    </div>\n</aside>"
 
 /***/ }),
 
@@ -602,8 +737,8 @@ var SideNavbar = /** @class */ (function () {
                         //$event.preventDefault();
                         if (node.hasChildren) {
                             __WEBPACK_IMPORTED_MODULE_2_angular_tree_component__["b" /* TREE_ACTIONS */].TOGGLE_EXPANDED(tree, node, $event);
-                            if (!_this.commonService.showFullSideBar) {
-                                _this.commonService.showFullSideBar = true;
+                            if (!_this.commonService.isSideBarExpand) {
+                                _this.commonService.isSideBarExpand = true;
                                 _this.needToCollapseAfterNavigate = true;
                             }
                         }
@@ -611,7 +746,7 @@ var SideNavbar = /** @class */ (function () {
                             __WEBPACK_IMPORTED_MODULE_2_angular_tree_component__["b" /* TREE_ACTIONS */].ACTIVATE(tree, node, $event);
                             _this.router.navigate([node.data.route]);
                             if (_this.needToCollapseAfterNavigate) {
-                                _this.commonService.showFullSideBar = false;
+                                _this.commonService.isSideBarExpand = false;
                                 _this.menuToggle();
                             }
                         }
@@ -649,13 +784,13 @@ var SideNavbar = /** @class */ (function () {
         this.treeRef.treeModel.collapseAll();
         setTimeout(function () {
             // this.treeRef.treeModel.getNodeById(node.data.id);
-            _this.commonService.showFullSideBar && _this.treeRef.treeModel.getNodeBy(function (node) { return node.data.route === _this.currentRoute; }).setActiveAndVisible();
+            _this.commonService.isSideBarExpand && _this.treeRef.treeModel.getNodeBy(function (node) { return node.data.route === _this.currentRoute; }).setActiveAndVisible();
         }, 0);
     };
     // On collapse Menu collapse all node otherwise 
     SideNavbar.prototype.menuToggle = function () {
         this.needToCollapseAfterNavigate = false;
-        this.commonService.showFullSideBar ? this.collapseAndSetActiveNode() : this.treeRef.treeModel.collapseAll();
+        this.commonService.isSideBarExpand ? this.collapseAndSetActiveNode() : this.treeRef.treeModel.collapseAll();
         // userPre
     };
     Object.defineProperty(SideNavbar.prototype, "state", {
@@ -707,51 +842,84 @@ var SideNavbar = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/http-interceptor.ts":
+/***/ "./src/app/http-interceptors/index.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyHttpInterceptor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return httpInterceptorProviders; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__set_header_interceptor__ = __webpack_require__("./src/app/http-interceptors/set-header-interceptor.ts");
+/* "Barrel" of Http Interceptors */
+
+
+/** Http interceptor providers in outside-in order */
+var httpInterceptorProviders = [
+    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HTTP_INTERCEPTORS */], useClass: __WEBPACK_IMPORTED_MODULE_1__set_header_interceptor__["a" /* SetHeaderInterceptor */], multi: true },
+];
+
+
+/***/ }),
+
+/***/ "./src/app/http-interceptors/set-header-interceptor.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SetHeaderInterceptor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("./node_modules/rxjs/_esm5/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__("./node_modules/rxjs/_esm5/add/observable/throw.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("./node_modules/rxjs/_esm5/operators.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
+// import { Observable } from 'rxjs/Rx';
+/*import 'rxjs/add/observable/throw'
+import 'rxjs/add/operator/catch';*/
 
-
-var MyHttpInterceptor = /** @class */ (function () {
-    function MyHttpInterceptor() {
+var SetHeaderInterceptor = /** @class */ (function () {
+    function SetHeaderInterceptor(commonService) {
+        this.commonService = commonService;
     }
-    MyHttpInterceptor.prototype.intercept = function (req, next) {
+    SetHeaderInterceptor.prototype.intercept = function (req, next) {
+        var started = Date.now();
+        var ok;
         // Clone the request to add the new header.
-        var authReq = req.clone({
-            headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpHeaders */]({
+        var authReq = req.clone({ setHeaders: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            })
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': this.commonService.getAuthToken() || ''
+            }
         });
         //send the newly created request
+        //return next.handle(authReq);
+        //console.log(process);
+        // extend server response observable with logging
         return next.handle(authReq)
-            .catch(function (error, caught) {
-            //intercept the respons error and displace it to the console
-            console.log("Error Occurred", error);
-            //return the error to the method that called it
-            return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error);
-        });
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* tap */])(
+        // Succeeds when there is a response; ignore other events
+        function (event) { return ok = event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpResponse */] ? 'succeeded' : ''; }, 
+        // Operation failed; error is an HttpErrorResponse
+        function (error) { return ok = 'failed'; }), 
+        // Log when response observable either completes or errors
+        Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* finalize */])(function () {
+            //const elapsed = Date.now() - started;
+            console.log(req.method + " \"" + req.urlWithParams + "\"\n\t             " + ok + " in " + (Date.now() - started) + " ms.");
+        }));
     };
-    MyHttpInterceptor = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])()
-    ], MyHttpInterceptor);
-    return MyHttpInterceptor;
+    SetHeaderInterceptor = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__service_common_service__["a" /* CommonService */]])
+    ], SetHeaderInterceptor);
+    return SetHeaderInterceptor;
 }());
 
 
@@ -782,6 +950,7 @@ module.exports = "<!-- <ul>\n  <li *ngFor=\"let user of demousers\">{{ user.emai
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -797,10 +966,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { DemoService } from '../demo.service';
 
+
 //import { AlertService, AuthenticationService } from '../_services/index';
 var LoginComponent = /** @class */ (function () {
     //demousers : Array<any>;
-    function LoginComponent(route, router, commonService, http /*,
+    function LoginComponent(route, router, commonService, http, reusableFunctionsService /*,
         private demoService : DemoService*/
         //private authenticationService: AuthenticationService,
         //private alertService: AlertService
@@ -808,7 +978,8 @@ var LoginComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.commonService = commonService;
-        this.http = http; /*,
+        this.http = http;
+        this.reusableFunctionsService = reusableFunctionsService; /*,
         private demoService : DemoService*/
         this.loading = false;
     }
@@ -828,16 +999,20 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.login = function () {
         var _this = this;
         this.loading = true;
-        // var headers = new HttpHeaders({
-        //     'Content-Type': 'application/json',
-        //     'Access-Control-Allow-Origin':'*'
-        // });
-        this.http.post('http://localhost:3000/login', { "name": this.loginForm.value.email, "password": this.loginForm.value.password }).subscribe(function (data) {
+        this.commonService.getLoginData('/assets/WSResponses/getLoginDataByMailAndPwd.json').then(function (res) {
             _this.loading = false;
-            localStorage.setItem('currentUser', _this.loginForm.value.email);
-            _this.commonService.appMenus = _this.commonService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
+            localStorage.setItem('currentUser', res.data.email);
             _this.router.navigate([_this.returnUrl]);
+        }, function (err) {
+            _this.loading = false;
+            console.log(err);
         });
+        /*this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}).subscribe((data : any) => {
+            this.loading = false;
+            localStorage.setItem('currentUser',this.loginForm.value.email);
+            this.commonService.appMenus = this.reusableFunctionsService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
+            this.router.navigate([this.returnUrl]);
+        });*/
         //this.authenticationService.login(this.model.username, this.model.password)
         // .subscribe(
         //     data => {
@@ -850,7 +1025,7 @@ var LoginComponent = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])('f'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* NgForm */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["h" /* NgForm */])
     ], LoginComponent.prototype, "loginForm", void 0);
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -861,7 +1036,8 @@ var LoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */],
             __WEBPACK_IMPORTED_MODULE_4__service_common_service__["a" /* CommonService */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClient */] /*,
+            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__["a" /* ReusableFunctionsService */] /*,
             private demoService : DemoService*/
             //private authenticationService: AuthenticationService,
             //private alertService: AlertService
@@ -898,38 +1074,38 @@ var MaterialModule = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
             exports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["a" /* MatAutocompleteModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["c" /* MatButtonToggleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatCardModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCheckboxModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatChipsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatStepperModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatDatepickerModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDialogModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["i" /* MatDividerModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatExpansionModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["k" /* MatGridListModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatIconModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["m" /* MatInputModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["n" /* MatListModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MatMenuModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MatNativeDateModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MatPaginatorModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["r" /* MatProgressBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["s" /* MatProgressSpinnerModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatRadioModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatRippleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatSidenavModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["y" /* MatSliderModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatSlideToggleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSnackBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSortModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["b" /* MatAutocompleteModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["c" /* MatButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["d" /* MatButtonToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCardModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatCheckboxModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatChipsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatStepperModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatDialogModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatDividerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["m" /* MatExpansionModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["n" /* MatGridListModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["o" /* MatIconModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["p" /* MatInputModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["r" /* MatMenuModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["s" /* MatNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatProgressSpinnerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatRippleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["y" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSlideToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["G" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["H" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["I" /* MatTooltipModule */],
             ]
         })
     ], MaterialModule);
@@ -947,6 +1123,7 @@ var MaterialModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -959,22 +1136,70 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { Router, Event, NavigationEnd } from '@angular/router';
 
+
 var CommonService = /** @class */ (function () {
-    function CommonService(http) {
+    function CommonService(http, reusableFunctionsService) {
         this.http = http;
-        this.showFullSideBar = true;
+        this.reusableFunctionsService = reusableFunctionsService;
+        this.isSideBarExpand = true;
         // Store Application Menus after login and clear after logout
         this.appMenus = [];
     }
-    CommonService.prototype.getData = function (url) {
-        return this.http.get(url);
+    CommonService.prototype.getLoginData = function (url) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get(url).subscribe(function (data) {
+                _this.isSideBarExpand = !!data.isSideBarExpand;
+                _this.authToken = data.authToken;
+                _this.appMenus = _this.reusableFunctionsService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
+                resolve({ status: 'OK', data: data });
+            }, function (err) {
+                reject({ status: 'KO', data: err });
+            });
+        });
+    };
+    CommonService.prototype.getAuthToken = function () {
+        return this.authToken;
     };
     CommonService.prototype.getRoutingData = function () {
         var routingResult = [{ pathUrl: "", componentName: "HomeComponent", canActivatedGaurd: [], children: [{ path: '', component: "WelcomeComponent" }, { path: 'main', component: "MainSection" }] }];
         return routingResult;
     };
+    CommonService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_2__reusable_functions_service__["a" /* ReusableFunctionsService */]])
+    ], CommonService);
+    return CommonService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/reusable_functions.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReusableFunctionsService; });
+/*module.exports = {
+    getNestedChildren : function (arr, primKey, ParKey, parent? : any) {
+        var out = [];
+        for(var i in arr) {
+            if(arr[i][ParKey] == parent) {
+                var children = this.getNestedChildren(arr, primKey, ParKey, arr[i][primKey]);
+                children.length && (arr[i].children = children);
+                out.push(arr[i])
+            }
+        }
+        return out;
+    }
+}*/
+var ReusableFunctionsService = /** @class */ (function () {
+    function ReusableFunctionsService() {
+    }
     // Convert Linear to Multi Level
-    CommonService.prototype.getNestedChildren = function (arr, primKey, ParKey, parent) {
+    ReusableFunctionsService.prototype.getNestedChildren = function (arr, primKey, ParKey, parent) {
         var out = [];
         for (var i in arr) {
             if (arr[i][ParKey] == parent) {
@@ -985,11 +1210,7 @@ var CommonService = /** @class */ (function () {
         }
         return out;
     };
-    CommonService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
-    ], CommonService);
-    return CommonService;
+    return ReusableFunctionsService;
 }());
 
 

@@ -3,6 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { Observable } from 'rxjs/Observable';
 
 import { CommonService } from '../service/common.service';
+/*import { LoginResponse } from '../models/login_response.model';*/
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -17,14 +18,21 @@ export class AuthGuard implements CanActivate {
             if(this.commonService.appMenus.length)
                 return true;
             else {
-                return new Promise((resolve, reject)=>{
-                    this.commonService.getData('/assets/WSResponses/getLoginDataByToken.json').subscribe((data : any)=>{
+                return new Promise((resolve)=>{
+                    this.commonService.getLoginData('/assets/WSResponses/getLoginDataByToken.json').then((res: {status:string})=>{
+                        resolve(true);
+                    },()=>{
+                        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+                        resolve(false);
+                    })
+
+                    /*subscribe((data : any)=>{
                         this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
                         resolve(true);
                     },(err)=>{
                         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
                         resolve(false);
-                    })
+                    })*/
                 })
             }
         } else {

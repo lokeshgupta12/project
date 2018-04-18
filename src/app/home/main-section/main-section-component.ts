@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, HostListener } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
 	selector: 'app-main-section',
@@ -7,7 +9,13 @@ import { Component } from '@angular/core';
 })
 export class MainSection{
 	
-	constructor() {
+	/*constructor(
+		private matDialogRef : MatDialogRef<MainSection>,
+		@Inject(MAT_DIALOG_DATA) private data : any) {
 		// code...
 	}
+	@HostListener('window:keyup.esc') onKeyUp() {
+		console.log("data",this.data)
+		this.matDialogRef.close(this.data);
+	}*/
 }

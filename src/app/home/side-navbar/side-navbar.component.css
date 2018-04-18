@@ -28,13 +28,6 @@
     text-align: center;
     padding-top: 7px;
 }
-/*Overwrite Angular-Tree-Component CSS*/
-input {
-    width: 100%;
-}
-
-
-
 /*.sidebar-menu{
     white-space: nowrap;
     list-style: none;

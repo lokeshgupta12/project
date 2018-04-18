@@ -5,6 +5,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // import { DemoService } from '../demo.service';
 import { CommonService } from '../service/common.service';
+import { ReusableFunctionsService } from '../service/reusable_functions.service';
+import { LoginResponse } from '../models/login_response.model';
+
 
 //import { AlertService, AuthenticationService } from '../_services/index';
 
@@ -24,7 +27,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private commonService : CommonService,
-        private http : HttpClient /*,
+        private http : HttpClient,
+        private reusableFunctionsService : ReusableFunctionsService /*,
         private demoService : DemoService*/
         //private authenticationService: AuthenticationService,
         //private alertService: AlertService
@@ -49,17 +53,20 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        // var headers = new HttpHeaders({
-        //     'Content-Type': 'application/json',
-        //     'Access-Control-Allow-Origin':'*'
-        // });
-        this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}).subscribe((data : any) => {
-    
+        this.commonService.getLoginData('/assets/WSResponses/getLoginDataByMailAndPwd.json').then((res: {status:string, data : LoginResponse})=>{
+                this.loading = false;
+                localStorage.setItem('currentUser',res.data.email);
+                this.router.navigate([this.returnUrl]);
+        },err=> {
+            this.loading = false;
+            console.log(err);
+        })
+        /*this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}).subscribe((data : any) => {
             this.loading = false;
             localStorage.setItem('currentUser',this.loginForm.value.email);
-            this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
+            this.commonService.appMenus = this.reusableFunctionsService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
             this.router.navigate([this.returnUrl]);
-        });
+        });*/
         //this.authenticationService.login(this.model.username, this.model.password)
             // .subscribe(
             //     data => {

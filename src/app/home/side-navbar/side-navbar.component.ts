@@ -43,13 +43,13 @@ export class SideNavbar {
 		this.treeRef.treeModel.collapseAll();
         setTimeout(() => {
          // this.treeRef.treeModel.getNodeById(node.data.id);
-	     this.commonService.showFullSideBar && this.treeRef.treeModel.getNodeBy((node) => node.data.route === this.currentRoute).setActiveAndVisible();
+	     this.commonService.isSideBarExpand && this.treeRef.treeModel.getNodeBy((node) => node.data.route === this.currentRoute).setActiveAndVisible();
 		},0);
 	}
  	// On collapse Menu collapse all node otherwise 
     menuToggle() {
     	this.needToCollapseAfterNavigate = false;
-		this.commonService.showFullSideBar ? this.collapseAndSetActiveNode() : this.treeRef.treeModel.collapseAll();
+		this.commonService.isSideBarExpand ? this.collapseAndSetActiveNode() : this.treeRef.treeModel.collapseAll();
 		// userPre
 	}
 	// Get State of tree
@@ -115,15 +115,15 @@ export class SideNavbar {
 		      //$event.preventDefault();
 		      if (node.hasChildren) {
 		      	TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
-		      	if (!this.commonService.showFullSideBar) {
-	      			this.commonService.showFullSideBar = true;
+		      	if (!this.commonService.isSideBarExpand) {
+	      			this.commonService.isSideBarExpand = true;
 	      			this.needToCollapseAfterNavigate = true;
 		      	}
 		      } else {
 		      	TREE_ACTIONS.ACTIVATE(tree, node, $event);
 		      	this.router.navigate([node.data.route]);
 		      	if (this.needToCollapseAfterNavigate) {
-		      		this.commonService.showFullSideBar = false;
+		      		this.commonService.isSideBarExpand = false;
 		      		this.menuToggle();
 		      	}
 		      }
