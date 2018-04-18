@@ -14,7 +14,10 @@ import { MainSection } from './home/main-section/main-section-component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
+/*Demo*/
 import { CourseDialogComponent } from './course-dialog/course-dialog.component'
+/*Resuable Components*/
+import { ListComponent } from './reusable_components/list/list.component';
 
 import { AppRouting } from './app.routing';
 import { AuthGuard } from './guards/auth.guard';
@@ -35,7 +38,8 @@ import { LoginResolver } from './guards/login.resolve';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

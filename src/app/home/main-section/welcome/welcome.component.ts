@@ -15,6 +15,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  //listConfig = 
   courses = [
     {
         id: 1,

@@ -81,12 +81,13 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__http_interceptors_index__ = __webpack_require__("./src/app/http-interceptors/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__reusable_components_list_list_component__ = __webpack_require__("./src/app/reusable_components/list/list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__http_interceptors_index__ = __webpack_require__("./src/app/http-interceptors/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -107,6 +108,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+/*Demo*/
+
+/*Resuable Components*/
 
 
 
@@ -128,23 +132,24 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */]
+                __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__reusable_components_list_list_component__["a" /* ListComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["i" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_14__app_routing__["a" /* AppRouting */],
+                __WEBPACK_IMPORTED_MODULE_15__app_routing__["a" /* AppRouting */],
                 __WEBPACK_IMPORTED_MODULE_4__material_module__["a" /* MaterialModule */],
                 __WEBPACK_IMPORTED_MODULE_5_angular_tree_component__["c" /* TreeModule */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_16__http_interceptors_index__["a" /* httpInterceptorProviders */],
-                __WEBPACK_IMPORTED_MODULE_15__guards_auth_guard__["a" /* AuthGuard */],
-                __WEBPACK_IMPORTED_MODULE_17__service_common_service__["a" /* CommonService */],
-                __WEBPACK_IMPORTED_MODULE_18__service_reusable_functions_service__["a" /* ReusableFunctionsService */],
-                __WEBPACK_IMPORTED_MODULE_19__guards_login_resolve__["a" /* LoginResolver */],
+                __WEBPACK_IMPORTED_MODULE_17__http_interceptors_index__["a" /* httpInterceptorProviders */],
+                __WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */],
+                __WEBPACK_IMPORTED_MODULE_18__service_common_service__["a" /* CommonService */],
+                __WEBPACK_IMPORTED_MODULE_19__service_reusable_functions_service__["a" /* ReusableFunctionsService */],
+                __WEBPACK_IMPORTED_MODULE_20__guards_login_resolve__["a" /* LoginResolver */],
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]],
             entryComponents: [__WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */]]
@@ -560,7 +565,7 @@ module.exports = ""
 /***/ "./src/app/home/main-section/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick one</button> -->\n<!-- <img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">   -->\n\n\n<mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n\n"
+module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick one</button> -->\n<!-- <img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">   -->\n\n<app-list [config]=\"listConfig\"></app-list>\n<hr>\n<mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n\n"
 
 /***/ }),
 
@@ -589,6 +594,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var WelcomeComponent = /** @class */ (function () {
     function WelcomeComponent(dialog) {
         this.dialog = dialog;
+        //listConfig = 
         this.courses = [
             {
                 id: 1,
@@ -1080,7 +1086,7 @@ var MaterialModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCardModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatCheckboxModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatChipsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatStepperModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatStepperModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDatepickerModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatDividerModule */],
@@ -1091,27 +1097,129 @@ var MaterialModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["q" /* MatListModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["r" /* MatMenuModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["s" /* MatNativeDateModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["t" /* MatPaginatorModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatProgressBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatProgressSpinnerModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatRadioModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatRippleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["y" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSidenavModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatSliderModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSlideToggleModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatSnackBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatSortModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["G" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["H" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["I" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["u" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["v" /* MatProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["w" /* MatProgressSpinnerModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["x" /* MatRadioModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["y" /* MatRippleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["z" /* MatSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["A" /* MatSidenavModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatSliderModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatSlideToggleModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["H" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["I" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["J" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["K" /* MatTooltipModule */],
             ]
         })
     ], MaterialModule);
     return MaterialModule;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n\n/*.mat-table {\n  overflow: auto;\n  max-height: 500px;\n}*/\n"
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <mat-table #table [dataSource]=\"dataSource\">\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"position\">\n      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.position}} </mat-cell>\n    </ng-container>\n\n    <!-- Name Column -->\n    <ng-container matColumnDef=\"name\">\n      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.name}} </mat-cell>\n    </ng-container>\n\n    <!-- Weight Column -->\n    <ng-container matColumnDef=\"weight\">\n      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.weight}} </mat-cell>\n    </ng-container>\n\n    <!-- Symbol Column -->\n    <ng-container matColumnDef=\"symbol\">\n      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.symbol}} </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n  <mat-paginator #paginator\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 20]\"\n                 [showFirstLastButtons]=\"true\">\n  </mat-paginator>\n</div>\n\n\n<!-- Copyright 2018 Google Inc. All Rights Reserved.\n    Use of this source code is governed by an MIT-style license that\n    can be found in the LICENSE file at http://angular.io/license -->"
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * @title Table with pagination
+ */
+var ListComponent = /** @class */ (function () {
+    function ListComponent() {
+        //console.log(Object.assign(new ListConfig()), this.config || {});
+        this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["G" /* MatTableDataSource */](ELEMENT_DATA);
+        this.config = "abc";
+    }
+    ListComponent.prototype.ngOnChanges = function () {
+        //this.config = new ListConfig(this.config)
+        // this.config = this.config ? this.config : ListConfig
+        console.log(this.config);
+    };
+    /**
+     * Set the paginator after the view init since this component will
+     * be able to query its view for the initialized paginator.
+     */
+    ListComponent.prototype.ngAfterViewInit = function () {
+        this.dataSource.paginator = this.paginator;
+    };
+    ListComponent.prototype.ngOnInit = function () {
+        //console.log("config", this.config);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", String)
+    ], ListComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["t" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["t" /* MatPaginator */])
+    ], ListComponent.prototype, "paginator", void 0);
+    ListComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: "app-list",
+            template: __webpack_require__("./src/app/reusable_components/list/list.component.html"),
+            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ListComponent);
+    return ListComponent;
+}());
+
+var ELEMENT_DATA = [
+    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+    { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na' },
+    { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg' },
+    { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al' },
+    { position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si' },
+    { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
+    { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
+    { position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl' },
+    { position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar' },
+    { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
+    { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
+];
 
 
 /***/ }),
