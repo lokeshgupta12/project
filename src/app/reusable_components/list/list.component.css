@@ -3,6 +3,48 @@
   flex-direction: column;
   min-width: 300px;
 }
+.spinner-container {
+    height: 360px;
+    width: 390px;
+    position: fixed;
+}
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+.main-fab {
+  position:absolute;
+}
+.remove-padding {
+  padding: 0rem 0rem;
+  color: inherit;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.mat-header-row {
+    min-height: 40px;
+}
+.mat-row {
+    min-height: 46px;
+}
+mat-row:nth-child(even){
+  background-color:white;
+}
+mat-row:nth-child(odd){
+  background-color:#cccccc54;
+}
+.mat-fab {
+  width: 40px;
+  height: 40px;
+  outline: none;
+  opacity: 0.83;
+}
 
 /*.mat-table {
   overflow: auto;

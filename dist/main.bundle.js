@@ -461,7 +461,7 @@ var HeaderComponent = /** @class */ (function () {
 /***/ "./src/app/home/home.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".main-section{\n\tmargin-left: 230px;\n    -webkit-transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n\tbackground-color: #ecf0f5;\n    height: calc(100vh - 50px);\n    overflow-y: auto;\n}\n.collapse-menu.main-section{\n\tmargin-left: 45px; \n}"
+module.exports = ".main-section{\n\tmargin-left: 230px;\n    -webkit-transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out;\n    transition: transform .3s ease-in-out,margin .3s ease-in-out,-webkit-transform .3s ease-in-out;\n\tbackground-color: #ecf0f5;\n    height: calc(100vh - 50px);\n    overflow-y: auto;\n}\n.collapse-menu.main-section{\n\tmargin-left: 35px; \n}"
 
 /***/ }),
 
@@ -565,7 +565,7 @@ module.exports = ""
 /***/ "./src/app/home/main-section/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick one</button> -->\n<!-- <img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">   -->\n\n<app-list [config]=\"listConfig\"></app-list>\n<hr>\n<mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n\n"
+module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick one</button> -->\n<!-- <img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">   -->\n\n<app-list [config]=\"listConfig\" [dataSource]=\"dataSource\" [totalCount]=\"totalCount\"></app-list>\n<hr>\n<mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n\n"
 
 /***/ }),
 
@@ -575,9 +575,9 @@ module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick o
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__main_section_component__ = __webpack_require__("./src/app/home/main-section/main-section-component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__main_section_component__ = __webpack_require__("./src/app/home/main-section/main-section-component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -592,9 +592,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var WelcomeComponent = /** @class */ (function () {
-    function WelcomeComponent(dialog) {
+    function WelcomeComponent(dialog, http) {
         this.dialog = dialog;
-        //listConfig = 
+        this.http = http;
+        this.totalCount = 50;
+        this.dataSource = [];
+        this.listConfig = {
+            /*actions : [
+              {}
+            ],*/
+            columns: [
+                { field: 'No.', title: 'No.' },
+                { field: 'Name' },
+                { field: 'Atomic Weight' },
+                { field: 'Sym.', notToSort: true },
+                { field: 'M.P. (°C)' },
+                { field: 'B.P. (°C)' },
+                { field: 'Density (g/cm3)' },
+                { field: 'Earth crust (%)' },
+                { field: 'Discovery (Year)' },
+                { field: 'Group' },
+                { field: 'Electron configuration' },
+                { field: 'Ionization energy (eV)' },
+            ],
+            sortable: true,
+            filterable: false,
+            pageable: {},
+            serverInteraction: true,
+            actions: {
+                title: 'Actions',
+                edit: {
+                    editRec: function (data) {
+                        console.log("edit", data);
+                    },
+                },
+                delete: {
+                    //isDisable : true,
+                    deleteRec: function (data) {
+                        console.log("edit", data);
+                    },
+                },
+            },
+            allowAdd: {
+                //tooltip : "Add Record",
+                //tooltipPosition : 'below',
+                //isDisable : true,
+                add: function () {
+                    console.log("Add");
+                }
+            }
+        };
         this.courses = [
             {
                 id: 1,
@@ -617,20 +664,41 @@ var WelcomeComponent = /** @class */ (function () {
         ];
     }
     WelcomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get('/assets/WSResponses/periodic-table.json').subscribe(function (data) {
+            _this.dataSource = data.slice(0, 10);
+            _this.totalCount = data.length;
+        }, function (err) {
+            console.log({ status: 'KO', data: err });
+        });
     };
     WelcomeComponent.prototype.editCourse = function (_a) {
+        // this.dataSource = [{position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
+        //   {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
+        //   {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
+        //   {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
+        //   {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
+        //   {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
+        //   {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
+        //   {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
+        //   {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
+        //   {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'}]
+        //this.dataSource[0].position = 150
+        // const dialogRef = this.dialog.open(CourseDialogComponent,
+        //     {
+        //       disableClose : true,
+        //       autoFocus: true,
+        //       data: {
+        //           description, longDescription, category
+        //       }
+        //     });
         var description = _a.description, longDescription = _a.longDescription, category = _a.category;
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */], {
-            disableClose: true,
-            autoFocus: true,
-            data: {
-                description: description, longDescription: longDescription, category: category
-            }
-        });
-        dialogRef.afterClosed().subscribe(function (val) { return console.log("Dialog output:", val); });
+        // dialogRef.afterClosed().subscribe(
+        //     val => console.log("Dialog output:", val)
+        // );
     };
     WelcomeComponent.prototype.openDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__main_section_component__["a" /* MainSection */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__main_section_component__["a" /* MainSection */], {
             //width: '100%',
             height: '600px',
             disableClose: true,
@@ -649,7 +717,8 @@ var WelcomeComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/home/main-section/welcome/welcome.component.html"),
             styles: [__webpack_require__("./src/app/home/main-section/welcome/welcome.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["i" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
     ], WelcomeComponent);
     return WelcomeComponent;
 }());
@@ -661,7 +730,7 @@ var WelcomeComponent = /** @class */ (function () {
 /***/ "./src/app/home/side-navbar/side-navbar.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "\n/* For Larg Desktop */\n.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 230px;\n    z-index: 1;\n    background-color: #377ea9;\n    -webkit-transition: width .3s ease-in-out;\n    transition: width .3s ease-in-out;\n}\n.collapse-menu.side-navbar{\n    width: 45px; \n}\n.menu-holder {\n    height: calc(100vh - 118px);\n    overflow-y: auto;    \n}\n.menu-toggle-icon {\n    width: 100%;\n    position: absolute;\n    bottom: 0;\n    background-color: #87bcde;\n    text-align: center;\n    padding-top: 7px;\n}\n/*.sidebar-menu{\n    white-space: nowrap;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    margin-top: 10px;\n}\n.sidebar-menu a{\n\tfont-size: 14px;\n    color: #b8c7ce;\n}\n.sidebar-menu > li {\n    position: relative;\n}\n.sidebar-menu > li > a {\n    padding: 0px 5px 0px 15px;\n    display: block;\n    position: relative;\n}\n.sidebar-menu > li a .fa{\n    width: 20px;\n}\n.sidebar-menu > li > a {\n    border-left: 3px solid transparent;\n}\n\n.sidebar-menu>li:hover > a{\n    background: #1e282c;\n    color: #fff;\n}\n.sidebar-menu >li.active > a {\n    border-left-color: #3c8dbc;\n    color: #fff;\n}\n\n.sidebar-menu > li > a span{\n    display: inline-block;\n    padding: 12px 5px 12px 0;\n    \n}\n\n.sidebar-menu > li:not(.treeview) > a >span {\n    border-bottom-right-radius: 4px;\n}\n.sidebar-menu > li > a span.pull-right-container {\n    float: right;\n    margin-top: 4px;\n}\n.sidebar-menu li > a > .pull-right-container > .fa-angle-left {\n    width: auto;\n    height: auto;\n    padding: 0;\n    margin-right: 10px;\n}\n.treeview-menu {\n    display: none;\n    background: #2c3b41;\n    margin: 0;\n    padding-left: 5px;\n}\n.sidebar-menu >li.active .treeview-menu {\n    display: block;\n}\n.treeview-menu > li > a {\n    padding: 5px 5px 8px 15px;\n    display: block;\n}\n.treeview-menu li:hover a{\n    color: #fff;\n}\n.sidebar-menu > li:hover > a .fa-angle-left{\n    transform: rotate(-90deg);\n}*/\n/* For Small Desktop */\n/*.small .sidebar-menu >li.active .treeview-menu {\n    display: none;\n}\n.small.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 50px;\n    z-index: 1;\n    background-color: #222d32;\n    \n}\n.small .sidebar-menu > li > a {\n    padding: 12px 5px 12px 15px;\n    display: block;\n    position: relative;\n}\n.small .sidebar-menu > li > a span{\n    display: none;\n}\n\n.small .sidebar-menu > li:hover > a span{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n    border-top-right-radius: 4px;\n    top: 4px;\n    margin-left: -3px;\n    padding: 12px 5px 12px 20px;\n    background-color: #1e282c;\n}\n.small .sidebar-menu > li:hover > a span.pull-right-container {\n    position: relative;\n    float: right;\n    width: auto;\n    left: 180px;\n    top: -30px;\n    z-index: 3;\n}\n.small .treeview-menu {\n    display: none;\n    list-style: none;\n    padding: 5px 0;\n    margin: 0;\n    padding-left: 5px;\n    border-bottom-right-radius: 4px;\n    background: #2c3b41;\n}\n.small .sidebar-menu>li:hover .treeview-menu{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n} */\n\n\n"
+module.exports = "\n/* For Larg Desktop */\n.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 230px;\n    z-index: 1;\n    background-color: #377ea9;\n    -webkit-transition: width .3s ease-in-out;\n    transition: width .3s ease-in-out;\n}\n.collapse-menu.side-navbar{\n    width: 35px; \n}\n.menu-holder {\n    height: calc(100vh - 118px);\n    overflow-y: auto;    \n}\n.menu-toggle-icon {\n    width: 100%;\n    position: absolute;\n    bottom: 0;\n    background-color: #87bcde;\n    text-align: center;\n    padding-top: 7px;\n}\n/*.sidebar-menu{\n    white-space: nowrap;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    margin-top: 10px;\n}\n.sidebar-menu a{\n\tfont-size: 14px;\n    color: #b8c7ce;\n}\n.sidebar-menu > li {\n    position: relative;\n}\n.sidebar-menu > li > a {\n    padding: 0px 5px 0px 15px;\n    display: block;\n    position: relative;\n}\n.sidebar-menu > li a .fa{\n    width: 20px;\n}\n.sidebar-menu > li > a {\n    border-left: 3px solid transparent;\n}\n\n.sidebar-menu>li:hover > a{\n    background: #1e282c;\n    color: #fff;\n}\n.sidebar-menu >li.active > a {\n    border-left-color: #3c8dbc;\n    color: #fff;\n}\n\n.sidebar-menu > li > a span{\n    display: inline-block;\n    padding: 12px 5px 12px 0;\n    \n}\n\n.sidebar-menu > li:not(.treeview) > a >span {\n    border-bottom-right-radius: 4px;\n}\n.sidebar-menu > li > a span.pull-right-container {\n    float: right;\n    margin-top: 4px;\n}\n.sidebar-menu li > a > .pull-right-container > .fa-angle-left {\n    width: auto;\n    height: auto;\n    padding: 0;\n    margin-right: 10px;\n}\n.treeview-menu {\n    display: none;\n    background: #2c3b41;\n    margin: 0;\n    padding-left: 5px;\n}\n.sidebar-menu >li.active .treeview-menu {\n    display: block;\n}\n.treeview-menu > li > a {\n    padding: 5px 5px 8px 15px;\n    display: block;\n}\n.treeview-menu li:hover a{\n    color: #fff;\n}\n.sidebar-menu > li:hover > a .fa-angle-left{\n    transform: rotate(-90deg);\n}*/\n/* For Small Desktop */\n/*.small .sidebar-menu >li.active .treeview-menu {\n    display: none;\n}\n.small.side-navbar {\n    position: absolute;\n    top: 0;\n    left: 0;\n    padding-top: 50px;\n    min-height: 100%;\n    width: 50px;\n    z-index: 1;\n    background-color: #222d32;\n    \n}\n.small .sidebar-menu > li > a {\n    padding: 12px 5px 12px 15px;\n    display: block;\n    position: relative;\n}\n.small .sidebar-menu > li > a span{\n    display: none;\n}\n\n.small .sidebar-menu > li:hover > a span{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n    border-top-right-radius: 4px;\n    top: 4px;\n    margin-left: -3px;\n    padding: 12px 5px 12px 20px;\n    background-color: #1e282c;\n}\n.small .sidebar-menu > li:hover > a span.pull-right-container {\n    position: relative;\n    float: right;\n    width: auto;\n    left: 180px;\n    top: -30px;\n    z-index: 3;\n}\n.small .treeview-menu {\n    display: none;\n    list-style: none;\n    padding: 5px 0;\n    margin: 0;\n    padding-left: 5px;\n    border-bottom-right-radius: 4px;\n    background: #2c3b41;\n}\n.small .sidebar-menu>li:hover .treeview-menu{\n    display: block;\n    position: absolute;\n    width: 180px;\n    left: 50px;\n} */\n\n\n"
 
 /***/ }),
 
@@ -1086,7 +1155,7 @@ var MaterialModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MatCardModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["f" /* MatCheckboxModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["g" /* MatChipsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatStepperModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["G" /* MatStepperModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["h" /* MatDatepickerModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["l" /* MatDividerModule */],
@@ -1107,11 +1176,11 @@ var MaterialModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["C" /* MatSliderModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["B" /* MatSlideToggleModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_material__["D" /* MatSnackBarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["E" /* MatSortModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["H" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["I" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["J" /* MatToolbarModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_material__["K" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["F" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["I" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["J" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["K" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_material__["L" /* MatTooltipModule */],
             ]
         })
     ], MaterialModule);
@@ -1125,14 +1194,14 @@ var MaterialModule = /** @class */ (function () {
 /***/ "./src/app/reusable_components/list/list.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n\n/*.mat-table {\n  overflow: auto;\n  max-height: 500px;\n}*/\n"
+module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.remove-padding {\n  padding: 0rem 0rem;\n  color: inherit;\n}\n.mat-header-cell.mat-sort-header-sorted {\n  color: black;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}\n.mat-header-row {\n    min-height: 40px;\n}\n.mat-row {\n    min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/*.mat-table {\n  overflow: auto;\n  max-height: 500px;\n}*/\n"
 
 /***/ }),
 
 /***/ "./src/app/reusable_components/list/list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <mat-table #table [dataSource]=\"dataSource\">\n\n    <!-- Position Column -->\n    <ng-container matColumnDef=\"position\">\n      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.position}} </mat-cell>\n    </ng-container>\n\n    <!-- Name Column -->\n    <ng-container matColumnDef=\"name\">\n      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.name}} </mat-cell>\n    </ng-container>\n\n    <!-- Weight Column -->\n    <ng-container matColumnDef=\"weight\">\n      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.weight}} </mat-cell>\n    </ng-container>\n\n    <!-- Symbol Column -->\n    <ng-container matColumnDef=\"symbol\">\n      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>\n      <mat-cell *matCellDef=\"let element\"> {{element.symbol}} </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n  <mat-paginator #paginator\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 20]\"\n                 [showFirstLastButtons]=\"true\">\n  </mat-paginator>\n</div>\n\n\n<!-- Copyright 2018 Google Inc. All Rights Reserved.\n    Use of this source code is governed by an MIT-style license that\n    can be found in the LICENSE file at http://angular.io/license -->"
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n\t<div *ngIf=\"config.filterable\" class=\"example-header\">\n\t    <mat-form-field>\n\t      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n\t    </mat-form-field>\n\t</div>\n  <div *ngIf=\"config.allowAdd\" id=\"Normal\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"config.allowAdd.add && config.allowAdd.add()\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Position Column -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit\" (click)=\"config.actions.edit.editRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete\" (click)=\"config.actions.delete.deleteRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>\n\n\n<!-- Copyright 2018 Google Inc. All Rights Reserved.\n    Use of this source code is governed by an MIT-style license that\n    can be found in the LICENSE file at http://angular.io/license -->"
 
 /***/ }),
 
@@ -1143,6 +1212,7 @@ module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <mat-tab
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_model__ = __webpack_require__("./src/app/reusable_components/list/list.model.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1154,72 +1224,87 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * @title Table with pagination
- */
+
 var ListComponent = /** @class */ (function () {
     function ListComponent() {
-        //console.log(Object.assign(new ListConfig()), this.config || {});
-        this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["G" /* MatTableDataSource */](ELEMENT_DATA);
-        this.config = "abc";
+        this.displayedColumns = [];
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["H" /* MatTableDataSource */]();
+        this.ds = [];
     }
+    // For filter
+    ListComponent.prototype.applyFilter = function (filterValue) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
+    };
+    /*constructor()  {
+    }*/
     ListComponent.prototype.ngOnChanges = function () {
-        //this.config = new ListConfig(this.config)
-        // this.config = this.config ? this.config : ListConfig
-        console.log(this.config);
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["H" /* MatTableDataSource */](this.ds);
     };
     /**
      * Set the paginator after the view init since this component will
      * be able to query its view for the initialized paginator.
      */
     ListComponent.prototype.ngAfterViewInit = function () {
-        this.dataSource.paginator = this.paginator;
+        if (!this.config.serverInteraction) {
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        }
     };
     ListComponent.prototype.ngOnInit = function () {
-        //console.log("config", this.config);
+        this.displayedColumns = [];
+        for (var _i = 0, _a = this.config.columns; _i < _a.length; _i++) {
+            var ob = _a[_i];
+            ob.notToDisplay || this.displayedColumns.push(ob.field);
+        }
+        typeof this.config.actions === "object" && this.displayedColumns.push("action");
     };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-        __metadata("design:type", String)
-    ], ListComponent.prototype, "config", void 0);
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["E" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["E" /* MatSort */])
+    ], ListComponent.prototype, "sort", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["t" /* MatPaginator */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["t" /* MatPaginator */])
     ], ListComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__list_model__["a" /* ListConfig */])
+    ], ListComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])('dataSource'),
+        __metadata("design:type", Object)
+    ], ListComponent.prototype, "ds", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", Object)
+    ], ListComponent.prototype, "totalCount", void 0);
     ListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: "app-list",
             template: __webpack_require__("./src/app/reusable_components/list/list.component.html"),
             styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")]
-        }),
-        __metadata("design:paramtypes", [])
+        })
     ], ListComponent);
     return ListComponent;
 }());
 
-var ELEMENT_DATA = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-    { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na' },
-    { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg' },
-    { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al' },
-    { position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si' },
-    { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
-    { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
-    { position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl' },
-    { position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar' },
-    { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
-    { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
-];
+
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.model.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListConfig; });
+var ListConfig = /** @class */ (function () {
+    function ListConfig() {
+    }
+    return ListConfig;
+}());
+
 
 
 /***/ }),

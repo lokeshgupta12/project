@@ -15,8 +15,8 @@ input.ng-invalid.ng-touched {
 	color: red;
     font-style: italic;
 }
-
 /*Overwrite Angular-Tree-Component CSS*/
 .toggle-children-wrapper,.toggle-children-placeholder {
     display: none;   
 }
+

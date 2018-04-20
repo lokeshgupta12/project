@@ -8,7 +8,7 @@
       "token" : "DGHFGDF67648762JHDGKGF"
   },
   "email" : "agrawal.lovelesh@gmail.com",
-  "isSideBarExpand" : true,
+  "isSideBarExpand" : false,
   "authToken" : "BJHFGD546677HJS&^SASKJSK",
   "appMenus" : [
     { "controller_id": 1, "name": "Masters", "iconName": "perm_identity" },

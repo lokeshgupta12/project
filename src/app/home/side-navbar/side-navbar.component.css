@@ -14,7 +14,7 @@
     transition: width .3s ease-in-out;
 }
 .collapse-menu.side-navbar{
-    width: 45px; 
+    width: 35px; 
 }
 .menu-holder {
     height: calc(100vh - 118px);

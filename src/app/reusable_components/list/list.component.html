@@ -1,38 +1,39 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
-
+	<div *ngIf="config.filterable" class="example-header">
+	    <mat-form-field>
+	      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+	    </mat-form-field>
+	</div>
+  <div *ngIf="config.allowAdd" id="Normal" class="main-fab">
+      <button class="mat-fab mat-accent mat-button" [matTooltip]="config.allowAdd?.tooltip || 'Add new record'" [matTooltipPosition]="config.allowAdd?.tooltipPosition || 'after'" (click)="config.allowAdd.add && config.allowAdd.add()" [disabled]="config.allowAdd?.isDisable"><span>+</span></button>
+  </div>
+  <mat-table [dataSource]="dataSource" matSort [matSortDisabled]="!config.sortable">
     <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
+    <div *ngFor="let col of config.columns">
+      <ng-container [matColumnDef]="col.field">
+        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!config.sortable || col.notToSort"> {{col.title || (col.field | titlecase)}} </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element[col.field]}} </mat-cell>
+      </ng-container>
+    </div>
+    <div *ngIf="config.actions">
+      <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>
+          <mat-cell *matCellDef="let row" >
+            <button *ngIf="config.actions?.edit" (click)="config.actions.edit.editRec(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">edit</i></button>
+            <button *ngIf="config.actions?.delete" (click)="config.actions.delete.deleteRec(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">delete</i></button>
+          </mat-cell>
+      </ng-container> 
+    </div>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20]"
-                 [showFirstLastButtons]="true">
+  <mat-paginator *ngIf="config.pageable"
+                 [length]="totalCount"
+                 [pageSize]="config.pageable?.pageSize || 10"
+                 [pageSizeOptions]="config.pageable?.pageSizeOptions || [10, 20, 50]"
+                 [showFirstLastButtons]="config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons">
   </mat-paginator>
 </div>
 

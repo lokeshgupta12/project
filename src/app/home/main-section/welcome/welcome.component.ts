@@ -1,7 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 import { MainSection } from '../main-section-component'
 import { CourseDialogComponent } from '../../../course-dialog/course-dialog.component'
+import { ListConfig } from '../../../reusable_components/list/list.model';
+
 
 @Component({
   selector: 'app-welcome',
@@ -10,12 +13,72 @@ import { CourseDialogComponent } from '../../../course-dialog/course-dialog.comp
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private dialog : MatDialog
+  constructor(
+    private dialog : MatDialog,
+    private http: HttpClient
     ) { }
 
-  ngOnInit() {
+  
+  totalCount = 50;
+  dataSource : {}[] = [];
+  listConfig : ListConfig = {
+    /*actions : [
+      {}
+    ],*/
+    columns : [
+      {field : 'No.', title : 'No.' },
+      {field : 'Name' },
+      {field : 'Atomic Weight'},
+      {field : 'Sym.', notToSort : true },
+      {field : 'M.P. (°C)' },
+      {field : 'B.P. (°C)' },
+      {field : 'Density (g/cm3)' },
+      {field : 'Earth crust (%)' },
+      {field : 'Discovery (Year)' },
+      {field : 'Group' },
+      {field : 'Electron configuration' },
+      {field : 'Ionization energy (eV)' },
+    ],
+    sortable : true,
+    filterable : false,
+    pageable : {
+      /*pageSize : 8,
+      pageSizeOptions : [8,16,24],
+      showFirstLastButtons : true*/
+    },
+    serverInteraction : true,
+    actions : {
+      title : 'Actions',
+      edit : {
+        editRec : function(data) {
+          console.log("edit",data);
+        },
+        //isDisable : true
+      },
+      delete : {
+        //isDisable : true,
+        deleteRec : function(data) {
+          console.log("edit",data);
+        },
+      },
+    },
+    allowAdd : {
+      //tooltip : "Add Record",
+      //tooltipPosition : 'below',
+      //isDisable : true,
+      add : function() {
+        console.log("Add");
+      }
+    }
   }
-  //listConfig = 
+  ngOnInit() {
+    this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : {}[])=>{
+                this.dataSource = data.slice(0,10);
+                this.totalCount = data.length;
+            },(err)=>{
+                console.log({status:'KO', data : err});
+            })
+  }
   courses = [
     {
         id: 1,
@@ -37,19 +100,29 @@ export class WelcomeComponent implements OnInit {
     }]
 
     editCourse({description, longDescription, category}) {
+      // this.dataSource = [{position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
+      //   {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
+      //   {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
+      //   {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
+      //   {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
+      //   {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
+      //   {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
+      //   {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
+      //   {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
+      //   {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'}]
+      //this.dataSource[0].position = 150
+        // const dialogRef = this.dialog.open(CourseDialogComponent,
+        //     {
+        //       disableClose : true,
+        //       autoFocus: true,
+        //       data: {
+        //           description, longDescription, category
+        //       }
+        //     });
 
-        const dialogRef = this.dialog.open(CourseDialogComponent,
-            {
-              disableClose : true,
-              autoFocus: true,
-              data: {
-                  description, longDescription, category
-              }
-            });
-
-        dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
-        );
+        // dialogRef.afterClosed().subscribe(
+        //     val => console.log("Dialog output:", val)
+        // );
 
     }
 
