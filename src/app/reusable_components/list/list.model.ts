@@ -1,12 +1,16 @@
 export class ListConfig {
-	//dataSource : object[];
-	//totalCount ?: number // Provide Only in case of serverInteraction is true
+	//[config]:ListConfig
+	//[dataSource] : object[];
+	//[totalCount] ?: number // Provide Only in case of serverInteraction is true
+	//(initialized) ?: Function
+	//(onSelect) ?: Function
 	columns : {
 		field : string,
 		title ?: string,
 		notToDisplay ?:boolean,
 		notToSort ?:boolean,
 	}[];
+	selectable ?: boolean; //(false)
 	sortable ?: boolean; //(false)
 	filterable ?: boolean; //(false)
 	pageable ?: boolean | {
@@ -16,20 +20,20 @@ export class ListConfig {
 	}; //(false)	
 	serverInteraction ?: boolean; //(false)
 	actions ?: {
-		title ?: string,
+		title ?: string, //(Action)
 		edit ?: {
 			editRec : Function,
-			isDisable ?: boolean
+			isDisable ?: boolean //(false)
 		},
 		delete ?: {
 			deleteRec : Function,
-			isDisable ?: boolean
+			isDisable ?: boolean //(false)
 		},
 	};
 	allowAdd ?: boolean | {
-		tooltip ?: string,
+		tooltip ?: string, // (Add Record)
 		tooltipPosition ?: string, //optional('after')
 		add ?: Function,
-		isDisable ?: boolean
-	}
+		isDisable ?: boolean //(false)
+	};
 }

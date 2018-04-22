@@ -12,6 +12,7 @@
   min-height: 64px;
   padding: 8px 24px 0;
 }
+
 .main-fab {
   position:absolute;
 }
@@ -38,6 +39,9 @@ mat-row:nth-child(even){
 }
 mat-row:nth-child(odd){
   background-color:#cccccc54;
+}
+mat-row.highlight{
+  background-color: #42A948; /* green */
 }
 .mat-fab {
   width: 40px;

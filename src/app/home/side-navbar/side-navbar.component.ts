@@ -80,7 +80,7 @@ export class SideNavbar {
 	options: ITreeOptions = {
 	 //    displayField: 'nodeName',
 	 //    isExpandedField: 'expanded',
-	 //    idField: 'uuid',
+	     idField: 'controller_id',
 	 //    hasChildrenField: 'nodes',
 	 //    nodeHeight: 1,
 	 //    allowDrag: (node) => {

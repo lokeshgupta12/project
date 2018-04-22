@@ -1,20 +1,28 @@
 <div class="example-container mat-elevation-z8">
+  <!-- Search Division -->
 	<div *ngIf="config.filterable" class="example-header">
 	    <mat-form-field>
-	      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+	      <input matInput (input)="config.serverInteraction || applyFilter($event.target.value)" placeholder="Filter" #searchInput>
 	    </mat-form-field>
 	</div>
+  <!-- Add Button Division -->
   <div *ngIf="config.allowAdd" id="Normal" class="main-fab">
       <button class="mat-fab mat-accent mat-button" [matTooltip]="config.allowAdd?.tooltip || 'Add new record'" [matTooltipPosition]="config.allowAdd?.tooltipPosition || 'after'" (click)="config.allowAdd.add && config.allowAdd.add()" [disabled]="config.allowAdd?.isDisable"><span>+</span></button>
   </div>
+  <!-- Spinner Div -->
+  <!-- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+      <mat-spinner></mat-spinner> -->
+  </div>
+  <!-- Table -->
   <mat-table [dataSource]="dataSource" matSort [matSortDisabled]="!config.sortable">
-    <!-- Position Column -->
+    <!-- Dynamic Columns -->
     <div *ngFor="let col of config.columns">
       <ng-container [matColumnDef]="col.field">
         <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!config.sortable || col.notToSort"> {{col.title || (col.field | titlecase)}} </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element[col.field]}} </mat-cell>
       </ng-container>
     </div>
+    <!-- Dynamic Actions -->
     <div *ngIf="config.actions">
       <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>
@@ -24,11 +32,11 @@
           </mat-cell>
       </ng-container> 
     </div>
-
+    <!-- Dynamic Header -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRow == row && config.selectable}" (click)="onSelect.next(row);selectedRow = row"></mat-row>
   </mat-table>
-
+  <!-- Pagination -->
   <mat-paginator *ngIf="config.pageable"
                  [length]="totalCount"
                  [pageSize]="config.pageable?.pageSize || 10"
@@ -36,8 +44,3 @@
                  [showFirstLastButtons]="config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons">
   </mat-paginator>
 </div>
-
-
-<!-- Copyright 2018 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->

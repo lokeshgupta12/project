@@ -22,11 +22,8 @@ export class WelcomeComponent implements OnInit {
   totalCount = 50;
   dataSource : {}[] = [];
   listConfig : ListConfig = {
-    /*actions : [
-      {}
-    ],*/
     columns : [
-      {field : 'No.', title : 'No.' },
+      {field : 'id', title : 'No.' },
       {field : 'Name' },
       {field : 'Atomic Weight'},
       {field : 'Sym.', notToSort : true },
@@ -40,7 +37,8 @@ export class WelcomeComponent implements OnInit {
       {field : 'Ionization energy (eV)' },
     ],
     sortable : true,
-    filterable : false,
+    selectable : true,
+    filterable : true,
     pageable : {
       /*pageSize : 8,
       pageSizeOptions : [8,16,24],
@@ -70,6 +68,41 @@ export class WelcomeComponent implements OnInit {
         console.log("Add");
       }
     }
+  }
+  onInitializeList(event) {
+    switch (event.eventName) {
+      case "initialized":
+        console.log("app-list is initialized");
+        break;
+      case "filterUpdate": {
+        console.log("filterUpdate",event.data);
+        const queryParams = event.data;
+          const filter = queryParams.searchValue || '',
+          //sortOrder = queryParams.sortOrder,
+          pageNumber = parseInt(queryParams.pageNumber) || 0,
+          pageSize = parseInt(queryParams.pageSize);
+          this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : any)=>{
+                if (queryParams.searchValue)
+                   data = data.filter(obj => obj.Name.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0);
+                if(queryParams.sort) {
+                  data.sort((a,b) => {
+                      return Number(a[queryParams.sort.field]>a[queryParams.sort.field])*(queryParams.sort.field==='asc'?1:-1);
+                  })
+                }
+                this.totalCount = data.length;
+                queryParams.limit && (this.dataSource = data.slice(queryParams.offset,queryParams.offset+queryParams.limit));
+            },(err)=>{
+                console.log({status:'KO', data : err});
+            })
+            // setTimeout(() => {
+            //     res.status(200).json({payload: lessonsPage});
+            // },1000);
+        break;      
+      }
+    }
+  }
+  onSelect(row) {
+    console.log('onSelect',row);
   }
   ngOnInit() {
     this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : {}[])=>{
