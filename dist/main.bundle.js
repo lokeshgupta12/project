@@ -82,12 +82,13 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__reusable_components_list_list_component__ = __webpack_require__("./src/app/reusable_components/list/list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__http_interceptors_index__ = __webpack_require__("./src/app/http-interceptors/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__reusable_components_angular_material_dialog_ng_mat_dialog_component__ = __webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__http_interceptors_index__ = __webpack_require__("./src/app/http-interceptors/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__guards_login_resolve__ = __webpack_require__("./src/app/guards/login.resolve.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -115,6 +116,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 //import { RequestCache, RequestCacheWithMap } from './service/request-cache.service';
 
 
@@ -133,26 +135,27 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */],
                 __WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__reusable_components_list_list_component__["a" /* ListComponent */]
+                __WEBPACK_IMPORTED_MODULE_14__reusable_components_list_list_component__["a" /* ListComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__reusable_components_angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["i" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_15__app_routing__["a" /* AppRouting */],
+                __WEBPACK_IMPORTED_MODULE_16__app_routing__["a" /* AppRouting */],
                 __WEBPACK_IMPORTED_MODULE_4__material_module__["a" /* MaterialModule */],
                 __WEBPACK_IMPORTED_MODULE_5_angular_tree_component__["c" /* TreeModule */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_17__http_interceptors_index__["a" /* httpInterceptorProviders */],
-                __WEBPACK_IMPORTED_MODULE_16__guards_auth_guard__["a" /* AuthGuard */],
-                __WEBPACK_IMPORTED_MODULE_18__service_common_service__["a" /* CommonService */],
-                __WEBPACK_IMPORTED_MODULE_19__service_reusable_functions_service__["a" /* ReusableFunctionsService */],
-                __WEBPACK_IMPORTED_MODULE_20__guards_login_resolve__["a" /* LoginResolver */],
+                __WEBPACK_IMPORTED_MODULE_18__http_interceptors_index__["a" /* httpInterceptorProviders */],
+                __WEBPACK_IMPORTED_MODULE_17__guards_auth_guard__["a" /* AuthGuard */],
+                __WEBPACK_IMPORTED_MODULE_19__service_common_service__["a" /* CommonService */],
+                __WEBPACK_IMPORTED_MODULE_20__service_reusable_functions_service__["a" /* ReusableFunctionsService */],
+                __WEBPACK_IMPORTED_MODULE_21__guards_login_resolve__["a" /* LoginResolver */],
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]],
-            entryComponents: [__WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */]]
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_13__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */], __WEBPACK_IMPORTED_MODULE_15__reusable_components_angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -617,10 +620,11 @@ var WelcomeComponent = /** @class */ (function () {
             ],
             sortable: true,
             selectable: true,
-            filterable: false,
+            filterable: true,
             pageable: {},
             serverInteraction: true,
             showLoadingProgress: true,
+            showPopupOnDelete: true,
             actions: {
                 title: 'Actions',
                 edit: {
@@ -631,7 +635,7 @@ var WelcomeComponent = /** @class */ (function () {
                 delete: {
                     //isDisable : true,
                     deleteRec: function (data) {
-                        console.log("edit", data);
+                        console.log("delete", data);
                     },
                 },
             },
@@ -674,9 +678,6 @@ var WelcomeComponent = /** @class */ (function () {
             case "filterUpdate": {
                 console.log("filterUpdate", event.data);
                 var queryParams_1 = event.data;
-                var filter = queryParams_1.searchValue || '', 
-                //sortOrder = queryParams.sortOrder,
-                pageNumber = parseInt(queryParams_1.pageNumber) || 0, pageSize = parseInt(queryParams_1.pageSize);
                 this.http.get('/assets/WSResponses/periodic-table.json').subscribe(function (data) {
                     if (queryParams_1.searchValue)
                         data = data.filter(function (obj) { return obj.Name.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0; });
@@ -1203,17 +1204,102 @@ var MaterialModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".close {\n    float: right;\n    margin-top: -7%;\n    margin-right: -7%;\n}"
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<button *ngIf=\"config.showCancelIcon\" class=\"btn btn-link close\" (click)=\"dialogRef.close()\">\n\t<mat-icon>cancel</mat-icon>\n</button>\n<div mat-dialog-title>\n\t{{config.title}}\n</div>\n<mat-dialog-content>\n\t<span>{{config.textContent}}</span>\n</mat-dialog-content>\n<br>\n<mat-dialog-actions>\n    <button class=\"mat-raised-button\" (click)=\"dialogRef.close({ok:false})\">\n\t    <span class=\"mat-button-wrapper\"><mat-icon>{{config.cancel.icon}}</mat-icon>{{config.cancel.text}}</span>\n\t</button>\n\t<button class=\"mat-raised-button\" (click)=\"dialogRef.close({ok:true})\">\n\t    <span class=\"mat-button-wrapper\"><mat-icon>{{config.ok.icon}}</mat-icon>{{config.ok.text}}</span>\n\t</button>\n</mat-dialog-actions>"
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgMatDialogComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+//import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+var NgMatDialogComponent = /** @class */ (function () {
+    // form: FormGroup;
+    // description:string;
+    function NgMatDialogComponent(
+        /*private fb: FormBuilder,*/
+        dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.config = {
+            showCancelIcon: true,
+            title: "Delete",
+            textContent: "Are you sure you want to delete this record?",
+            ok: { text: 'Delete', icon: 'delete' },
+            cancel: { text: 'Cancel', icon: 'cancel' }
+        };
+        console.log("MAT_DIALOG_DATA", data);
+        if (data && data.config) {
+            Object.assign(this.config, data.config || {});
+        }
+        // this.description = description;
+        // this.form = fb.group({
+        //     description: [description, Validators.required],
+        //     category: [category, Validators.required],
+        //     longDescription: [longDescription,Validators.required]
+        // });
+    }
+    NgMatDialogComponent.prototype.ngOnInit = function () {
+    };
+    NgMatDialogComponent.prototype.save = function () {
+        this.dialogRef.close({ ok: true });
+    };
+    NgMatDialogComponent.prototype.close = function () {
+        this.dialogRef.close();
+    };
+    NgMatDialogComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'ng-mat-dialog',
+            template: __webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.html"),
+            styles: [__webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["k" /* MatDialogRef */], Object])
+    ], NgMatDialogComponent);
+    return NgMatDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/reusable_components/list/list.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.remove-padding {\n  padding: 0rem 0rem;\n  color: inherit;\n}\n.mat-header-cell.mat-sort-header-sorted {\n  color: black;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}\n.mat-header-row {\n    min-height: 40px;\n}\n.mat-row {\n    min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\nmat-row.highlight{\n  background-color: #42A948; /* green */\n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n/*.mat-table {\n  overflow: auto;\n  max-height: 500px;\n}*/\n"
+module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n/*Mat Overrite Class*/\n.mat-header-cell {   \n    font-weight: bold;\n}\n.mat-sort-header-button {\n  text-align: left;\n}\n/*.mat-header-cell.mat-sort-header-sorted {\n  color: black;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}*/\n.mat-header-row {\n    min-height: 40px;\n}\n.mat-row {\n    min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\nmat-row.highlight{\n  background-color: #408dbc63;\n}\n"
 
 /***/ }),
 
 /***/ "./src/app/reusable_components/list/list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Search Division -->\n\t<div *ngIf=\"config.filterable\" class=\"example-header\">\n\t    <mat-form-field>\n\t      <input matInput (input)=\"config.serverInteraction || applyFilter($event.target.value)\" placeholder=\"Search\" #searchInput>\n\t    </mat-form-field>\n\t</div>\n  <!-- Add Button Division -->\n  <div *ngIf=\"config.allowAdd\" id=\"Normal\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"config.allowAdd.add && config.allowAdd.add()\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <!-- Spinner Div -->\n  <!-- <div class=\"loading-indicator\" *ngIf=\"true\">\n      <mat-spinner></mat-spinner>\n  </div> -->\n  <div class=\"loading-indicator\" *ngIf=\"config.serverInteraction && config.showLoadingProgress && loading\">\n    <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n  </div>\n\n\n  <!-- Table -->\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Dynamic Columns -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <!-- Dynamic Actions -->\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit\" (click)=\"config.actions.edit.editRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete\" (click)=\"config.actions.delete.deleteRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n    <!-- Dynamic Header -->\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\" [ngClass]=\"{'highlight': selectedRow == row && config.selectable}\" (click)=\"onSelect.next(row);selectedRow = row\"></mat-row>\n  </mat-table>\n  <!-- Pagination -->\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>"
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Search Division -->\n\t<div *ngIf=\"config.filterable\" class=\"example-header\">\n\t    <mat-form-field>\n\t      <input matInput (input)=\"config.serverInteraction || applyFilter($event.target.value)\" placeholder=\"Search\" #searchInput>\n\t    </mat-form-field>\n\t</div>\n  <div *ngIf=\"config.allowAdd\" id=\"Normal\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"config.allowAdd.add && config.allowAdd.add()\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <!-- Spinner Div -->\n  <div class=\"loading-indicator\" *ngIf=\"config.serverInteraction && config.showLoadingProgress && loading\">\n    <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n  </div>\n  <!-- Table -->\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Dynamic Columns -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <!-- Dynamic Actions -->\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit\" (click)=\"config.actions.edit.editRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete\" (click)=\"onDelete(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n    <!-- Dynamic Header -->\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\" [ngClass]=\"{'highlight': selectedRow == row && config.selectable}\" (click)=\"onSelect.next(row);selectedRow = row\"></mat-row>\n  </mat-table>\n  <!-- Pagination -->\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>"
 
 /***/ }),
 
@@ -1227,7 +1313,9 @@ module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Sea
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("./node_modules/rxjs/_esm5/operators.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_merge__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/merge.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/fromEvent.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__list_model__ = __webpack_require__("./src/app/reusable_components/list/list.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__ = __webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__list_model__ = __webpack_require__("./src/app/reusable_components/list/list.model.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1243,8 +1331,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ListComponent = /** @class */ (function () {
-    function ListComponent() {
+    function ListComponent(dialog, reusableFunctionsService) {
+        this.dialog = dialog;
+        this.reusableFunctionsService = reusableFunctionsService;
         this.displayedColumns = [];
         this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["H" /* MatTableDataSource */]();
         this.loading = false;
@@ -1312,6 +1404,20 @@ var ListComponent = /** @class */ (function () {
         }
         typeof this.config.actions === "object" && this.displayedColumns.push("action");
     };
+    ListComponent.prototype.onDelete = function (row) {
+        if (this.config.showPopupOnDelete) {
+            var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */], {
+                disableClose: true,
+                autoFocus: true,
+                data: {
+                    config: this.reusableFunctionsService.isObject(this.config.showPopupOnDelete) && this.config.showPopupOnDelete
+                }
+            });
+            dialogRef.afterClosed().subscribe(function (val) { return console.log("Dialog output:", val); });
+        }
+        else
+            this.config.actions.delete.deleteRec(row);
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* ViewChild */])('searchInput'),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
@@ -1326,7 +1432,7 @@ var ListComponent = /** @class */ (function () {
     ], ListComponent.prototype, "paginator", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_5__list_model__["a" /* ListConfig */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_7__list_model__["a" /* ListConfig */])
     ], ListComponent.prototype, "config", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])('dataSource'),
@@ -1348,8 +1454,10 @@ var ListComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: "app-list",
             template: __webpack_require__("./src/app/reusable_components/list/list.component.html"),
-            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")]
-        })
+            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")],
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
     ], ListComponent);
     return ListComponent;
 }());
@@ -1487,6 +1595,9 @@ var ReusableFunctionsService = /** @class */ (function () {
             }
         }
         return array;
+    };
+    ReusableFunctionsService.prototype.isObject = function (value) {
+        return value !== null && typeof value === 'object';
     };
     return ReusableFunctionsService;
 }());

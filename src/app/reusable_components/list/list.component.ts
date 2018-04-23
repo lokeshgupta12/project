@@ -1,15 +1,20 @@
-import {Component, ViewChild, Input, Output, OnInit, AfterViewInit, ElementRef, EventEmitter } from '@angular/core';
-import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import {Component, ViewChild, Input, Output, OnInit, AfterViewInit, ElementRef, EventEmitter, ViewEncapsulation } from '@angular/core';
+import {MatPaginator, MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {merge} from "rxjs/observable/merge";
 import {fromEvent} from 'rxjs/observable/fromEvent';
+
+import { ReusableFunctionsService } from '../../service/reusable_functions.service';
+
+import { NgMatDialogComponent } from '../angular-material-dialog/ng-mat-dialog.component';
 
 import { ListConfig } from './list.model';
 
 @Component({
   selector : "app-list",
 	templateUrl : './list.component.html',
-	styleUrls : ['./list.component.css']
+	styleUrls : ['./list.component.css'],
+  //encapsulation : ViewEncapsulation.None
 })
 
 export class ListComponent implements OnInit, AfterViewInit {
@@ -23,7 +28,12 @@ export class ListComponent implements OnInit, AfterViewInit {
   @Input('dataSource') ds = [];
   @Input() totalCount;
   @Output() initialized = new EventEmitter();  
-  @Output() onSelect = new EventEmitter();  
+  @Output() onSelect = new EventEmitter();
+
+  constructor(
+    private dialog : MatDialog,
+    private reusableFunctionsService : ReusableFunctionsService
+    ){} 
   // For filter for static data
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -91,5 +101,22 @@ export class ListComponent implements OnInit, AfterViewInit {
     for(let ob of this.config.columns)
       ob.notToDisplay || this.displayedColumns.push(ob.field);
     typeof this.config.actions === "object" && this.displayedColumns.push("action");
+  }
+
+  onDelete(row) {
+    if (this.config.showPopupOnDelete) {
+      const dialogRef = this.dialog.open(NgMatDialogComponent,{
+        disableClose : true,
+        autoFocus: true,
+        data: {
+          config : this.reusableFunctionsService.isObject(this.config.showPopupOnDelete) && this.config.showPopupOnDelete
+        }
+      });
+      dialogRef.afterClosed().subscribe(
+            val => console.log("Dialog output:", val)
+        );
+    }
+    else 
+      this.config.actions.delete.deleteRec(row);
   }
 }

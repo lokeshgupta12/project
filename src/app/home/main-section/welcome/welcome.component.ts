@@ -40,7 +40,7 @@ export class WelcomeComponent implements OnInit {
     ],
     sortable : true,
     selectable : true,
-    filterable : false,
+    filterable : true,
     pageable : {
       /*pageSize : 8,
       pageSizeOptions : [8,16,24],
@@ -48,6 +48,7 @@ export class WelcomeComponent implements OnInit {
     },
     serverInteraction : true,
     showLoadingProgress : true,
+    showPopupOnDelete : true,
     actions : {
       title : 'Actions',
       edit : {
@@ -59,7 +60,7 @@ export class WelcomeComponent implements OnInit {
       delete : {
         //isDisable : true,
         deleteRec : function(data) {
-          console.log("edit",data);
+          console.log("delete",data);
         },
       },
     },
@@ -81,10 +82,6 @@ export class WelcomeComponent implements OnInit {
       case "filterUpdate": {
         console.log("filterUpdate",event.data);
         const queryParams = event.data;
-          const filter = queryParams.searchValue || '',
-          //sortOrder = queryParams.sortOrder,
-          pageNumber = parseInt(queryParams.pageNumber) || 0,
-          pageSize = parseInt(queryParams.pageSize);
           this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : any)=>{
                 if (queryParams.searchValue)
                    data = data.filter(obj => obj.Name.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0);

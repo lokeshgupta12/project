@@ -1,4 +1,9 @@
 1. On keyboard arrow click - expand menus issue 
+2. Dynamic Dialog Component
+### List Component
+3. No record template in mat table
+4. Multi Col Sorting in mat table
+5. Differentiate delete and onSelect in list
 
 
 Login

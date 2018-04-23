@@ -18,6 +18,8 @@ import { WelcomeComponent } from './home/main-section/welcome/welcome.component'
 import { CourseDialogComponent } from './course-dialog/course-dialog.component'
 /*Resuable Components*/
 import { ListComponent } from './reusable_components/list/list.component';
+import { NgMatDialogComponent } from './reusable_components/angular-material-dialog/ng-mat-dialog.component';
+
 
 import { AppRouting } from './app.routing';
 import { AuthGuard } from './guards/auth.guard';
@@ -39,7 +41,8 @@ import { LoginResolver } from './guards/login.resolve';
     HomeComponent,
     WelcomeComponent,
     CourseDialogComponent,
-    ListComponent
+    ListComponent,
+    NgMatDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,6 @@ import { LoginResolver } from './guards/login.resolve';
     //{ provide: RequestCache, useClass: RequestCacheWithMap },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CourseDialogComponent]
+  entryComponents: [CourseDialogComponent, NgMatDialogComponent]
 })
 export class AppModule { }

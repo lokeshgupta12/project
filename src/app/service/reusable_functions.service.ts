@@ -46,4 +46,8 @@ export class ReusableFunctionsService {
         }
         return array;
     }
+
+    isObject (value) {
+      return value !== null && typeof value === 'object';
+    }
 }

@@ -6,12 +6,25 @@ export class ListConfig {
 	//(onSelect) ?: Function
 	columns : {
 		field : string,
-		title ?: string,
-		notToDisplay ?:boolean,
-		notToSort ?:boolean,
+		title ?: string, //(titlecase the field)
+		notToDisplay ?:boolean, //(false)
+		notToSort ?:boolean, //(false)
 	}[];
 	selectable ?: boolean; //(false)
 	showLoadingProgress ?: boolean; //(false)
+	showPopupOnDelete ?: boolean | {
+		title ?: string, //('Delete')
+		textContent ?: string, //('Are you sure you want to delete this record?')
+		showCancelIcon ?: boolean, //(true)
+		ok ?: {
+			text ?: string, //('Delete')
+			icon ?: string //('delete')
+		},
+		cancel ?: {
+			text ?: string, //('Cancel')
+			icon ?: string //('cancel')
+		},
+	}; //(false)
 	sortable ?: boolean; //(false)
 	filterable ?: boolean; //(false)
 	pageable ?: boolean | {
