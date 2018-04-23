@@ -49,12 +49,18 @@ export class SideNavbar {
  	// On collapse Menu collapse all node otherwise 
     menuToggle() {
     	this.needToCollapseAfterNavigate = false;
+    	localStorage.isSideBarExpand = this.commonService.isSideBarExpand;
 		this.commonService.isSideBarExpand ? this.collapseAndSetActiveNode() : this.treeRef.treeModel.collapseAll();
 		// userPre
 	}
 	// Get State of tree
 	get state(): ITreeState {
-	    return localStorage.treeState && JSON.parse(localStorage.treeState);
+		let temp = localStorage.treeState;
+		if (temp) {
+			temp = JSON.parse(temp);
+			this.commonService.isSideBarExpand || (temp.expandedNodeIds = {});
+		}
+	    return temp;
 	}
 	// Set State of tree
 	set state(state: ITreeState) {

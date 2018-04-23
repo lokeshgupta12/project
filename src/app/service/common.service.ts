@@ -21,7 +21,8 @@ export class CommonService {
     getLoginData(url) {
         return new Promise((resolve, reject)=>{
             this.http.get(url).subscribe((data : LoginResponse)=>{
-                this.isSideBarExpand = !!data.isSideBarExpand;
+                let isSideBarExpand = localStorage.isSideBarExpand;
+                this.isSideBarExpand = (isSideBarExpand !== undefined) ? JSON.parse(localStorage.isSideBarExpand) : !!data.isSideBarExpand;
                 this.authToken = data.authToken;
                 this.appMenus = this.reusableFunctionsService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
                 resolve({status:'OK', data});

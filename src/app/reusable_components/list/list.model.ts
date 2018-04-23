@@ -11,6 +11,7 @@ export class ListConfig {
 		notToSort ?:boolean,
 	}[];
 	selectable ?: boolean; //(false)
+	showLoadingProgress ?: boolean; //(false)
 	sortable ?: boolean; //(false)
 	filterable ?: boolean; //(false)
 	pageable ?: boolean | {

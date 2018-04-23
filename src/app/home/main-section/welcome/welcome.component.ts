@@ -1,7 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
-import { MainSection } from '../main-section-component'
+
+import { ReusableFunctionsService } from '../../../service/reusable_functions.service';
+
 import { CourseDialogComponent } from '../../../course-dialog/course-dialog.component'
 import { ListConfig } from '../../../reusable_components/list/list.model';
 
@@ -15,9 +17,9 @@ export class WelcomeComponent implements OnInit {
 
   constructor(
     private dialog : MatDialog,
-    private http: HttpClient
+    private http: HttpClient,
+    private reusableFunctionsService : ReusableFunctionsService
     ) { }
-
   
   totalCount = 50;
   dataSource : {}[] = [];
@@ -38,13 +40,14 @@ export class WelcomeComponent implements OnInit {
     ],
     sortable : true,
     selectable : true,
-    filterable : true,
+    filterable : false,
     pageable : {
       /*pageSize : 8,
       pageSizeOptions : [8,16,24],
       showFirstLastButtons : true*/
     },
     serverInteraction : true,
+    showLoadingProgress : true,
     actions : {
       title : 'Actions',
       edit : {
@@ -69,6 +72,7 @@ export class WelcomeComponent implements OnInit {
       }
     }
   }
+
   onInitializeList(event) {
     switch (event.eventName) {
       case "initialized":
@@ -84,19 +88,17 @@ export class WelcomeComponent implements OnInit {
           this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : any)=>{
                 if (queryParams.searchValue)
                    data = data.filter(obj => obj.Name.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0);
-                if(queryParams.sort) {
-                  data.sort((a,b) => {
-                      return Number(a[queryParams.sort.field]>a[queryParams.sort.field])*(queryParams.sort.field==='asc'?1:-1);
-                  })
-                }
-                this.totalCount = data.length;
-                queryParams.limit && (this.dataSource = data.slice(queryParams.offset,queryParams.offset+queryParams.limit));
+
+                if(queryParams.sort && queryParams.sort.dir)
+                  data = this.reusableFunctionsService.sortArray(data, queryParams.sort.field, queryParams.sort.dir);
+
+                setTimeout(() => {
+                  this.totalCount = data.length;
+                  queryParams.limit && (this.dataSource = data.slice(queryParams.offset,queryParams.offset+queryParams.limit));
+                },1000);
             },(err)=>{
                 console.log({status:'KO', data : err});
             })
-            // setTimeout(() => {
-            //     res.status(200).json({payload: lessonsPage});
-            // },1000);
         break;      
       }
     }
@@ -133,45 +135,18 @@ export class WelcomeComponent implements OnInit {
     }]
 
     editCourse({description, longDescription, category}) {
-      // this.dataSource = [{position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-      //   {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-      //   {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-      //   {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-      //   {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-      //   {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-      //   {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-      //   {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-      //   {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-      //   {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'}]
-      //this.dataSource[0].position = 150
-        // const dialogRef = this.dialog.open(CourseDialogComponent,
-        //     {
-        //       disableClose : true,
-        //       autoFocus: true,
-        //       data: {
-        //           description, longDescription, category
-        //       }
-        //     });
+        const dialogRef = this.dialog.open(CourseDialogComponent,
+            {
+              disableClose : true,
+              autoFocus: true,
+              data: {
+                  description, longDescription, category
+              }
+            });
 
-        // dialogRef.afterClosed().subscribe(
-        //     val => console.log("Dialog output:", val)
-        // );
+        dialogRef.afterClosed().subscribe(
+            val => console.log("Dialog output:", val)
+        );
 
     }
-
-  openDialog(): void {
-    let dialogRef = this.dialog.open(MainSection, {
-      //width: '100%',
-      height : '600px',
-      disableClose: true,
-      data: {
-        name: "Lovelesh",
-        animal: "Rabbit"
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed',result);
-    });
-  }
 }

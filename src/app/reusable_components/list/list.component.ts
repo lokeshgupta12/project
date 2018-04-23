@@ -15,6 +15,7 @@ import { ListConfig } from './list.model';
 export class ListComponent implements OnInit, AfterViewInit {
   displayedColumns : Array<string> = [];
   dataSource = new MatTableDataSource();
+  loading : boolean = false;
   @ViewChild('searchInput') searchInput : ElementRef;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,6 +32,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnChanges() {
+    this.loading = false;
   	this.dataSource = new MatTableDataSource(this.ds);
     if(!this.config.serverInteraction) {
       this.dataSource.paginator = this.paginator;
@@ -46,9 +48,9 @@ export class ListComponent implements OnInit, AfterViewInit {
     if(this.config.serverInteraction) {
       this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-        fromEvent(this.searchInput.nativeElement,'input')
+        this.config.filterable && fromEvent(this.searchInput.nativeElement,'input')
             .pipe(
-                debounceTime(150),
+                debounceTime(250),
                 distinctUntilChanged(),
                 tap(() => {
                     this.paginator.pageIndex = 0;
@@ -81,6 +83,7 @@ export class ListComponent implements OnInit, AfterViewInit {
       eventName : 'filterUpdate',
       data : obj
     });
+    this.loading = true;
   }
 
   ngOnInit() {

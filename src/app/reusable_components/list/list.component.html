@@ -2,7 +2,7 @@
   <!-- Search Division -->
 	<div *ngIf="config.filterable" class="example-header">
 	    <mat-form-field>
-	      <input matInput (input)="config.serverInteraction || applyFilter($event.target.value)" placeholder="Filter" #searchInput>
+	      <input matInput (input)="config.serverInteraction || applyFilter($event.target.value)" placeholder="Search" #searchInput>
 	    </mat-form-field>
 	</div>
   <!-- Add Button Division -->
@@ -10,9 +10,14 @@
       <button class="mat-fab mat-accent mat-button" [matTooltip]="config.allowAdd?.tooltip || 'Add new record'" [matTooltipPosition]="config.allowAdd?.tooltipPosition || 'after'" (click)="config.allowAdd.add && config.allowAdd.add()" [disabled]="config.allowAdd?.isDisable"><span>+</span></button>
   </div>
   <!-- Spinner Div -->
-  <!-- <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-      <mat-spinner></mat-spinner> -->
+  <!-- <div class="loading-indicator" *ngIf="true">
+      <mat-spinner></mat-spinner>
+  </div> -->
+  <div class="loading-indicator" *ngIf="config.serverInteraction && config.showLoadingProgress && loading">
+    <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
   </div>
+
+
   <!-- Table -->
   <mat-table [dataSource]="dataSource" matSort [matSortDisabled]="!config.sortable">
     <!-- Dynamic Columns -->
