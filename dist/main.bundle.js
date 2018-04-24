@@ -414,7 +414,7 @@ module.exports = ".main-header {\n    position: relative;\n    max-height: 100px
 /***/ "./src/app/home/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"main-header\">\n  <!-- <a routerLink=\"/\" class=\"logo\">New Dashboard</a> -->\n  <a routerLink=\"/\" class=\"logo\"><mat-icon>home</mat-icon></a>\n  <nav class=\"navbigation navbar-static-top\">\n    <!-- <a href=\"javascript:void(0)\" class=\"sidebar-toggle\" data-toggle=\"push-menu\" role=\"button\" (click)='menuToggel()'>\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n    </a> -->\n    <div class=\"profile\">\n        <a class=\"profilelink\" (click)=\"open = !open\">\n            <img src=\"./assets/user.jpg\" class=\"user-image\">\n            <span class=\"user-name\">Alexander Pierce</span>\n        </a>\n        <ul class=\"dropdown-menu\" [ngClass]=\"open ? 'd-block' : 'd-none'\" >\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-user\"></i> My Account\n                </a>\n            </li>\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-gear\"></i> Account Settings\n                </a>\n            </li>\n            <li>\n                <a routerLink=\"/login\" (click)=\"logout()\">\n                    <i class=\"fa fa-sign-out\"></i>Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n  </nav>\n</header>\n"
+module.exports = "<header class=\"main-header\">\n  <!-- <a routerLink=\"/\" class=\"logo\">New Dashboard</a> -->\n  <a routerLink=\"/\" class=\"logo\"><mat-icon>home</mat-icon></a>\n  <nav class=\"navbigation navbar-static-top\">\n    <!-- <a href=\"javascript:void(0)\" class=\"sidebar-toggle\" data-toggle=\"push-menu\" role=\"button\" (click)='menuToggel()'>\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n    </a> -->\n    <div class=\"profile\">\n        <a class=\"profilelink\" (click)=\"open = !open\">\n            <img src=\"./assets/images/user.jpg\" class=\"user-image\">\n            <span class=\"user-name\">Alexander Pierce</span>\n        </a>\n        <ul class=\"dropdown-menu\" [ngClass]=\"open ? 'd-block' : 'd-none'\" >\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-user\"></i> My Account\n                </a>\n            </li>\n            <li>\n                <a href=\"#\">\n                    <i class=\"fa fa-gear\"></i> Account Settings\n                </a>\n            </li>\n            <li>\n                <a routerLink=\"/login\" (click)=\"logout()\">\n                    <i class=\"fa fa-sign-out\"></i>Logout\n                </a>\n            </li>\n        </ul>\n    </div>\n  </nav>\n</header>\n"
 
 /***/ }),
 
@@ -568,7 +568,7 @@ module.exports = ""
 /***/ "./src/app/home/main-section/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick one</button> -->\n<!-- <img src=\"../../../../assets/welcome.jpg\" class=\"img-fluid\">   -->\n\n<app-list [config]=\"listConfig\" [dataSource]=\"dataSource\" [totalCount]=\"totalCount\" (initialized)=\"onInitializeList($event)\" (onSelect)=\"onSelect($event)\"></app-list>\n<hr>\n<mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n\n"
+module.exports = "<app-list [config]=\"listConfig\" [dataSource]=\"dataSource\" [totalCount]=\"totalCount\" (initialized)=\"onInitializeList($event)\" (onSelect)=\"onSelect($event)\"></app-list>\n<!-- <hr> -->\n<!-- <mat-card *ngFor=\"let course of courses\" class=\"course-card mat-elevation-z10\">\n\n    <mat-card-header>\n\n        <mat-card-title>{{course.description}}</mat-card-title>\n\n    </mat-card-header>\n\n    <img mat-card-image [src]=\"course.iconUrl\">\n\n    <mat-card-content>\n        <p>{{course.longDescription}}</p>\n    </mat-card-content>\n\n    <mat-card-actions class=\"course-actions\">\n\n        <button mat-button class=\"mat-raised-button mat-primary\" [routerLink]=\"['/courses', course.id]\">\n            VIEW COURSE\n        </button>\n\n        <button mat-button class=\"mat-raised-button mat-accent\"\n                (click)=\"editCourse(course)\">\n            EDIT\n        </button>\n\n    </mat-card-actions>\n\n</mat-card>\n -->\n"
 
 /***/ }),
 
@@ -581,7 +581,6 @@ module.exports = "<!-- <button mat-raised-button (click)=\"openDialog()\">Pick o
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -595,7 +594,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var WelcomeComponent = /** @class */ (function () {
     function WelcomeComponent(dialog, http, reusableFunctionsService) {
         this.dialog = dialog;
@@ -605,24 +603,17 @@ var WelcomeComponent = /** @class */ (function () {
         this.dataSource = [];
         this.listConfig = {
             columns: [
-                { field: 'id', title: 'No.' },
-                { field: 'Name' },
-                { field: 'Atomic Weight' },
-                { field: 'Sym.', notToSort: true },
-                { field: 'M.P. (°C)' },
-                { field: 'B.P. (°C)' },
-                { field: 'Density (g/cm3)' },
-                { field: 'Earth crust (%)' },
-                { field: 'Discovery (Year)' },
-                { field: 'Group' },
-                { field: 'Electron configuration' },
-                { field: 'Ionization energy (eV)' },
+                { field: 'id', notToDisplay: true },
+                { field: 'component' },
+                { field: 'type' },
+                { field: 'description' },
+                { field: 'status' }
             ],
             sortable: true,
             selectable: true,
             filterable: true,
             pageable: {},
-            serverInteraction: true,
+            serverInteraction: false,
             showLoadingProgress: true,
             showPopupOnDelete: true,
             actions: {
@@ -648,26 +639,6 @@ var WelcomeComponent = /** @class */ (function () {
                 }
             }
         };
-        this.courses = [
-            {
-                id: 1,
-                description: "Angular for Beginners",
-                iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
-                courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
-                longDescription: "Establish a solid layer of fundamentals, learn what's under the hood of Angular",
-                category: 'BEGINNER',
-                lessonsCount: 10
-            },
-            {
-                id: 2,
-                description: 'Angular Security Course - Web Security Fundamentals',
-                longDescription: "Learn Web Security Fundamentals and apply them to defend an Angular / Node Application from multiple types of attacks.",
-                iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/security-cover-small-v2.png',
-                courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/lock-v2.png',
-                category: 'ADVANCED',
-                lessonsCount: 11
-            }
-        ];
     }
     WelcomeComponent.prototype.onInitializeList = function (event) {
         var _this = this;
@@ -678,9 +649,14 @@ var WelcomeComponent = /** @class */ (function () {
             case "filterUpdate": {
                 console.log("filterUpdate", event.data);
                 var queryParams_1 = event.data;
-                this.http.get('/assets/WSResponses/periodic-table.json').subscribe(function (data) {
+                this.http.get('/assets/others/bug-feature-update.json').subscribe(function (data) {
                     if (queryParams_1.searchValue)
-                        data = data.filter(function (obj) { return obj.Name.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0; });
+                        data = data.filter(function (obj) {
+                            return obj.component.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0 ||
+                                obj.description.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0 ||
+                                obj.type.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0 ||
+                                obj.status.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0;
+                        });
                     if (queryParams_1.sort && queryParams_1.sort.dir)
                         data = _this.reusableFunctionsService.sortArray(data, queryParams_1.sort.field, queryParams_1.sort.dir);
                     setTimeout(function () {
@@ -699,23 +675,12 @@ var WelcomeComponent = /** @class */ (function () {
     };
     WelcomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('/assets/WSResponses/periodic-table.json').subscribe(function (data) {
-            _this.dataSource = data.slice(0, 10);
+        this.http.get('/assets/others/bug-feature-update.json').subscribe(function (data) {
+            _this.dataSource = _this.listConfig.serverInteraction ? data.slice(0, 10) : data;
             _this.totalCount = data.length;
         }, function (err) {
             console.log({ status: 'KO', data: err });
         });
-    };
-    WelcomeComponent.prototype.editCourse = function (_a) {
-        var description = _a.description, longDescription = _a.longDescription, category = _a.category;
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */], {
-            disableClose: true,
-            autoFocus: true,
-            data: {
-                description: description, longDescription: longDescription, category: category
-            }
-        });
-        dialogRef.afterClosed().subscribe(function (val) { return console.log("Dialog output:", val); });
     };
     WelcomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1238,14 +1203,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 
-//import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 var NgMatDialogComponent = /** @class */ (function () {
-    // form: FormGroup;
-    // description:string;
-    function NgMatDialogComponent(
-        /*private fb: FormBuilder,*/
-        dialogRef, data) {
+    function NgMatDialogComponent(dialogRef, data) {
         this.dialogRef = dialogRef;
         this.config = {
             showCancelIcon: true,
@@ -1254,25 +1214,10 @@ var NgMatDialogComponent = /** @class */ (function () {
             ok: { text: 'Delete', icon: 'delete' },
             cancel: { text: 'Cancel', icon: 'cancel' }
         };
-        console.log("MAT_DIALOG_DATA", data);
         if (data && data.config) {
             Object.assign(this.config, data.config || {});
         }
-        // this.description = description;
-        // this.form = fb.group({
-        //     description: [description, Validators.required],
-        //     category: [category, Validators.required],
-        //     longDescription: [longDescription,Validators.required]
-        // });
     }
-    NgMatDialogComponent.prototype.ngOnInit = function () {
-    };
-    NgMatDialogComponent.prototype.save = function () {
-        this.dialogRef.close({ ok: true });
-    };
-    NgMatDialogComponent.prototype.close = function () {
-        this.dialogRef.close();
-    };
     NgMatDialogComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'ng-mat-dialog',
@@ -1292,14 +1237,14 @@ var NgMatDialogComponent = /** @class */ (function () {
 /***/ "./src/app/reusable_components/list/list.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n/*Mat Overrite Class*/\n.mat-header-cell {   \n    font-weight: bold;\n}\n.mat-sort-header-button {\n  text-align: left;\n}\n/*.mat-header-cell.mat-sort-header-sorted {\n  color: black;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}*/\n.mat-header-row {\n    min-height: 40px;\n}\n.mat-row {\n    min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\nmat-row.highlight{\n  background-color: #408dbc63;\n}\n"
+module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.main-fab + .example-header {\n  margin-left: 20px; \n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n/*Mat Overrite Class*/\n.mat-header-cell {   \n  font-weight: bold;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}\n.mat-header-row {\n  min-height: 40px;\n}\n.mat-row {\n  min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\nmat-row.highlight{\n  background-color: #408dbc63;\n}\n"
 
 /***/ }),
 
 /***/ "./src/app/reusable_components/list/list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Search Division -->\n\t<div *ngIf=\"config.filterable\" class=\"example-header\">\n\t    <mat-form-field>\n\t      <input matInput (input)=\"config.serverInteraction || applyFilter($event.target.value)\" placeholder=\"Search\" #searchInput>\n\t    </mat-form-field>\n\t</div>\n  <div *ngIf=\"config.allowAdd\" id=\"Normal\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"config.allowAdd.add && config.allowAdd.add()\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <!-- Spinner Div -->\n  <div class=\"loading-indicator\" *ngIf=\"config.serverInteraction && config.showLoadingProgress && loading\">\n    <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n  </div>\n  <!-- Table -->\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Dynamic Columns -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <!-- Dynamic Actions -->\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit\" (click)=\"config.actions.edit.editRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete\" (click)=\"onDelete(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n    <!-- Dynamic Header -->\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\" [ngClass]=\"{'highlight': selectedRow == row && config.selectable}\" (click)=\"onSelect.next(row);selectedRow = row\"></mat-row>\n  </mat-table>\n  <!-- Pagination -->\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>"
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Add Button Division -->\n  <div *ngIf=\"config.allowAdd\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"config.allowAdd.add && config.allowAdd.add()\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <!-- Search Division -->\n  <div *ngIf=\"config.filterable\" class=\"example-header\">\n      <mat-form-field>\n        <input matInput (input)=\"config.serverInteraction || applyFilter($event.target.value)\" placeholder=\"Search\" #searchInput>\n      </mat-form-field>\n  </div>\n  <!-- Spinner Div -->\n  <div class=\"loading-indicator\" *ngIf=\"config.serverInteraction && config.showLoadingProgress && loading\">\n    <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n  </div>\n  <!-- Table -->\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Dynamic Columns -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <!-- Dynamic Actions -->\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit\" (click)=\"$event.stopPropagation();config.actions.edit.editRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete\" (click)=\"$event.stopPropagation();onDelete(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n    <!-- Dynamic Header -->\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\" [ngClass]=\"{'highlight': selectedRow == row && config.selectable}\" (click)=\"onSelect.next(row);selectedRow = row\"></mat-row>\n  </mat-table>\n  <!-- Pagination -->\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>"
 
 /***/ }),
 
@@ -1402,9 +1347,10 @@ var ListComponent = /** @class */ (function () {
             var ob = _a[_i];
             ob.notToDisplay || this.displayedColumns.push(ob.field);
         }
-        typeof this.config.actions === "object" && this.displayedColumns.push("action");
+        this.reusableFunctionsService.isObject(this.config.actions) && this.displayedColumns.push("action");
     };
     ListComponent.prototype.onDelete = function (row) {
+        var _this = this;
         if (this.config.showPopupOnDelete) {
             var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */], {
                 disableClose: true,
@@ -1413,7 +1359,7 @@ var ListComponent = /** @class */ (function () {
                     config: this.reusableFunctionsService.isObject(this.config.showPopupOnDelete) && this.config.showPopupOnDelete
                 }
             });
-            dialogRef.afterClosed().subscribe(function (val) { return console.log("Dialog output:", val); });
+            dialogRef.afterClosed().subscribe(function (val) { return _this.reusableFunctionsService.isObject(val) && val.ok && _this.config.actions.delete.deleteRec(row); });
         }
         else
             this.config.actions.delete.deleteRec(row);

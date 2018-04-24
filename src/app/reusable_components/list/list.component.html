@@ -1,12 +1,13 @@
 <div class="example-container mat-elevation-z8">
-  <!-- Search Division -->
-	<div *ngIf="config.filterable" class="example-header">
-	    <mat-form-field>
-	      <input matInput (input)="config.serverInteraction || applyFilter($event.target.value)" placeholder="Search" #searchInput>
-	    </mat-form-field>
-	</div>
-  <div *ngIf="config.allowAdd" id="Normal" class="main-fab">
+  <!-- Add Button Division -->
+  <div *ngIf="config.allowAdd" class="main-fab">
       <button class="mat-fab mat-accent mat-button" [matTooltip]="config.allowAdd?.tooltip || 'Add new record'" [matTooltipPosition]="config.allowAdd?.tooltipPosition || 'after'" (click)="config.allowAdd.add && config.allowAdd.add()" [disabled]="config.allowAdd?.isDisable"><span>+</span></button>
+  </div>
+  <!-- Search Division -->
+  <div *ngIf="config.filterable" class="example-header">
+      <mat-form-field>
+        <input matInput (input)="config.serverInteraction || applyFilter($event.target.value)" placeholder="Search" #searchInput>
+      </mat-form-field>
   </div>
   <!-- Spinner Div -->
   <div class="loading-indicator" *ngIf="config.serverInteraction && config.showLoadingProgress && loading">
@@ -26,8 +27,8 @@
       <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>
           <mat-cell *matCellDef="let row" >
-            <button *ngIf="config.actions?.edit" (click)="config.actions.edit.editRec(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">edit</i></button>
-            <button *ngIf="config.actions?.delete" (click)="onDelete(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">delete</i></button>
+            <button *ngIf="config.actions?.edit" (click)="$event.stopPropagation();config.actions.edit.editRec(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">edit</i></button>
+            <button *ngIf="config.actions?.delete" (click)="$event.stopPropagation();onDelete(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">delete</i></button>
           </mat-cell>
       </ng-container> 
     </div>

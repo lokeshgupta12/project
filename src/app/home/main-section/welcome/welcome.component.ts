@@ -7,7 +7,6 @@ import { ReusableFunctionsService } from '../../../service/reusable_functions.se
 import { CourseDialogComponent } from '../../../course-dialog/course-dialog.component'
 import { ListConfig } from '../../../reusable_components/list/list.model';
 
-
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -25,18 +24,11 @@ export class WelcomeComponent implements OnInit {
   dataSource : {}[] = [];
   listConfig : ListConfig = {
     columns : [
-      {field : 'id', title : 'No.' },
-      {field : 'Name' },
-      {field : 'Atomic Weight'},
-      {field : 'Sym.', notToSort : true },
-      {field : 'M.P. (°C)' },
-      {field : 'B.P. (°C)' },
-      {field : 'Density (g/cm3)' },
-      {field : 'Earth crust (%)' },
-      {field : 'Discovery (Year)' },
-      {field : 'Group' },
-      {field : 'Electron configuration' },
-      {field : 'Ionization energy (eV)' },
+      {field : 'id', notToDisplay : true },
+      {field : 'component' },
+      {field : 'type'},
+      {field : 'description'},
+      {field : 'status' }
     ],
     sortable : true,
     selectable : true,
@@ -46,7 +38,7 @@ export class WelcomeComponent implements OnInit {
       pageSizeOptions : [8,16,24],
       showFirstLastButtons : true*/
     },
-    serverInteraction : true,
+    serverInteraction : false,
     showLoadingProgress : true,
     showPopupOnDelete : true,
     actions : {
@@ -82,9 +74,14 @@ export class WelcomeComponent implements OnInit {
       case "filterUpdate": {
         console.log("filterUpdate",event.data);
         const queryParams = event.data;
-          this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : any)=>{
+          this.http.get('/assets/others/bug-feature-update.json').subscribe((data : any)=>{
                 if (queryParams.searchValue)
-                   data = data.filter(obj => obj.Name.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0);
+                   data = data.filter(obj => {
+                     return obj.component.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0 ||
+                     obj.description.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0 ||
+                     obj.type.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0 ||
+                     obj.status.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0;
+                   });
 
                 if(queryParams.sort && queryParams.sort.dir)
                   data = this.reusableFunctionsService.sortArray(data, queryParams.sort.field, queryParams.sort.dir);
@@ -104,46 +101,11 @@ export class WelcomeComponent implements OnInit {
     console.log('onSelect',row);
   }
   ngOnInit() {
-    this.http.get('/assets/WSResponses/periodic-table.json').subscribe((data : {}[])=>{
-                this.dataSource = data.slice(0,10);
-                this.totalCount = data.length;
-            },(err)=>{
-                console.log({status:'KO', data : err});
-            })
+    this.http.get('/assets/others/bug-feature-update.json').subscribe((data : {}[])=>{
+        this.dataSource = this.listConfig.serverInteraction ? data.slice(0,10) : data;
+        this.totalCount = data.length;
+    },(err)=>{
+        console.log({status:'KO', data : err});
+    })
   }
-  courses = [
-    {
-        id: 1,
-        description: "Angular for Beginners",
-        iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
-        courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
-        longDescription: "Establish a solid layer of fundamentals, learn what's under the hood of Angular",
-        category: 'BEGINNER',
-        lessonsCount: 10
-    },
-    {
-        id: 2,
-        description: 'Angular Security Course - Web Security Fundamentals',
-        longDescription: "Learn Web Security Fundamentals and apply them to defend an Angular / Node Application from multiple types of attacks.",
-        iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/security-cover-small-v2.png',
-        courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/lock-v2.png',
-        category: 'ADVANCED',
-        lessonsCount: 11
-    }]
-
-    editCourse({description, longDescription, category}) {
-        const dialogRef = this.dialog.open(CourseDialogComponent,
-            {
-              disableClose : true,
-              autoFocus: true,
-              data: {
-                  description, longDescription, category
-              }
-            });
-
-        dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
-        );
-
-    }
 }

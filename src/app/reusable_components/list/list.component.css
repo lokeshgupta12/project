@@ -15,6 +15,9 @@
 .main-fab {
   position:absolute;
 }
+.main-fab + .example-header {
+  margin-left: 20px; 
+}
 .mat-fab {
   width: 40px;
   height: 40px;
@@ -47,23 +50,17 @@
 }
 /*Mat Overrite Class*/
 .mat-header-cell {   
-    font-weight: bold;
-}
-.mat-sort-header-button {
-  text-align: left;
-}
-/*.mat-header-cell.mat-sort-header-sorted {
-  color: black;
+  font-weight: bold;
 }
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-}*/
+}
 .mat-header-row {
-    min-height: 40px;
+  min-height: 40px;
 }
 .mat-row {
-    min-height: 46px;
+  min-height: 46px;
 }
 mat-row:nth-child(even){
   background-color:white;

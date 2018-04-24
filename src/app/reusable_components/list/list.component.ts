@@ -1,4 +1,7 @@
-import {Component, ViewChild, Input, Output, OnInit, AfterViewInit, ElementRef, EventEmitter, ViewEncapsulation } from '@angular/core';
+import {
+  Component, ViewChild, Input, Output, OnInit,
+  AfterViewInit, ElementRef, EventEmitter, ViewEncapsulation
+} from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
 import {merge} from "rxjs/observable/merge";
@@ -21,9 +24,11 @@ export class ListComponent implements OnInit, AfterViewInit {
   displayedColumns : Array<string> = [];
   dataSource = new MatTableDataSource();
   loading : boolean = false;
+
   @ViewChild('searchInput') searchInput : ElementRef;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @Input() config : ListConfig;
   @Input('dataSource') ds = [];
   @Input() totalCount;
@@ -100,7 +105,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     this.displayedColumns = [];
     for(let ob of this.config.columns)
       ob.notToDisplay || this.displayedColumns.push(ob.field);
-    typeof this.config.actions === "object" && this.displayedColumns.push("action");
+    this.reusableFunctionsService.isObject(this.config.actions) && this.displayedColumns.push("action");
   }
 
   onDelete(row) {
@@ -113,7 +118,7 @@ export class ListComponent implements OnInit, AfterViewInit {
         }
       });
       dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
+        val => this.reusableFunctionsService.isObject(val) && val.ok && this.config.actions.delete.deleteRec(row)
         );
     }
     else 

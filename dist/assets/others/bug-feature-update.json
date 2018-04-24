@@ -1,0 +1,55 @@
+[{
+	"id" : 1,
+	"component" : "List",
+	"description" : "Differentiate delete and onSelect in list",
+	"type" : "bug",
+	"status" : "Done"
+},{
+	"id" : 2,
+	"component" : "SideNavbar",
+	"description" : "On keyboard arrow click - expand menus issue",
+	"type" : "bug",
+	"status" : "Not yet started"
+},{
+	"id" : 3,
+	"component" : "List",
+	"description" : "No record template in mat table",
+	"type" : "update",
+	"status" : "Not yet started"
+},{
+	"id" : 4,
+	"component" : "List",
+	"description" : "Multi Col Sorting in mat table",
+	"type" : "update",
+	"status" : "Not yet started"
+},{
+	"id" : 5,
+	"component" : "NgMatDialogComponent",
+	"description" : "Make more configurable",
+	"type" : "update",
+	"status" : "Pending"
+},{
+	"id" : 6,
+	"component" : "create new component",
+	"description" : "To create dynamic form",
+	"type" : "feature",
+	"status" : "Not yet started"
+},{
+	"id" : 7,
+	"component" : "List",
+	"description" : "Set table header column left align",
+	"type" : "bug",
+	"status" : "Not yet started"
+},{
+	"id" : 8,
+	"component" : "List",
+	"description" : "add footer with aggregation etc..",
+	"type" : "feature",
+	"status" : "Not yet started"
+},{
+	"id" : 9,
+	"component" : "List",
+	"description" : "Set column filtering",
+	"type" : "feature",
+	"status" : "Not yet started"
+}]
