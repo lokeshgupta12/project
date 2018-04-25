@@ -69,10 +69,8 @@ export class WelcomeComponent implements OnInit {
   onInitializeList(event) {
     switch (event.eventName) {
       case "initialized":
-        console.log("app-list is initialized");
         break;
       case "filterUpdate": {
-        console.log("filterUpdate",event.data);
         const queryParams = event.data;
           this.http.get('/assets/others/bug-feature-update.json').subscribe((data : any)=>{
                 if (queryParams.searchValue)

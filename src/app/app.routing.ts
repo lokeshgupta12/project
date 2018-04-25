@@ -8,10 +8,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { MainSection } from './home/main-section/main-section-component';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
+
+/*Demo*/
+import { ProjectAssignMentComponent } from './project-assignment/project-assignment.component';
 let routes : Routes = [
 	{path : '', component : HomeComponent, canActivate : [AuthGuard], children : [
 		{path : '', component : WelcomeComponent},
-		{path : 'main', component : MainSection}
+		{path : 'main', component : MainSection},
+		{path : 'assignment', component : ProjectAssignMentComponent}
 	]},
 	{path : 'login', component : LoginComponent, resolve : LoginResolver},
 	{path : '**', redirectTo : '' }

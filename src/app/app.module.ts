@@ -6,6 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 import { TreeModule } from 'angular-tree-component';
+import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
+import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './home/header/header.component';
@@ -16,9 +18,11 @@ import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
 /*Demo*/
 import { CourseDialogComponent } from './course-dialog/course-dialog.component'
+import { ProjectAssignMentComponent } from './project-assignment/project-assignment.component';
 /*Resuable Components*/
 import { ListComponent } from './reusable_components/list/list.component';
 import { NgMatDialogComponent } from './reusable_components/angular-material-dialog/ng-mat-dialog.component';
+import { DynamicFormModule } from './reusable_components/dynamic-form/dynamic-form.module';
 
 
 import { AppRouting } from './app.routing';
@@ -40,6 +44,7 @@ import { LoginResolver } from './guards/login.resolve';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
+    ProjectAssignMentComponent,
     CourseDialogComponent,
     ListComponent,
     NgMatDialogComponent
@@ -51,7 +56,10 @@ import { LoginResolver } from './guards/login.resolve';
     HttpClientModule,
     AppRouting,
     MaterialModule,
-    TreeModule
+    TreeModule,
+    DynamicFormModule,
+    DynamicFormsCoreModule.forRoot(),
+    DynamicFormsMaterialUIModule
   ],
   providers: [
     httpInterceptorProviders,

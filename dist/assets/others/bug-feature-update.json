@@ -30,7 +30,7 @@
 	"status" : "Pending"
 },{
 	"id" : 6,
-	"component" : "create new component",
+	"component" : "DynamicForm(New)",
 	"description" : "To create dynamic form",
 	"type" : "feature",
 	"status" : "Not yet started"
@@ -50,6 +50,12 @@
 	"id" : 9,
 	"component" : "List",
 	"description" : "Set column filtering",
+	"type" : "feature",
+	"status" : "Not yet started"
+},{
+	"id" : 10,
+	"component" : "ThemeManagement(New)",
+	"description" : "change theme functionality",
 	"type" : "feature",
 	"status" : "Not yet started"
 }]

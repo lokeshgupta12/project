@@ -11,6 +11,8 @@
   "isSideBarExpand" : false,
   "authToken" : "BJHFGD546677HJS&^SASKJSK",
   "appMenus" : [
+    { "controller_id": 23, "name": "Demo", "iconName": "dashboard" },
+      { "controller_id": 24,"route": "assignment",  "name": "Assignment", "parent_controller_id" : 23, "iconName": "assignment" },
     { "controller_id": 1, "name": "Masters", "iconName": "perm_identity" },
       { "controller_id": 2,"route": "main",  "name": "Ledger Group", "parent_controller_id" : 1, "iconName": "account_balance_wallet" },
       { "controller_id": 3,"route": "main",  "name": "Ledger", "parent_controller_id" : 1 , "iconName": "account_box"},
@@ -31,7 +33,7 @@
     { "controller_id": 18, "name": "User Management", "iconName": "feedback"},
       { "controller_id": 19, "name": "User", "route":"user", "parent_controller_id" : 18 , "iconName": "https"},
       { "controller_id": 20, "name": "Permission","route":"permission", "parent_controller_id" : 18 , "iconName": "info"},
-    { "controller_id": 8, "name": "Company Management" , "route":"user", "iconName": "label"},
-    { "controller_id": 10, "name": "Menu Management" ,"route":"user", "iconName": "language"}
+    { "controller_id": 21, "name": "Company Management" , "route":"user", "iconName": "label"},
+    { "controller_id": 22, "name": "Menu Management" ,"route":"user", "iconName": "language"}
   ]
 }

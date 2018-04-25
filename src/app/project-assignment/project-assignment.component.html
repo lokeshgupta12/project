@@ -1,0 +1,32 @@
+<h1>Project Assignment Works!!!</h1>
+
+<!-- <div>
+
+    <mat-card>
+
+        <form [formGroup]="formGroup">
+
+            <dynamic-material-form [group]="formGroup"
+                                   [model]="formModel"
+                                   (dfBlur)="onBlur($event)"
+                                   (dfChange)="onChange($event)"
+                                   (dfFocus)="onFocus($event)"
+                                   (matEvent)="onMatEvent($event)"></dynamic-material-form>
+
+        </form>
+
+    </mat-card>
+
+    <pre>{{formGroup.value | json}}</pre>
+
+</div> -->
+
+<div class="app">
+  <dynamic-form
+    [config]="config"
+    #form="dynamicForm"
+    (submit)="submit($event)">
+  </dynamic-form>
+  {{ form.valid }}
+  {{ form.value | json }}
+</div>
