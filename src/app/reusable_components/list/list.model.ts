@@ -33,21 +33,22 @@ export class ListConfig {
 		showFirstLastButtons ?: boolean //optional(true)
 	}; //(false)	
 	serverInteraction ?: boolean; //(false)
+	footer ?: {
+		row : {}
+	}; //(false)
 	actions ?: {
 		title ?: string, //(Action)
-		edit ?: {
-			editRec : Function,
+		edit ?: boolean | {
 			isDisable ?: boolean //(false)
 		},
-		delete ?: {
-			deleteRec : Function,
+		delete ?: boolean |  {
 			isDisable ?: boolean //(false)
 		},
 	};
 	allowAdd ?: boolean | {
 		tooltip ?: string, // (Add Record)
 		tooltipPosition ?: string, //optional('after')
-		add ?: Function,
+		//add ?: Function,
 		isDisable ?: boolean //(false)
 	};
 }

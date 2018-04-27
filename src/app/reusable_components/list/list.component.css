@@ -71,3 +71,10 @@ mat-row:nth-child(odd){
 mat-row.highlight{
   background-color: #408dbc63;
 }
+mat-row.mat-row.totals-row {
+  position: sticky;
+  bottom: 0;
+  background-color: #6783b545;
+  border-top: 1px solid #CCC;
+  font-weight: bold;
+}

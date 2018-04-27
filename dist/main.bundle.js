@@ -83,10 +83,10 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__course_dialog_course_dialog_component__ = __webpack_require__("./src/app/course-dialog/course-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__project_assignment_project_assignment_component__ = __webpack_require__("./src/app/project-assignment/project-assignment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__task_management_index__ = __webpack_require__("./src/app/task-management/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__reusable_components_list_list_component__ = __webpack_require__("./src/app/reusable_components/list/list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__reusable_components_angular_material_dialog_ng_mat_dialog_component__ = __webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__reusable_components_dynamic_form_dynamic_form_module__ = __webpack_require__("./src/app/reusable_components/dynamic-form/dynamic-form.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__reusable_modules_dynamic_form_dynamic_form_module__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/dynamic-form.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_routing__ = __webpack_require__("./src/app/app.routing.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__guards_auth_guard__ = __webpack_require__("./src/app/guards/auth.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__http_interceptors_index__ = __webpack_require__("./src/app/http-interceptors/index.ts");
@@ -118,6 +118,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 /*Demo*/
 
 
+// import { TaskManagementComponent } from './task-management/task-management.component';
 /*Resuable Components*/
 
 
@@ -141,12 +142,12 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__home_main_section_main_section_component__["a" /* MainSection */],
                 __WEBPACK_IMPORTED_MODULE_12__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_13__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__project_assignment_project_assignment_component__["a" /* ProjectAssignMentComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */]
+            ].concat(__WEBPACK_IMPORTED_MODULE_16__task_management_index__["a" /* TASK_MANAGEMENT */], [
                 __WEBPACK_IMPORTED_MODULE_15__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__reusable_components_list_list_component__["a" /* ListComponent */],
                 __WEBPACK_IMPORTED_MODULE_18__reusable_components_angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */]
-            ],
+            ]),
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"],
@@ -155,7 +156,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_20__app_routing__["a" /* AppRouting */],
                 __WEBPACK_IMPORTED_MODULE_4__material_module__["a" /* MaterialModule */],
                 __WEBPACK_IMPORTED_MODULE_5_angular_tree_component__["c" /* TreeModule */],
-                __WEBPACK_IMPORTED_MODULE_19__reusable_components_dynamic_form_dynamic_form_module__["a" /* DynamicFormModule */],
+                __WEBPACK_IMPORTED_MODULE_19__reusable_modules_dynamic_form_dynamic_form_module__["a" /* DynamicFormModule */],
                 __WEBPACK_IMPORTED_MODULE_6__ng_dynamic_forms_core__["o" /* DynamicFormsCoreModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_7__ng_dynamic_forms_ui_material__["a" /* DynamicFormsMaterialUIModule */]
             ],
@@ -167,7 +168,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_25__guards_login_resolve__["a" /* LoginResolver */],
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */]],
-            entryComponents: [__WEBPACK_IMPORTED_MODULE_15__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */], __WEBPACK_IMPORTED_MODULE_18__reusable_components_angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */]]
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_15__course_dialog_course_dialog_component__["a" /* CourseDialogComponent */], __WEBPACK_IMPORTED_MODULE_18__reusable_components_angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */], __WEBPACK_IMPORTED_MODULE_16__task_management_index__["b" /* TASK_MANAGEMENT_OBJ */].TaskManagementFormComponent]
         })
     ], AppModule);
     return AppModule;
@@ -190,7 +191,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home_component__ = __webpack_require__("./src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_main_section_main_section_component__ = __webpack_require__("./src/app/home/main-section/main-section-component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_main_section_welcome_welcome_component__ = __webpack_require__("./src/app/home/main-section/welcome/welcome.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__project_assignment_project_assignment_component__ = __webpack_require__("./src/app/project-assignment/project-assignment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__task_management_index__ = __webpack_require__("./src/app/task-management/index.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -211,7 +212,7 @@ var routes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_5__home_home_component__["a" /* HomeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_2__guards_auth_guard__["a" /* AuthGuard */]], children: [
             { path: '', component: __WEBPACK_IMPORTED_MODULE_7__home_main_section_welcome_welcome_component__["a" /* WelcomeComponent */] },
             { path: 'main', component: __WEBPACK_IMPORTED_MODULE_6__home_main_section_main_section_component__["a" /* MainSection */] },
-            { path: 'assignment', component: __WEBPACK_IMPORTED_MODULE_8__project_assignment_project_assignment_component__["a" /* ProjectAssignMentComponent */] }
+            { path: 'tasks', component: __WEBPACK_IMPORTED_MODULE_8__task_management_index__["b" /* TASK_MANAGEMENT_OBJ */].TaskManagementComponent }
         ] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */], resolve: __WEBPACK_IMPORTED_MODULE_3__guards_login_resolve__["a" /* LoginResolver */] },
     { path: '**', redirectTo: '' }
@@ -618,42 +619,56 @@ var WelcomeComponent = /** @class */ (function () {
         this.totalCount = 50;
         this.dataSource = [];
         this.listConfig = {
+            // columns : [
+            //   {field : 'id', notToDisplay : true },
+            //   {field : 'component' },
+            //   {field : 'type'},
+            //   {field : 'description'},
+            //   {field : 'status' }
+            // ],
             columns: [
-                { field: 'id', notToDisplay: true },
-                { field: 'component' },
-                { field: 'type' },
-                { field: 'description' },
-                { field: 'status' }
+                { field: "id" },
+                { field: "Atomic Weight" },
+                { field: "Name" },
+                { field: "Sym." },
+                { field: "M.P. (°C)" },
+                { field: "B.P. (°C)" },
+                { field: "Density (g/cm3)" },
+                { field: "Earth crust (%)" },
+                { field: "Discovery (Year)" },
+                { field: "Group" },
+                { field: "Electron configuration" },
+                { field: "Ionization energy (eV)" },
             ],
             sortable: true,
             selectable: true,
             filterable: true,
             pageable: {},
-            serverInteraction: false,
+            serverInteraction: true,
+            footer: {
+                row: {
+                    "id": "1",
+                    "Atomic Weight": "0.000",
+                    "Name": "XXXXXXXX",
+                    "Sym.": "X",
+                    "M.P. (°C)": "-000",
+                    "B.P. (°C)": "-000",
+                    "Density (g/cm3)": "0.00",
+                    "Earth crust (%)": "0.00",
+                    "Discovery (Year)": "0000",
+                    "Group": "0",
+                    "Electron configuration": "0x0",
+                    "Ionization energy (eV)": "00.00"
+                }
+            },
             showLoadingProgress: true,
             showPopupOnDelete: true,
             actions: {
                 title: 'Actions',
-                edit: {
-                    editRec: function (data) {
-                        console.log("edit", data);
-                    },
-                },
-                delete: {
-                    //isDisable : true,
-                    deleteRec: function (data) {
-                        console.log("delete", data);
-                    },
-                },
+                edit: {},
+                delete: {},
             },
-            allowAdd: {
-                //tooltip : "Add Record",
-                //tooltipPosition : 'below',
-                //isDisable : true,
-                add: function () {
-                    console.log("Add");
-                }
-            }
+            allowAdd: {}
         };
     }
     WelcomeComponent.prototype.onInitializeList = function (event) {
@@ -663,13 +678,15 @@ var WelcomeComponent = /** @class */ (function () {
                 break;
             case "filterUpdate": {
                 var queryParams_1 = event.data;
-                this.http.get('/assets/others/bug-feature-update.json').subscribe(function (data) {
+                //this.http.get('/assets/others/bug-feature-update.json').subscribe((data : any)=>{
+                this.http.get('/assets/others/periodic-table.json').subscribe(function (data) {
                     if (queryParams_1.searchValue)
                         data = data.filter(function (obj) {
-                            return obj.component.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0 ||
-                                obj.description.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0 ||
-                                obj.type.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0 ||
-                                obj.status.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0;
+                            /*return obj.component.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0 ||
+                            obj.description.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0 ||
+                            obj.type.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0 ||
+                            obj.status.toLowerCase().search(queryParams.searchValue.toLowerCase()) >= 0;*/
+                            return obj.Name.toLowerCase().search(queryParams_1.searchValue.toLowerCase()) >= 0;
                         });
                     if (queryParams_1.sort && queryParams_1.sort.dir)
                         data = _this.reusableFunctionsService.sortArray(data, queryParams_1.sort.field, queryParams_1.sort.dir);
@@ -689,9 +706,11 @@ var WelcomeComponent = /** @class */ (function () {
     };
     WelcomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('/assets/others/bug-feature-update.json').subscribe(function (data) {
+        //this.http.get('/assets/others/bug-feature-update.json').subscribe((data : {}[])=>{
+        this.http.get('/assets/others/periodic-table.json').subscribe(function (data) {
             _this.dataSource = _this.listConfig.serverInteraction ? data.slice(0, 10) : data;
             _this.totalCount = data.length;
+            //this.listConfig.isFooterRequired.footer.id = 10000;
         }, function (err) {
             console.log({ status: 'KO', data: err });
         });
@@ -1183,95 +1202,6 @@ var MaterialModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/project-assignment/project-assignment.component.css":
-/***/ (function(module, exports) {
-
-module.exports = ".app {\n  background: #fff;\n  padding: 20px 30px;\n  width: 500px;\n  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);\n          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);\n}\n"
-
-/***/ }),
-
-/***/ "./src/app/project-assignment/project-assignment.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectAssignMentComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reusable_components_dynamic_form_containers_dynamic_form_dynamic_form_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/containers/dynamic-form/dynamic-form.component.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/*import { FormGroup } from "@angular/forms";
-import { DynamicFormService, DynamicFormControlModel, DynamicFormLayout } from "@ng-dynamic-forms/core";
-import { MATERIAL_SAMPLE_FORM_MODEL } from "./project-assignment.model";
-import { MATERIAL_SAMPLE_FORM_LAYOUT } from "./material-sample-form.layout";*/
-var ProjectAssignMentComponent = /** @class */ (function () {
-    function ProjectAssignMentComponent() {
-        this.config = [
-            {
-                type: 'input',
-                label: 'Full name',
-                name: 'name',
-                placeholder: 'Enter your name',
-                validation: [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].minLength(4)]
-            },
-            {
-                type: 'select',
-                label: 'Favourite Food',
-                name: 'food',
-                options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
-                placeholder: 'Select an option',
-                validation: [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required]
-            },
-            {
-                label: 'Submit',
-                name: 'submit',
-                type: 'button'
-            }
-        ];
-    }
-    ProjectAssignMentComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        var previousValid = this.form.valid;
-        this.form.setDisabled('submit', true);
-        this.form.setValue('name', 'Todd Motto');
-        this.form.changes.subscribe(function () {
-            if (_this.form.valid !== previousValid) {
-                previousValid = _this.form.valid;
-                _this.form.setDisabled('submit', !previousValid);
-            }
-        });
-    };
-    ProjectAssignMentComponent.prototype.submit = function (value) {
-        console.log(value);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_2__reusable_components_dynamic_form_containers_dynamic_form_dynamic_form_component__["a" /* DynamicFormComponent */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__reusable_components_dynamic_form_containers_dynamic_form_dynamic_form_component__["a" /* DynamicFormComponent */])
-    ], ProjectAssignMentComponent.prototype, "form", void 0);
-    ProjectAssignMentComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-project-assignment',
-            styles: [__webpack_require__("./src/app/project-assignment/project-assignment.component.css")],
-            template: "\n    <div class=\"app\">\n      <dynamic-form\n        [config]=\"config\"\n        #form=\"dynamicForm\"\n        (submit)=\"submit($event)\">\n      </dynamic-form>\n      {{ form.valid }}\n      {{ form.value | json }}\n    </div>\n  "
-        })
-    ], ProjectAssignMentComponent);
-    return ProjectAssignMentComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.css":
 /***/ (function(module, exports) {
 
@@ -1337,16 +1267,214 @@ var NgMatDialogComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/dynamic-field/dynamic-field.directive.ts":
+/***/ "./src/app/reusable_components/list/list.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.main-fab + .example-header {\n  margin-left: 20px; \n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n/*Mat Overrite Class*/\n.mat-header-cell {   \n  font-weight: bold;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}\n.mat-header-row {\n  min-height: 40px;\n}\n.mat-row {\n  min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\nmat-row.highlight{\n  background-color: #408dbc63;\n}\nmat-row.mat-row.totals-row {\n  position: -webkit-sticky;\n  position: sticky;\n  bottom: 0;\n  background-color: #6783b545;\n  border-top: 1px solid #CCC;\n  font-weight: bold;\n}\n"
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Add Button Division -->\n  <div *ngIf=\"config.allowAdd\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"initialized.next({eventName : 'add'})\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <!-- Search Division -->\n  <div *ngIf=\"config.filterable\" class=\"example-header\">\n      <mat-form-field>\n        <input matInput (input)=\"config.serverInteraction || applyFilter($event.target.value)\" placeholder=\"Search\" #searchInput>\n      </mat-form-field>\n  </div>\n  <!-- Spinner Div -->\n  <div class=\"loading-indicator\" *ngIf=\"config.serverInteraction && config.showLoadingProgress && loading\">\n    <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n  </div>\n  <!-- Table -->\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Dynamic Columns -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <!-- Dynamic Actions -->\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit && !(config.footer && row.isFooterRow)\" (click)=\"$event.stopPropagation();initialized.next({eventName : 'edit', data : row})\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete && !(config.footer && row.isFooterRow)\" (click)=\"$event.stopPropagation();onDelete(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n    <!-- Dynamic Header -->\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <!-- Dynamic Row -->\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\" [ngClass]=\"{'highlight': selectedRow == row && config.selectable, 'totals-row' : config.footer && row.isFooterRow}\" (click)=\"onSelect.next(row);selectedRow = row\"></mat-row>\n  </mat-table>\n  <!-- Pagination -->\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("./node_modules/rxjs/_esm5/operators.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_merge__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/merge.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/fromEvent.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__ = __webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__list_model__ = __webpack_require__("./src/app/reusable_components/list/list.model.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var ListComponent = /** @class */ (function () {
+    function ListComponent(dialog, reusableFunctionsService) {
+        this.dialog = dialog;
+        this.reusableFunctionsService = reusableFunctionsService;
+        this.displayedColumns = [];
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */]();
+        this.loading = false;
+        this.ds = [];
+        this.initialized = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    // For filter for static data
+    ListComponent.prototype.applyFilter = function (filterValue) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
+    };
+    ListComponent.prototype.ngOnChanges = function () {
+        this.loading = false;
+        this.config.serverInteraction && this.config.footer && this.ds.push(Object.assign(this.config.footer.row, { isFooterRow: true }));
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */](this.ds);
+        if (!this.config.serverInteraction) {
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        }
+    };
+    ListComponent.prototype.ngDoCheck = function () {
+        console.log("ngDoCheck");
+        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */](this.ds);
+    };
+    /**
+     * Set the paginator after the view init since this component will
+     * be able to query its view for the initialized paginator.
+     */
+    ListComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        if (this.config.serverInteraction) {
+            this.sort.sortChange.subscribe(function () { return _this.paginator.pageIndex = 0; });
+            this.config.filterable && Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__["a" /* fromEvent */])(this.searchInput.nativeElement, 'input')
+                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* debounceTime */])(250), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* distinctUntilChanged */])(), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(function () {
+                _this.paginator.pageIndex = 0;
+                _this.passFilterToParent();
+            }))
+                .subscribe();
+            Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_merge__["a" /* merge */])(this.sort.sortChange, this.paginator.page)
+                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(function () { return _this.passFilterToParent(); }))
+                .subscribe();
+        }
+        else {
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+        }
+        this.initialized.next({ eventName: 'initialized' });
+    };
+    ListComponent.prototype.passFilterToParent = function () {
+        var obj = {};
+        if (this.config.pageable) {
+            obj.offset = this.paginator.pageIndex * this.paginator.pageSize;
+            obj.limit = this.paginator.pageSize;
+        }
+        this.config.filterable && (obj.searchValue = this.searchInput.nativeElement.value.trim());
+        this.config.sortable && this.sort.active && (obj.sort = { field: this.sort.active, dir: this.sort.direction });
+        this.initialized.next({
+            eventName: 'filterUpdate',
+            data: obj
+        });
+        this.loading = true;
+    };
+    ListComponent.prototype.ngOnInit = function () {
+        this.displayedColumns = [];
+        for (var _i = 0, _a = this.config.columns; _i < _a.length; _i++) {
+            var ob = _a[_i];
+            ob.notToDisplay || this.displayedColumns.push(ob.field);
+        }
+        this.reusableFunctionsService.isObject(this.config.actions) && this.displayedColumns.push("action");
+    };
+    ListComponent.prototype.onDelete = function (row) {
+        var _this = this;
+        if (this.config.showPopupOnDelete) {
+            var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */], {
+                disableClose: true,
+                autoFocus: true,
+                data: {
+                    config: this.reusableFunctionsService.isObject(this.config.showPopupOnDelete) && this.config.showPopupOnDelete
+                }
+            });
+            dialogRef.afterClosed().subscribe(function (val) { return _this.reusableFunctionsService.isObject(val) && val.ok && _this.initialized.next({ eventName: 'delete', data: row }); });
+        }
+        else
+            this.initialized.next({ eventName: 'delete', data: row });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('searchInput'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], ListComponent.prototype, "searchInput", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["F" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["F" /* MatSort */])
+    ], ListComponent.prototype, "sort", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["u" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["u" /* MatPaginator */])
+    ], ListComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_7__list_model__["a" /* ListConfig */])
+    ], ListComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('dataSource'),
+        __metadata("design:type", Object)
+    ], ListComponent.prototype, "ds", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], ListComponent.prototype, "totalCount", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", Object)
+    ], ListComponent.prototype, "initialized", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", Object)
+    ], ListComponent.prototype, "onSelect", void 0);
+    ListComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: "app-list",
+            template: __webpack_require__("./src/app/reusable_components/list/list.component.html"),
+            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")],
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
+    ], ListComponent);
+    return ListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reusable_components/list/list.model.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListConfig; });
+var ListConfig = /** @class */ (function () {
+    function ListConfig() {
+    }
+    return ListConfig;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reusable_modules/dynamic-form/components/dynamic-field/dynamic-field.directive.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DynamicFieldDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_button_form_button_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/form-button/form-button.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_input_form_input_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/form-input/form-input.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_select_form_select_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/form-select/form-select.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_button_form_button_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_input_form_input_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_select_form_select_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-select/form-select.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1409,14 +1537,14 @@ var DynamicFieldDirective = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/form-button/form-button.component.scss":
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.scss":
 /***/ (function(module, exports) {
 
 module.exports = "button {\n  letter-spacing: -0.5px;\n  cursor: pointer;\n  background-color: #9d62c8;\n  outline: 0;\n  line-height: 1;\n  text-align: center;\n  padding: 12px 30px;\n  font-size: 15px;\n  font-weight: 600;\n  border-radius: 2px;\n  display: inline-block;\n  border: none;\n  color: #fff;\n  -webkit-transition: background-color .3s, -webkit-box-shadow .3s;\n  transition: background-color .3s, -webkit-box-shadow .3s;\n  transition: background-color .3s, box-shadow .3s;\n  transition: background-color .3s, box-shadow .3s, -webkit-box-shadow .3s; }\n  button:hover {\n    background-color: #a46dcc;\n    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);\n            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); }\n  button:disabled {\n    background: rgba(0, 0, 0, 0.2);\n    color: rgba(0, 0, 0, 0.4);\n    cursor: not-allowed;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n"
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/form-button/form-button.component.ts":
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1435,7 +1563,7 @@ var FormButtonComponent = /** @class */ (function () {
     FormButtonComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-button',
-            styles: [__webpack_require__("./src/app/reusable_components/dynamic-form/components/form-button/form-button.component.scss")],
+            styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.scss")],
             template: "\n    <div \n      class=\"dynamic-field form-button\"\n      [formGroup]=\"group\">\n      <button\n        [disabled]=\"config.disabled\"\n        type=\"submit\">\n        {{ config.label }}\n      </button>\n    </div>\n  "
         })
     ], FormButtonComponent);
@@ -1446,14 +1574,14 @@ var FormButtonComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/form-input/form-input.component.scss":
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.scss":
 /***/ (function(module, exports) {
 
 module.exports = "input {\n  display: block;\n  font-family: inherit;\n  font-size: 14px;\n  width: 100%;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  outline: none;\n  padding: 10px 15px;\n  color: rgba(0, 0, 0, 0.7); }\n  input:focus {\n    border: 1px solid rgba(0, 0, 0, 0.4);\n    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);\n            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }\n"
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/form-input/form-input.component.ts":
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1472,7 +1600,7 @@ var FormInputComponent = /** @class */ (function () {
     FormInputComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-input',
-            styles: [__webpack_require__("./src/app/reusable_components/dynamic-form/components/form-input/form-input.component.scss")],
+            styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.scss")],
             template: "\n    <div \n      class=\"dynamic-field form-input\" \n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <input\n        type=\"text\"\n        [attr.placeholder]=\"config.placeholder\"\n        [formControlName]=\"config.name\">\n    </div>\n  "
         })
     ], FormInputComponent);
@@ -1483,14 +1611,14 @@ var FormInputComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/form-select/form-select.component.scss":
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-select/form-select.component.scss":
 /***/ (function(module, exports) {
 
 module.exports = "select {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  text-indent: .01px;\n  text-overflow: '';\n  overflow: hidden;\n  font-family: inherit;\n  font-size: 14px;\n  padding: 10px 15px;\n  border-radius: 0;\n  color: rgba(0, 0, 0, 0.7);\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  width: 100%;\n  outline: none;\n  background: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.7) 50%) no-repeat calc(100% - 20px) calc(1em + 4px), linear-gradient(135deg, rgba(0, 0, 0, 0.7) 50%, transparent 50%) no-repeat calc(100% - 15px) calc(1em + 4px);\n  background-size: 5px 5px, 5px 5px; }\n  select:focus {\n    border: 1px solid rgba(0, 0, 0, 0.4);\n    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);\n            box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); }\n"
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/components/form-select/form-select.component.ts":
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-select/form-select.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1509,7 +1637,7 @@ var FormSelectComponent = /** @class */ (function () {
     FormSelectComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-select',
-            styles: [__webpack_require__("./src/app/reusable_components/dynamic-form/components/form-select/form-select.component.scss")],
+            styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-select/form-select.component.scss")],
             template: "\n    <div \n      class=\"dynamic-field form-select\"\n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <select [formControlName]=\"config.name\">\n        <option value=\"\">{{ config.placeholder }}</option>\n        <option *ngFor=\"let option of config.options\">\n          {{ option }}\n        </option>\n      </select>\n    </div>\n  "
         })
     ], FormSelectComponent);
@@ -1520,14 +1648,14 @@ var FormSelectComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/containers/dynamic-form/dynamic-form.component.scss":
+/***/ "./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.scss":
 /***/ (function(module, exports) {
 
 module.exports = ":host /deep/ .dynamic-field {\n  margin-bottom: 15px; }\n  :host /deep/ .dynamic-field label {\n    display: block;\n    font-size: 16px;\n    font-weight: 400;\n    letter-spacing: 0px;\n    margin-bottom: 10px;\n    color: rgba(0, 0, 0, 0.9); }\n"
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/containers/dynamic-form/dynamic-form.component.ts":
+/***/ "./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1621,6 +1749,9 @@ var DynamicFormComponent = /** @class */ (function () {
             return item;
         });
     };
+    DynamicFormComponent.prototype.patchValue = function (value) {
+        this.form.patchValue(value, { emitEvent: true });
+    };
     DynamicFormComponent.prototype.setValue = function (name, value) {
         this.form.controls[name].setValue(value, { emitEvent: true });
     };
@@ -1636,7 +1767,7 @@ var DynamicFormComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             exportAs: 'dynamicForm',
             selector: 'dynamic-form',
-            styles: [__webpack_require__("./src/app/reusable_components/dynamic-form/containers/dynamic-form/dynamic-form.component.scss")],
+            styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.scss")],
             template: "\n    <form\n      class=\"dynamic-form\"\n      [formGroup]=\"form\"\n      (submit)=\"handleSubmit($event)\">\n      <ng-container\n        *ngFor=\"let field of config;\"\n        dynamicField\n        [config]=\"field\"\n        [group]=\"form\">\n      </ng-container>\n    </form>\n  "
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]])
@@ -1648,7 +1779,7 @@ var DynamicFormComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/reusable_components/dynamic-form/dynamic-form.module.ts":
+/***/ "./src/app/reusable_modules/dynamic-form/dynamic-form.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1656,11 +1787,11 @@ var DynamicFormComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("./node_modules/@angular/common/esm5/common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_dynamic_field_dynamic_field_directive__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/dynamic-field/dynamic-field.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__containers_dynamic_form_dynamic_form_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/containers/dynamic-form/dynamic-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_form_button_form_button_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/form-button/form-button.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_form_input_form_input_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/form-input/form-input.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_form_select_form_select_component__ = __webpack_require__("./src/app/reusable_components/dynamic-form/components/form-select/form-select.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_dynamic_field_dynamic_field_directive__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/dynamic-field/dynamic-field.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__containers_dynamic_form_dynamic_form_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_form_button_form_button_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_form_input_form_input_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_form_select_form_select_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-select/form-select.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1702,199 +1833,6 @@ var DynamicFormModule = /** @class */ (function () {
         })
     ], DynamicFormModule);
     return DynamicFormModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/reusable_components/list/list.component.css":
-/***/ (function(module, exports) {
-
-module.exports = ".example-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  min-width: 300px;\n}\n.spinner-container {\n    height: 360px;\n    width: 390px;\n    position: fixed;\n}\n.example-header {\n  min-height: 64px;\n  padding: 8px 24px 0;\n}\n.main-fab {\n  position:absolute;\n}\n.main-fab + .example-header {\n  margin-left: 20px; \n}\n.mat-fab {\n  width: 40px;\n  height: 40px;\n  outline: none;\n  opacity: 0.83;\n}\n/* Absolute Center Spinner */\n.loading-indicator {\n  position: fixed;\n  z-index: 999;\n  height: 2em;\n  width: 2em;\n  overflow: show;\n  margin: auto;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n}\n/* Transparent Overlay */\n.loading-indicator:before {\n  content: '';\n  display: block;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.3);\n}\n/*Mat Overrite Class*/\n.mat-header-cell {   \n  font-weight: bold;\n}\n.mat-form-field {\n  font-size: 14px;\n  width: 100%;\n}\n.mat-header-row {\n  min-height: 40px;\n}\n.mat-row {\n  min-height: 46px;\n}\nmat-row:nth-child(even){\n  background-color:white;\n}\nmat-row:nth-child(odd){\n  background-color:#cccccc54;\n}\nmat-row.highlight{\n  background-color: #408dbc63;\n}\n"
-
-/***/ }),
-
-/***/ "./src/app/reusable_components/list/list.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <!-- Add Button Division -->\n  <div *ngIf=\"config.allowAdd\" class=\"main-fab\">\n      <button class=\"mat-fab mat-accent mat-button\" [matTooltip]=\"config.allowAdd?.tooltip || 'Add new record'\" [matTooltipPosition]=\"config.allowAdd?.tooltipPosition || 'after'\" (click)=\"config.allowAdd.add && config.allowAdd.add()\" [disabled]=\"config.allowAdd?.isDisable\"><span>+</span></button>\n  </div>\n  <!-- Search Division -->\n  <div *ngIf=\"config.filterable\" class=\"example-header\">\n      <mat-form-field>\n        <input matInput (input)=\"config.serverInteraction || applyFilter($event.target.value)\" placeholder=\"Search\" #searchInput>\n      </mat-form-field>\n  </div>\n  <!-- Spinner Div -->\n  <div class=\"loading-indicator\" *ngIf=\"config.serverInteraction && config.showLoadingProgress && loading\">\n    <mat-progress-spinner mode=\"indeterminate\" color=\"accent\"></mat-progress-spinner>\n  </div>\n  <!-- Table -->\n  <mat-table [dataSource]=\"dataSource\" matSort [matSortDisabled]=\"!config.sortable\">\n    <!-- Dynamic Columns -->\n    <div *ngFor=\"let col of config.columns\">\n      <ng-container [matColumnDef]=\"col.field\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!config.sortable || col.notToSort\"> {{col.title || (col.field | titlecase)}} </mat-header-cell>\n        <mat-cell *matCellDef=\"let element\"> {{element[col.field]}} </mat-cell>\n      </ng-container>\n    </div>\n    <!-- Dynamic Actions -->\n    <div *ngIf=\"config.actions\">\n      <ng-container matColumnDef=\"action\">\n          <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>\n          <mat-cell *matCellDef=\"let row\" >\n            <button *ngIf=\"config.actions?.edit\" (click)=\"$event.stopPropagation();config.actions.edit.editRec(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">edit</i></button>\n            <button *ngIf=\"config.actions?.delete\" (click)=\"$event.stopPropagation();onDelete(row)\" class=\"btn btn-link remove-padding\" [disabled]=\"config.actions.edit?.isDisable\"><i class=\"material-icons\">delete</i></button>\n          </mat-cell>\n      </ng-container> \n    </div>\n    <!-- Dynamic Header -->\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\" [ngClass]=\"{'highlight': selectedRow == row && config.selectable}\" (click)=\"onSelect.next(row);selectedRow = row\"></mat-row>\n  </mat-table>\n  <!-- Pagination -->\n  <mat-paginator *ngIf=\"config.pageable\"\n                 [length]=\"totalCount\"\n                 [pageSize]=\"config.pageable?.pageSize || 10\"\n                 [pageSizeOptions]=\"config.pageable?.pageSizeOptions || [10, 20, 50]\"\n                 [showFirstLastButtons]=\"config.pageable?.showFirstLastButtons === undefined || config.pageable?.showFirstLastButtons\">\n  </mat-paginator>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/reusable_components/list/list.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("./node_modules/rxjs/_esm5/operators.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_merge__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/merge.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__ = __webpack_require__("./node_modules/rxjs/_esm5/observable/fromEvent.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__ = __webpack_require__("./src/app/reusable_components/angular-material-dialog/ng-mat-dialog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__list_model__ = __webpack_require__("./src/app/reusable_components/list/list.model.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-var ListComponent = /** @class */ (function () {
-    function ListComponent(dialog, reusableFunctionsService) {
-        this.dialog = dialog;
-        this.reusableFunctionsService = reusableFunctionsService;
-        this.displayedColumns = [];
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */]();
-        this.loading = false;
-        this.ds = [];
-        this.initialized = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.onSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-    }
-    // For filter for static data
-    ListComponent.prototype.applyFilter = function (filterValue) {
-        filterValue = filterValue.trim(); // Remove whitespace
-        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-        this.dataSource.filter = filterValue;
-    };
-    ListComponent.prototype.ngOnChanges = function () {
-        this.loading = false;
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */](this.ds);
-        if (!this.config.serverInteraction) {
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        }
-    };
-    /**
-     * Set the paginator after the view init since this component will
-     * be able to query its view for the initialized paginator.
-     */
-    ListComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        if (this.config.serverInteraction) {
-            this.sort.sortChange.subscribe(function () { return _this.paginator.pageIndex = 0; });
-            this.config.filterable && Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__["a" /* fromEvent */])(this.searchInput.nativeElement, 'input')
-                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* debounceTime */])(250), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* distinctUntilChanged */])(), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(function () {
-                _this.paginator.pageIndex = 0;
-                _this.passFilterToParent();
-            }))
-                .subscribe();
-            Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_merge__["a" /* merge */])(this.sort.sortChange, this.paginator.page)
-                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(function () { return _this.passFilterToParent(); }))
-                .subscribe();
-        }
-        else {
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-        }
-        this.initialized.next({ eventName: 'initialized' });
-    };
-    ListComponent.prototype.passFilterToParent = function () {
-        var obj = {};
-        if (this.config.pageable) {
-            obj.offset = this.paginator.pageIndex * this.paginator.pageSize;
-            obj.limit = this.paginator.pageSize;
-        }
-        this.config.filterable && (obj.searchValue = this.searchInput.nativeElement.value.trim());
-        this.config.sortable && this.sort.active && (obj.sort = { field: this.sort.active, dir: this.sort.direction });
-        this.initialized.next({
-            eventName: 'filterUpdate',
-            data: obj
-        });
-        this.loading = true;
-    };
-    ListComponent.prototype.ngOnInit = function () {
-        this.displayedColumns = [];
-        for (var _i = 0, _a = this.config.columns; _i < _a.length; _i++) {
-            var ob = _a[_i];
-            ob.notToDisplay || this.displayedColumns.push(ob.field);
-        }
-        this.reusableFunctionsService.isObject(this.config.actions) && this.displayedColumns.push("action");
-    };
-    ListComponent.prototype.onDelete = function (row) {
-        var _this = this;
-        if (this.config.showPopupOnDelete) {
-            var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__angular_material_dialog_ng_mat_dialog_component__["a" /* NgMatDialogComponent */], {
-                disableClose: true,
-                autoFocus: true,
-                data: {
-                    config: this.reusableFunctionsService.isObject(this.config.showPopupOnDelete) && this.config.showPopupOnDelete
-                }
-            });
-            dialogRef.afterClosed().subscribe(function (val) { return _this.reusableFunctionsService.isObject(val) && val.ok && _this.config.actions.delete.deleteRec(row); });
-        }
-        else
-            this.config.actions.delete.deleteRec(row);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('searchInput'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-    ], ListComponent.prototype, "searchInput", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["F" /* MatSort */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["F" /* MatSort */])
-    ], ListComponent.prototype, "sort", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["u" /* MatPaginator */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_material__["u" /* MatPaginator */])
-    ], ListComponent.prototype, "paginator", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_7__list_model__["a" /* ListConfig */])
-    ], ListComponent.prototype, "config", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('dataSource'),
-        __metadata("design:type", Object)
-    ], ListComponent.prototype, "ds", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Object)
-    ], ListComponent.prototype, "totalCount", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", Object)
-    ], ListComponent.prototype, "initialized", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", Object)
-    ], ListComponent.prototype, "onSelect", void 0);
-    ListComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: "app-list",
-            template: __webpack_require__("./src/app/reusable_components/list/list.component.html"),
-            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")],
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialog */],
-            __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
-    ], ListComponent);
-    return ListComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/reusable_components/list/list.model.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListConfig; });
-var ListConfig = /** @class */ (function () {
-    function ListConfig() {
-    }
-    return ListConfig;
 }());
 
 
@@ -2020,6 +1958,274 @@ var ReusableFunctionsService = /** @class */ (function () {
         return value !== null && typeof value === 'object';
     };
     return ReusableFunctionsService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/task-management/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TASK_MANAGEMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TASK_MANAGEMENT_OBJ; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__task_management_component__ = __webpack_require__("./src/app/task-management/task-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__task_management_form_task_management_form_component__ = __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.ts");
+
+
+var TASK_MANAGEMENT = [__WEBPACK_IMPORTED_MODULE_0__task_management_component__["a" /* TaskManagementComponent */], __WEBPACK_IMPORTED_MODULE_1__task_management_form_task_management_form_component__["a" /* TaskManagementFormComponent */]];
+var TASK_MANAGEMENT_OBJ = { TaskManagementComponent: __WEBPACK_IMPORTED_MODULE_0__task_management_component__["a" /* TaskManagementComponent */], TaskManagementFormComponent: __WEBPACK_IMPORTED_MODULE_1__task_management_form_task_management_form_component__["a" /* TaskManagementFormComponent */] };
+
+
+/***/ }),
+
+/***/ "./src/app/task-management/task-management-form/task-management-form.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<button class=\"btn btn-link close\" (click)=\"dialogRef.close()\">\n\t<mat-icon>cancel</mat-icon>\n</button>\n<div mat-dialog-title>\n\t{{title}}\n</div>\n<dynamic-form\n[config]=\"config\"\n#form=\"dynamicForm\"\n(submit)=\"submit($event)\">\n</dynamic-form>\n  <!-- {{ form.valid }}\n  {{ form.value | json }} -->\n"
+
+/***/ }),
+
+/***/ "./src/app/task-management/task-management-form/task-management-form.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskManagementFormComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__task_management_form_config__ = __webpack_require__("./src/app/task-management/task-management-form/task-management-form.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reusable_modules_dynamic_form_containers_dynamic_form_dynamic_form_component__ = __webpack_require__("./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+//import { FieldConfig } from '../../reusable_components/dynamic-form/models/field-config.interface';
+var TaskManagementFormComponent = /** @class */ (function () {
+    function TaskManagementFormComponent(dialogRef, _a) {
+        var data = _a.data, title = _a.title;
+        this.dialogRef = dialogRef;
+        this.data = {
+            component: "",
+            description: "",
+            type: "",
+            status: ""
+        };
+        this.config = __WEBPACK_IMPORTED_MODULE_2__task_management_form_config__["a" /* CONFIG */];
+        this.title = '';
+        data && Object.assign(this.data, data);
+        this.title = title;
+        console.log(this.data);
+    }
+    TaskManagementFormComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        var previousValid = this.form.valid;
+        this.form.changes.subscribe(function () {
+            if (_this.form.valid !== previousValid) {
+                previousValid = _this.form.valid;
+                _this.form.setDisabled('submit', !previousValid);
+            }
+        });
+        setTimeout(function () {
+            _this.form.setDisabled('submit', true);
+            //this.form.setValue('name', 'Todd Motto');
+            _this.form.patchValue(_this.data);
+        }, 0);
+    };
+    //isFooterRow = (_, rowData) => rowData.isFooterRow;
+    TaskManagementFormComponent.prototype.submit = function (value) {
+        this.dialogRef.close(value);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__reusable_modules_dynamic_form_containers_dynamic_form_dynamic_form_component__["a" /* DynamicFormComponent */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__reusable_modules_dynamic_form_containers_dynamic_form_dynamic_form_component__["a" /* DynamicFormComponent */])
+    ], TaskManagementFormComponent.prototype, "form", void 0);
+    TaskManagementFormComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-task-management-form',
+            template: __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.html"),
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["k" /* MatDialogRef */], Object])
+    ], TaskManagementFormComponent);
+    return TaskManagementFormComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/task-management/task-management-form/task-management-form.config.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
+
+var CONFIG = [
+    {
+        type: 'input',
+        label: 'Component name',
+        name: 'component',
+        placeholder: 'Enter component',
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4)]
+    },
+    {
+        type: 'select',
+        label: 'Type',
+        name: 'type',
+        options: ['bug', 'feature', 'update'],
+        placeholder: '-select type-',
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
+    },
+    {
+        type: 'input',
+        label: 'Description',
+        name: 'description',
+        placeholder: 'Enter description',
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(140)]
+    },
+    {
+        type: 'select',
+        label: 'Status',
+        name: 'status',
+        options: ['Not yet started', 'Done', 'Pending'],
+        placeholder: '-select status-',
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
+    },
+    {
+        label: 'Submit',
+        name: 'submit',
+        type: 'button'
+    }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/task-management/task-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-list [config]=\"listConfig\" [dataSource]=\"dataSource\" (initialized)=\"onInitializeList($event)\"></app-list>\n"
+
+/***/ }),
+
+/***/ "./src/app/task-management/task-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_management_form_task_management_form_component__ = __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var TaskManagementComponent = /** @class */ (function () {
+    function TaskManagementComponent(dialog, http, reusableFunctionsService) {
+        this.dialog = dialog;
+        this.http = http;
+        this.reusableFunctionsService = reusableFunctionsService;
+        this.dataSource = [];
+        this.listConfig = {
+            columns: [
+                { field: 'id', notToDisplay: true },
+                { field: 'component' },
+                { field: 'type' },
+                { field: 'description' },
+                { field: 'status' }
+            ],
+            sortable: true,
+            filterable: true,
+            pageable: true,
+            serverInteraction: false,
+            showLoadingProgress: true,
+            showPopupOnDelete: true,
+            actions: {
+                title: 'Actions',
+                edit: true,
+                delete: true
+            },
+            allowAdd: {
+                tooltip: "Add task"
+            }
+        };
+    }
+    TaskManagementComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get('/assets/others/bug-feature-update.json').subscribe(function (data) {
+            _this.dataSource = data;
+        }, function (err) {
+            console.log({ status: 'KO', data: err });
+        });
+    };
+    TaskManagementComponent.prototype.add = function (data) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__task_management_form_task_management_form_component__["a" /* TaskManagementFormComponent */], {
+            disableClose: true,
+            autoFocus: true,
+            width: '500px',
+            data: {
+                data: data,
+                title: data ? 'Update task' : 'Add task'
+            }
+        });
+        dialogRef.afterClosed().subscribe(function (val) {
+            console.log("val", val);
+        });
+    };
+    TaskManagementComponent.prototype.delete = function (_a) {
+        var id = _a.id;
+        this.dataSource.splice(this.dataSource.findIndex(function (ob) { return (ob.id === id); }), 1);
+        //this.dataSource = new Array(this.dataSource);
+    };
+    TaskManagementComponent.prototype.onInitializeList = function (event) {
+        switch (event.eventName) {
+            case "add":
+                this.add();
+                break;
+            case "delete":
+                this.delete(event.data);
+                break;
+            case "edit":
+                this.add(event.data);
+                break;
+        }
+    };
+    TaskManagementComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-task-management',
+            template: __webpack_require__("./src/app/task-management/task-management.component.html")
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["i" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
+    ], TaskManagementComponent);
+    return TaskManagementComponent;
 }());
 
 

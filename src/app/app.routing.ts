@@ -10,12 +10,12 @@ import { MainSection } from './home/main-section/main-section-component';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
 
 /*Demo*/
-import { ProjectAssignMentComponent } from './project-assignment/project-assignment.component';
+import * as tm  from './task-management/index';
 let routes : Routes = [
 	{path : '', component : HomeComponent, canActivate : [AuthGuard], children : [
 		{path : '', component : WelcomeComponent},
 		{path : 'main', component : MainSection},
-		{path : 'assignment', component : ProjectAssignMentComponent}
+		{path : 'tasks', component : tm.TASK_MANAGEMENT_OBJ.TaskManagementComponent}
 	]},
 	{path : 'login', component : LoginComponent, resolve : LoginResolver},
 	{path : '**', redirectTo : '' }

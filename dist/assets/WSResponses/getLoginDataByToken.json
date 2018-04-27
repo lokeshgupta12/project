@@ -12,7 +12,7 @@
   "authToken" : "BJHFGD546677HJS&^SASKJSK",
   "appMenus" : [
     { "controller_id": 23, "name": "Demo", "iconName": "dashboard" },
-      { "controller_id": 24,"route": "assignment",  "name": "Assignment", "parent_controller_id" : 23, "iconName": "assignment" },
+      { "controller_id": 24,"route": "tasks",  "name": "Task Management", "parent_controller_id" : 23, "iconName": "assignment" },
     { "controller_id": 1, "name": "Masters", "iconName": "perm_identity" },
       { "controller_id": 2,"route": "main",  "name": "Ledger Group", "parent_controller_id" : 1, "iconName": "account_balance_wallet" },
       { "controller_id": 3,"route": "main",  "name": "Ledger", "parent_controller_id" : 1 , "iconName": "account_box"},

@@ -1,6 +1,6 @@
 import {
-  Component, ViewChild, Input, Output, OnInit,
-  AfterViewInit, ElementRef, EventEmitter, ViewEncapsulation
+  Component, ViewChild, Input, Output, OnInit, DoCheck,
+  AfterViewInit, ElementRef, EventEmitter/*, ViewEncapsulation*/
 } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
@@ -20,7 +20,8 @@ import { ListConfig } from './list.model';
   //encapsulation : ViewEncapsulation.None
 })
 
-export class ListComponent implements OnInit, AfterViewInit {
+export class ListComponent implements OnInit, AfterViewInit, DoCheck {
+  
   displayedColumns : Array<string> = [];
   dataSource = new MatTableDataSource();
   loading : boolean = false;
@@ -39,6 +40,7 @@ export class ListComponent implements OnInit, AfterViewInit {
     private dialog : MatDialog,
     private reusableFunctionsService : ReusableFunctionsService
     ){} 
+  
   // For filter for static data
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -48,11 +50,17 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   ngOnChanges() {
     this.loading = false;
+    this.config.serverInteraction && this.config.footer && this.ds.push(Object.assign(this.config.footer.row,{isFooterRow : true}));
   	this.dataSource = new MatTableDataSource(this.ds);
     if(!this.config.serverInteraction) {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
+  }
+
+  ngDoCheck() {
+    console.log("ngDoCheck")
+    this.dataSource = new MatTableDataSource(this.ds);
   }
 
   /**
@@ -118,10 +126,12 @@ export class ListComponent implements OnInit, AfterViewInit {
         }
       });
       dialogRef.afterClosed().subscribe(
-        val => this.reusableFunctionsService.isObject(val) && val.ok && this.config.actions.delete.deleteRec(row)
+        val => this.reusableFunctionsService.isObject(val) && val.ok && this.initialized.next({eventName : 'delete', data : row})
         );
     }
     else 
-      this.config.actions.delete.deleteRec(row);
+      this.initialized.next({eventName : 'delete', data : row});
   }
+
+  // isFooterRow = (_, rowData) => rowData.isFooterRow;
 }

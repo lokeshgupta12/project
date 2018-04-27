@@ -18,11 +18,13 @@ import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
 /*Demo*/
 import { CourseDialogComponent } from './course-dialog/course-dialog.component'
-import { ProjectAssignMentComponent } from './project-assignment/project-assignment.component';
+import * as tm from './task-management/index';
+
+// import { TaskManagementComponent } from './task-management/task-management.component';
 /*Resuable Components*/
 import { ListComponent } from './reusable_components/list/list.component';
 import { NgMatDialogComponent } from './reusable_components/angular-material-dialog/ng-mat-dialog.component';
-import { DynamicFormModule } from './reusable_components/dynamic-form/dynamic-form.module';
+import { DynamicFormModule } from './reusable_modules/dynamic-form/dynamic-form.module';
 
 
 import { AppRouting } from './app.routing';
@@ -44,7 +46,7 @@ import { LoginResolver } from './guards/login.resolve';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
-    ProjectAssignMentComponent,
+    ...tm.TASK_MANAGEMENT,
     CourseDialogComponent,
     ListComponent,
     NgMatDialogComponent
@@ -70,6 +72,6 @@ import { LoginResolver } from './guards/login.resolve';
     //{ provide: RequestCache, useClass: RequestCacheWithMap },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CourseDialogComponent, NgMatDialogComponent]
+  entryComponents: [CourseDialogComponent, NgMatDialogComponent, tm.TASK_MANAGEMENT_OBJ.TaskManagementFormComponent]
 })
 export class AppModule { }

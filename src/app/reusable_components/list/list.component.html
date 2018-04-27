@@ -1,7 +1,7 @@
 <div class="example-container mat-elevation-z8">
   <!-- Add Button Division -->
   <div *ngIf="config.allowAdd" class="main-fab">
-      <button class="mat-fab mat-accent mat-button" [matTooltip]="config.allowAdd?.tooltip || 'Add new record'" [matTooltipPosition]="config.allowAdd?.tooltipPosition || 'after'" (click)="config.allowAdd.add && config.allowAdd.add()" [disabled]="config.allowAdd?.isDisable"><span>+</span></button>
+      <button class="mat-fab mat-accent mat-button" [matTooltip]="config.allowAdd?.tooltip || 'Add new record'" [matTooltipPosition]="config.allowAdd?.tooltipPosition || 'after'" (click)="initialized.next({eventName : 'add'})" [disabled]="config.allowAdd?.isDisable"><span>+</span></button>
   </div>
   <!-- Search Division -->
   <div *ngIf="config.filterable" class="example-header">
@@ -27,14 +27,15 @@
       <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef > {{config.actions?.title || 'Action'}} </mat-header-cell>
           <mat-cell *matCellDef="let row" >
-            <button *ngIf="config.actions?.edit" (click)="$event.stopPropagation();config.actions.edit.editRec(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">edit</i></button>
-            <button *ngIf="config.actions?.delete" (click)="$event.stopPropagation();onDelete(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">delete</i></button>
+            <button *ngIf="config.actions?.edit && !(config.footer && row.isFooterRow)" (click)="$event.stopPropagation();initialized.next({eventName : 'edit', data : row})" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">edit</i></button>
+            <button *ngIf="config.actions?.delete && !(config.footer && row.isFooterRow)" (click)="$event.stopPropagation();onDelete(row)" class="btn btn-link remove-padding" [disabled]="config.actions.edit?.isDisable"><i class="material-icons">delete</i></button>
           </mat-cell>
       </ng-container> 
     </div>
     <!-- Dynamic Header -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRow == row && config.selectable}" (click)="onSelect.next(row);selectedRow = row"></mat-row>
+    <!-- Dynamic Row -->
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRow == row && config.selectable, 'totals-row' : config.footer && row.isFooterRow}" (click)="onSelect.next(row);selectedRow = row"></mat-row>
   </mat-table>
   <!-- Pagination -->
   <mat-paginator *ngIf="config.pageable"
