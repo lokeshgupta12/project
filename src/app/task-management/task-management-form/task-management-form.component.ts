@@ -29,7 +29,6 @@ export class TaskManagementFormComponent implements AfterViewInit {
         @Inject(MAT_DIALOG_DATA) {data, title}) {
     data && Object.assign(this.data,data);
     this.title = title;
-    console.log(this.data);
   }
 
   ngAfterViewInit() {
@@ -42,12 +41,19 @@ export class TaskManagementFormComponent implements AfterViewInit {
     });
     setTimeout(()=>{
       this.form.setDisabled('submit', true);
-      //this.form.setValue('name', 'Todd Motto');
+      //this.form.disableAll(true);
+      // this.form.setDisabled('description', true);
+      // this.form.setDisabled('component', true);
+      // this.form.setDisabled('type', true);
+      // this.form.setDisabled('status', true);
+
       this.form.patchValue(this.data);
+
+      //this.form.setValue('name', 'Todd Motto');
     },0)
   }
   //isFooterRow = (_, rowData) => rowData.isFooterRow;
   submit(value: {[name: string]: any}) {
-    this.dialogRef.close(value);
+    this.dialogRef.close(Object.assign(this.data,value));
   }
 }

@@ -56,7 +56,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
           const config = this.config.find((control) => control.name === name);
           this.form.addControl(name, this.createControl(config));
         });
-
     }
   }
 
@@ -78,18 +77,33 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   setDisabled(name: string, disable: boolean) {
-    if (this.form.controls[name]) {
-      const method = disable ? 'disable': 'enable';
-      this.form.controls[name][method]();
-      return;
-    }
+    const method = disable ? 'disable': 'enable';
+    // if (this.form.controls[name]) {
+    //   this.form.controls[name][method]();
+    //   return;
+    // }
 
-    this.config = this.config.map((item) => {
-      if (item.name === name) {
+    // this.config = this.config.map((item) => {
+    //   if (item.name === name) {
+    //     item.disabled = disable;
+    //   }
+    //   return item;
+    // });
+    for(var item of this.config) {
+      if(item.name === name) {
+        this.form.controls[name] && this.form.controls[name][method]();
         item.disabled = disable;
+        break;
       }
-      return item;
-    });
+    }
+  }
+
+  disableAll(disable: boolean) {
+    const method = disable ? 'disable': 'enable';
+    for(var item of this.config) {
+      this.form.controls[item.name] && this.form.controls[item.name][method]();
+      item.disabled = disable;
+    }
   }
 
   patchValue(value: any) {

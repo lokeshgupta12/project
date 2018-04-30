@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef, Renderer2 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormButtonComponent } from '../form-button/form-button.component';
@@ -28,7 +28,8 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
 
   constructor(
     private resolver: ComponentFactoryResolver,
-    private container: ViewContainerRef
+    private container: ViewContainerRef,
+    private renderer2 : Renderer2
   ) {}
 
   ngOnChanges() {
@@ -48,6 +49,7 @@ export class DynamicFieldDirective implements Field, OnChanges, OnInit {
     }
     const component = this.resolver.resolveComponentFactory<Field>(components[this.config.type]);
     this.component = this.container.createComponent(component);
+    this.renderer2.addClass(this.component.location.nativeElement,'col-md-'+(this.config.colSize || 12));
     this.component.instance.config = this.config;
     this.component.instance.group = this.group;
   }

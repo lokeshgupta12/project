@@ -1313,6 +1313,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ListComponent = /** @class */ (function () {
     function ListComponent(dialog, reusableFunctionsService) {
+        var _this = this;
         this.dialog = dialog;
         this.reusableFunctionsService = reusableFunctionsService;
         this.displayedColumns = [];
@@ -1321,6 +1322,7 @@ var ListComponent = /** @class */ (function () {
         this.ds = [];
         this.initialized = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onSelect = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onDataSourceUpdate = function () { return _this.ngOnChanges(); };
     }
     // For filter for static data
     ListComponent.prototype.applyFilter = function (filterValue) {
@@ -1333,14 +1335,15 @@ var ListComponent = /** @class */ (function () {
         this.config.serverInteraction && this.config.footer && this.ds.push(Object.assign(this.config.footer.row, { isFooterRow: true }));
         this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */](this.ds);
         if (!this.config.serverInteraction) {
+            if (this.paginator && this.dataSource.data.length <= this.paginator.pageIndex * this.paginator.pageSize && this.paginator.pageIndex)
+                this.paginator.pageIndex -= 1;
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         }
     };
-    ListComponent.prototype.ngDoCheck = function () {
-        console.log("ngDoCheck");
-        this.dataSource = new __WEBPACK_IMPORTED_MODULE_1__angular_material__["I" /* MatTableDataSource */](this.ds);
-    };
+    // ngDoCheck() {
+    //   this.dataSource = new MatTableDataSource(this.ds);
+    // }
     /**
      * Set the paginator after the view init since this component will
      * be able to query its view for the initialized paginator.
@@ -1495,9 +1498,10 @@ var components = {
     select: __WEBPACK_IMPORTED_MODULE_4__form_select_form_select_component__["a" /* FormSelectComponent */]
 };
 var DynamicFieldDirective = /** @class */ (function () {
-    function DynamicFieldDirective(resolver, container) {
+    function DynamicFieldDirective(resolver, container, renderer2) {
         this.resolver = resolver;
         this.container = container;
+        this.renderer2 = renderer2;
     }
     DynamicFieldDirective.prototype.ngOnChanges = function () {
         if (this.component) {
@@ -1512,6 +1516,7 @@ var DynamicFieldDirective = /** @class */ (function () {
         }
         var component = this.resolver.resolveComponentFactory(components[this.config.type]);
         this.component = this.container.createComponent(component);
+        this.renderer2.addClass(this.component.location.nativeElement, 'col-md-' + (this.config.colSize || 12));
         this.component.instance.config = this.config;
         this.component.instance.group = this.group;
     };
@@ -1528,7 +1533,8 @@ var DynamicFieldDirective = /** @class */ (function () {
             selector: '[dynamicField]'
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ComponentFactoryResolver"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]])
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]])
     ], DynamicFieldDirective);
     return DynamicFieldDirective;
 }());
@@ -1601,7 +1607,7 @@ var FormInputComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-input',
             styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.scss")],
-            template: "\n    <div \n      class=\"dynamic-field form-input\" \n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <input\n        type=\"text\"\n        [attr.placeholder]=\"config.placeholder\"\n        [formControlName]=\"config.name\">\n    </div>\n  "
+            template: "\n    <div \n      class=\"dynamic-field form-input\" \n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <input\n        [attr.type]=\"config.inputType || 'text'\"\n        [attr.placeholder]=\"config.placeholder\"\n        [formControlName]=\"config.name\">\n        <div *ngIf=\"group.controls[config.name].errors && group.controls[config.name].touched\">\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.required\">{{config.label}} is required!</span>\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.minlength\">{{config.label}} must be at least {{group.controls[config.name].errors.minlength.requiredLength}} characters!</span>\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.maxlength\">{{config.label}} must be upto {{group.controls[config.name].errors.maxlength.requiredLength}} characters!</span>\n        </div>\n    </div>\n  "
         })
     ], FormInputComponent);
     return FormInputComponent;
@@ -1651,7 +1657,7 @@ var FormSelectComponent = /** @class */ (function () {
 /***/ "./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = ":host /deep/ .dynamic-field {\n  margin-bottom: 15px; }\n  :host /deep/ .dynamic-field label {\n    display: block;\n    font-size: 16px;\n    font-weight: 400;\n    letter-spacing: 0px;\n    margin-bottom: 10px;\n    color: rgba(0, 0, 0, 0.9); }\n"
+module.exports = ":host /deep/ .dynamic-field {\n  margin-bottom: 15px; }\n  :host /deep/ .dynamic-field label {\n    display: block;\n    font-size: 16px;\n    font-weight: 400;\n    letter-spacing: 0px;\n    margin-bottom: 10px;\n    color: rgba(0, 0, 0, 0.9); }\n  :host /deep/ .col-md-6 {\n  float: left;\n  padding-right: 5px;\n  padding-left: 5px; }\n  :host /deep/ .col-md-12 {\n  float: left;\n  padding-right: 5px;\n  padding-left: 5px; }\n"
 
 /***/ }),
 
@@ -1737,17 +1743,33 @@ var DynamicFormComponent = /** @class */ (function () {
         this.submit.emit(this.value);
     };
     DynamicFormComponent.prototype.setDisabled = function (name, disable) {
-        if (this.form.controls[name]) {
-            var method = disable ? 'disable' : 'enable';
-            this.form.controls[name][method]();
-            return;
-        }
-        this.config = this.config.map(function (item) {
+        var method = disable ? 'disable' : 'enable';
+        // if (this.form.controls[name]) {
+        //   this.form.controls[name][method]();
+        //   return;
+        // }
+        // this.config = this.config.map((item) => {
+        //   if (item.name === name) {
+        //     item.disabled = disable;
+        //   }
+        //   return item;
+        // });
+        for (var _i = 0, _a = this.config; _i < _a.length; _i++) {
+            var item = _a[_i];
             if (item.name === name) {
+                this.form.controls[name] && this.form.controls[name][method]();
                 item.disabled = disable;
+                break;
             }
-            return item;
-        });
+        }
+    };
+    DynamicFormComponent.prototype.disableAll = function (disable) {
+        var method = disable ? 'disable' : 'enable';
+        for (var _i = 0, _a = this.config; _i < _a.length; _i++) {
+            var item = _a[_i];
+            this.form.controls[item.name] && this.form.controls[item.name][method]();
+            item.disabled = disable;
+        }
     };
     DynamicFormComponent.prototype.patchValue = function (value) {
         this.form.patchValue(value, { emitEvent: true });
@@ -2027,7 +2049,6 @@ var TaskManagementFormComponent = /** @class */ (function () {
         this.title = '';
         data && Object.assign(this.data, data);
         this.title = title;
-        console.log(this.data);
     }
     TaskManagementFormComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
@@ -2040,13 +2061,18 @@ var TaskManagementFormComponent = /** @class */ (function () {
         });
         setTimeout(function () {
             _this.form.setDisabled('submit', true);
-            //this.form.setValue('name', 'Todd Motto');
+            //this.form.disableAll(true);
+            // this.form.setDisabled('description', true);
+            // this.form.setDisabled('component', true);
+            // this.form.setDisabled('type', true);
+            // this.form.setDisabled('status', true);
             _this.form.patchValue(_this.data);
+            //this.form.setValue('name', 'Todd Motto');
         }, 0);
     };
     //isFooterRow = (_, rowData) => rowData.isFooterRow;
     TaskManagementFormComponent.prototype.submit = function (value) {
-        this.dialogRef.close(value);
+        this.dialogRef.close(Object.assign(this.data, value));
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__reusable_modules_dynamic_form_containers_dynamic_form_dynamic_form_component__["a" /* DynamicFormComponent */]),
@@ -2077,13 +2103,24 @@ var TaskManagementFormComponent = /** @class */ (function () {
 var CONFIG = [
     {
         type: 'input',
+        //inputType : 'textarea',
         label: 'Component name',
         name: 'component',
         placeholder: 'Enter component',
+        colSize: 12,
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4)]
     },
     {
+        type: 'input',
+        label: 'Description',
+        name: 'description',
+        colSize: 12,
+        placeholder: 'Enter description',
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(140)]
+    },
+    {
         type: 'select',
+        colSize: 6,
         label: 'Type',
         name: 'type',
         options: ['bug', 'feature', 'update'],
@@ -2091,14 +2128,8 @@ var CONFIG = [
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
     },
     {
-        type: 'input',
-        label: 'Description',
-        name: 'description',
-        placeholder: 'Enter description',
-        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(140)]
-    },
-    {
         type: 'select',
+        colSize: 6,
         label: 'Status',
         name: 'status',
         options: ['Not yet started', 'Done', 'Pending'],
@@ -2130,8 +2161,9 @@ module.exports = "<app-list [config]=\"listConfig\" [dataSource]=\"dataSource\" 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_management_form_task_management_form_component__ = __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reusable_components_list_list_component__ = __webpack_require__("./src/app/reusable_components/list/list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__task_management_form_task_management_form_component__ = __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2141,6 +2173,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2185,7 +2218,8 @@ var TaskManagementComponent = /** @class */ (function () {
         });
     };
     TaskManagementComponent.prototype.add = function (data) {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__task_management_form_task_management_form_component__["a" /* TaskManagementFormComponent */], {
+        var _this = this;
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__task_management_form_task_management_form_component__["a" /* TaskManagementFormComponent */], {
             disableClose: true,
             autoFocus: true,
             width: '500px',
@@ -2195,13 +2229,16 @@ var TaskManagementComponent = /** @class */ (function () {
             }
         });
         dialogRef.afterClosed().subscribe(function (val) {
-            console.log("val", val);
+            if (_this.reusableFunctionsService.isObject(val)) {
+                val.id ? _this.dataSource[_this.dataSource.findIndex(function (ob) { return (ob.id === val.id); })] = val : _this.dataSource.unshift(Object.assign(val, { id: +new Date() }));
+                _this.listComponent.onDataSourceUpdate();
+            }
         });
     };
     TaskManagementComponent.prototype.delete = function (_a) {
         var id = _a.id;
         this.dataSource.splice(this.dataSource.findIndex(function (ob) { return (ob.id === id); }), 1);
-        //this.dataSource = new Array(this.dataSource);
+        this.listComponent.onDataSourceUpdate();
     };
     TaskManagementComponent.prototype.onInitializeList = function (event) {
         switch (event.eventName) {
@@ -2216,6 +2253,10 @@ var TaskManagementComponent = /** @class */ (function () {
                 break;
         }
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__reusable_components_list_list_component__["a" /* ListComponent */]),
+        __metadata("design:type", Object)
+    ], TaskManagementComponent.prototype, "listComponent", void 0);
     TaskManagementComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-task-management',
@@ -2223,7 +2264,7 @@ var TaskManagementComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["i" /* MatDialog */],
             __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
+            __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
     ], TaskManagementComponent);
     return TaskManagementComponent;
 }());

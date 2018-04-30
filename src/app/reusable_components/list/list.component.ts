@@ -1,5 +1,5 @@
 import {
-  Component, ViewChild, Input, Output, OnInit, DoCheck,
+  Component, ViewChild, Input, Output, OnInit,
   AfterViewInit, ElementRef, EventEmitter/*, ViewEncapsulation*/
 } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatDialog} from '@angular/material';
@@ -20,7 +20,7 @@ import { ListConfig } from './list.model';
   //encapsulation : ViewEncapsulation.None
 })
 
-export class ListComponent implements OnInit, AfterViewInit, DoCheck {
+export class ListComponent implements OnInit, AfterViewInit {
   
   displayedColumns : Array<string> = [];
   dataSource = new MatTableDataSource();
@@ -53,15 +53,16 @@ export class ListComponent implements OnInit, AfterViewInit, DoCheck {
     this.config.serverInteraction && this.config.footer && this.ds.push(Object.assign(this.config.footer.row,{isFooterRow : true}));
   	this.dataSource = new MatTableDataSource(this.ds);
     if(!this.config.serverInteraction) {
+      if (this.paginator && this.dataSource.data.length <= this.paginator.pageIndex * this.paginator.pageSize && this.paginator.pageIndex)
+        this.paginator.pageIndex-=1;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
   }
 
-  ngDoCheck() {
-    console.log("ngDoCheck")
-    this.dataSource = new MatTableDataSource(this.ds);
-  }
+  // ngDoCheck() {
+  //   this.dataSource = new MatTableDataSource(this.ds);
+  // }
 
   /**
    * Set the paginator after the view init since this component will
@@ -133,5 +134,5 @@ export class ListComponent implements OnInit, AfterViewInit, DoCheck {
       this.initialized.next({eventName : 'delete', data : row});
   }
 
-  // isFooterRow = (_, rowData) => rowData.isFooterRow;
+  onDataSourceUpdate = () => this.ngOnChanges();
 }
