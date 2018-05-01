@@ -10,14 +10,9 @@
   }
 }
 
-:host /deep/ .col-md-6 {
+:host /deep/ .col-md-3,/deep/ .col-md-6,/deep/ .col-md-9,/deep/ .col-md-12 {
     float: left;
     padding-right: 5px;
     padding-left: 5px;
 }
 
-:host /deep/ .col-md-12 {
-    float: left;
-    padding-right: 5px;
-    padding-left: 5px;
-}

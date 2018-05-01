@@ -2,60 +2,60 @@
 	"id" : 1,
 	"component" : "List",
 	"description" : "Differentiate delete and onSelect in list",
-	"type" : "bug",
+	"type" : 1,
 	"status" : "Done"
 },{
 	"id" : 2,
 	"component" : "SideNavbar",
 	"description" : "On keyboard arrow click - expand menus issue",
-	"type" : "bug",
+	"type" : 1,
 	"status" : "Not yet started"
 },{
 	"id" : 3,
 	"component" : "List",
 	"description" : "No record template in mat table",
-	"type" : "update",
+	"type" : 3,
 	"status" : "Not yet started"
 },{
 	"id" : 4,
 	"component" : "List",
 	"description" : "Multi Col Sorting in mat table",
-	"type" : "update",
+	"type" : 3,
 	"status" : "Not yet started"
 },{
 	"id" : 5,
 	"component" : "NgMatDialogComponent",
 	"description" : "Make more configurable",
-	"type" : "update",
+	"type" : 3,
 	"status" : "Pending"
 },{
 	"id" : 6,
 	"component" : "DynamicForm(New)",
 	"description" : "To create dynamic form",
-	"type" : "feature",
+	"type" : 2,
 	"status" : "Not yet started"
 },{
 	"id" : 7,
 	"component" : "List",
 	"description" : "Set table header column left align",
-	"type" : "bug",
+	"type" : 1,
 	"status" : "Not yet started"
 },{
 	"id" : 8,
 	"component" : "List",
 	"description" : "add footer with aggregation etc..",
-	"type" : "feature",
+	"type" : 2,
 	"status" : "Not yet started"
 },{
 	"id" : 9,
 	"component" : "List",
 	"description" : "Set column filtering",
-	"type" : "feature",
+	"type" : 2,
 	"status" : "Not yet started"
 },{
 	"id" : 10,
 	"component" : "ThemeManagement(New)",
 	"description" : "change theme functionality",
-	"type" : "feature",
+	"type" : 2,
 	"status" : "Not yet started"
 }]

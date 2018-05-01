@@ -1495,13 +1495,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var components = {
     button: __WEBPACK_IMPORTED_MODULE_2__form_button_form_button_component__["a" /* FormButtonComponent */],
     input: __WEBPACK_IMPORTED_MODULE_3__form_input_form_input_component__["a" /* FormInputComponent */],
-    select: __WEBPACK_IMPORTED_MODULE_4__form_select_form_select_component__["a" /* FormSelectComponent */]
+    select: __WEBPACK_IMPORTED_MODULE_4__form_select_form_select_component__["a" /* FormSelectComponent */],
 };
 var DynamicFieldDirective = /** @class */ (function () {
-    function DynamicFieldDirective(resolver, container, renderer2) {
+    function DynamicFieldDirective(resolver, container /*,
+        private renderer2 : Renderer2*/) {
         this.resolver = resolver;
-        this.container = container;
-        this.renderer2 = renderer2;
+        this.container = container; /*,
+        private renderer2 : Renderer2*/
     }
     DynamicFieldDirective.prototype.ngOnChanges = function () {
         if (this.component) {
@@ -1516,7 +1517,7 @@ var DynamicFieldDirective = /** @class */ (function () {
         }
         var component = this.resolver.resolveComponentFactory(components[this.config.type]);
         this.component = this.container.createComponent(component);
-        this.renderer2.addClass(this.component.location.nativeElement, 'col-md-' + (this.config.colSize || 12));
+        //this.renderer2.addClass(this.component.location.nativeElement,'col-md-'+(this.config.colSize || 12));
         this.component.instance.config = this.config;
         this.component.instance.group = this.group;
     };
@@ -1533,20 +1534,13 @@ var DynamicFieldDirective = /** @class */ (function () {
             selector: '[dynamicField]'
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ComponentFactoryResolver"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"]])
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] /*,
+            private renderer2 : Renderer2*/])
     ], DynamicFieldDirective);
     return DynamicFieldDirective;
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.scss":
-/***/ (function(module, exports) {
-
-module.exports = "button {\n  letter-spacing: -0.5px;\n  cursor: pointer;\n  background-color: #9d62c8;\n  outline: 0;\n  line-height: 1;\n  text-align: center;\n  padding: 12px 30px;\n  font-size: 15px;\n  font-weight: 600;\n  border-radius: 2px;\n  display: inline-block;\n  border: none;\n  color: #fff;\n  -webkit-transition: background-color .3s, -webkit-box-shadow .3s;\n  transition: background-color .3s, -webkit-box-shadow .3s;\n  transition: background-color .3s, box-shadow .3s;\n  transition: background-color .3s, box-shadow .3s, -webkit-box-shadow .3s; }\n  button:hover {\n    background-color: #a46dcc;\n    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);\n            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); }\n  button:disabled {\n    background: rgba(0, 0, 0, 0.2);\n    color: rgba(0, 0, 0, 0.4);\n    cursor: not-allowed;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n"
 
 /***/ }),
 
@@ -1569,8 +1563,8 @@ var FormButtonComponent = /** @class */ (function () {
     FormButtonComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-button',
-            styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-button/form-button.component.scss")],
-            template: "\n    <div \n      class=\"dynamic-field form-button\"\n      [formGroup]=\"group\">\n      <button\n        [disabled]=\"config.disabled\"\n        type=\"submit\">\n        {{ config.label }}\n      </button>\n    </div>\n  "
+            //styleUrls: ['form-button.component.scss'],
+            template: "\n    <div \n      class=\"dynamic-field form-button col-md-{{config.colSize || '12'}}\"\n      [formGroup]=\"group\">\n      <div [ngSwitch]=\"config.buttonType\">\n        <button *ngSwitchCase=\"'submit'\" class=\"btn btn-success\"\n          [disabled]=\"group.pristine || !group.valid\"\n          type=\"submit\">\n          {{ config.name }}\n        </button>\n        <button *ngSwitchCase=\"'reset'\" class=\"btn btn-danger\"\n          [disabled]=\"group.pristine\"\n          type=\"reset\" (click)=\"group.reset()\">\n          {{ config.name }}\n        </button>\n        <button *ngSwitchDefault class=\"btn btn-primary\"\n          [disabled]=\"config.disabled\"\n          [attr.type]=\"config.buttonType || 'button'\">\n          {{ config.name }}\n        </button>\n      </div>\n    </div>\n  "
         })
     ], FormButtonComponent);
     return FormButtonComponent;
@@ -1607,7 +1601,7 @@ var FormInputComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-input',
             styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.scss")],
-            template: "\n    <div \n      class=\"dynamic-field form-input\" \n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <input\n        [attr.type]=\"config.inputType || 'text'\"\n        [attr.placeholder]=\"config.placeholder\"\n        [formControlName]=\"config.name\">\n        <div *ngIf=\"group.controls[config.name].errors && group.controls[config.name].touched\">\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.required\">{{config.label}} is required!</span>\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.minlength\">{{config.label}} must be at least {{group.controls[config.name].errors.minlength.requiredLength}} characters!</span>\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.maxlength\">{{config.label}} must be upto {{group.controls[config.name].errors.maxlength.requiredLength}} characters!</span>\n        </div>\n    </div>\n  "
+            template: "\n    <div \n      class=\"dynamic-field form-input col-md-{{config.colSize || '12'}}\" \n      [formGroup]=\"group\">\n      <div [ngSwitch]=\"config.inputType\">\n        <div *ngSwitchCase=\"'radio'\">\n          <label>{{config.label}}</label>\n            <ng-container *ngFor=\"let option of config.options\">\n                <div style=\"display: inline-block;margin-right:10px;\">\n                    <input type=\"radio\" [formControlName]=\"config.name\"                        \n                        [value]= \"option.value\"/>{{option.label}}\n                </div>\n            </ng-container>\n        </div>\n        <div *ngSwitchDefault>\n          <label>{{ config.label }}</label>\n          <input\n            [attr.type]=\"config.inputType || 'text'\"\n            [attr.placeholder]=\"config.placeholder\"\n            [formControlName]=\"config.name\">\n            <div *ngIf=\"group.controls[config.name].errors && (group.controls[config.name].touched || group.controls[config.name].dirty)\">\n              <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.required\">{{config.label}} is required!</span>\n              <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.minlength\">{{config.label}} must be at least {{group.controls[config.name].errors.minlength.requiredLength}} characters!</span>\n              <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.maxlength\">{{config.label}} must be upto {{group.controls[config.name].errors.maxlength.requiredLength}} characters!</span>\n            </div>\n        </div>\n    </div>\n  "
         })
     ], FormInputComponent);
     return FormInputComponent;
@@ -1640,11 +1634,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var FormSelectComponent = /** @class */ (function () {
     function FormSelectComponent() {
     }
+    FormSelectComponent.prototype.isObject = function (val) { return val !== null && typeof val === 'object'; };
     FormSelectComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-select',
             styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-select/form-select.component.scss")],
-            template: "\n    <div \n      class=\"dynamic-field form-select\"\n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <select [formControlName]=\"config.name\">\n        <option value=\"\">{{ config.placeholder }}</option>\n        <option *ngFor=\"let option of config.options\">\n          {{ option }}\n        </option>\n      </select>\n    </div>\n  "
+            template: "\n    <div \n      class=\"dynamic-field form-select col-md-{{config.colSize || '12'}}\"\n      [formGroup]=\"group\">\n      <label>{{ config.label }}</label>\n      <select [formControlName]=\"config.name\">\n        <option value=\"\">{{ config.placeholder }}</option>\n        <option *ngFor=\"let option of config.options\" [value]=\"isObject(option) ? option[config.valueField] : option\">\n          {{ isObject(option) ? option[config.textField] : option }}\n        </option>\n      </select>\n      <div *ngIf=\"group.controls[config.name].errors && (group.controls[config.name].touched || group.controls[config.name].dirty)\">\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.required\">{{config.label}} is required!</span>\n      </div>\n    </div>\n  "
         })
     ], FormSelectComponent);
     return FormSelectComponent;
@@ -1657,7 +1652,7 @@ var FormSelectComponent = /** @class */ (function () {
 /***/ "./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = ":host /deep/ .dynamic-field {\n  margin-bottom: 15px; }\n  :host /deep/ .dynamic-field label {\n    display: block;\n    font-size: 16px;\n    font-weight: 400;\n    letter-spacing: 0px;\n    margin-bottom: 10px;\n    color: rgba(0, 0, 0, 0.9); }\n  :host /deep/ .col-md-6 {\n  float: left;\n  padding-right: 5px;\n  padding-left: 5px; }\n  :host /deep/ .col-md-12 {\n  float: left;\n  padding-right: 5px;\n  padding-left: 5px; }\n"
+module.exports = ":host /deep/ .dynamic-field {\n  margin-bottom: 15px; }\n  :host /deep/ .dynamic-field label {\n    display: block;\n    font-size: 16px;\n    font-weight: 400;\n    letter-spacing: 0px;\n    margin-bottom: 10px;\n    color: rgba(0, 0, 0, 0.9); }\n  :host /deep/ .col-md-3, /deep/ .col-md-6, /deep/ .col-md-9, /deep/ .col-md-12 {\n  float: left;\n  padding-right: 5px;\n  padding-left: 5px; }\n"
 
 /***/ }),
 
@@ -1790,7 +1785,7 @@ var DynamicFormComponent = /** @class */ (function () {
             exportAs: 'dynamicForm',
             selector: 'dynamic-form',
             styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component.scss")],
-            template: "\n    <form\n      class=\"dynamic-form\"\n      [formGroup]=\"form\"\n      (submit)=\"handleSubmit($event)\">\n      <ng-container\n        *ngFor=\"let field of config;\"\n        dynamicField\n        [config]=\"field\"\n        [group]=\"form\">\n      </ng-container>\n    </form>\n  "
+            template: "\n    <form\n      class=\"dynamic-form\"\n      [formGroup]=\"form\"\n      (ngSubmit)=\"handleSubmit($event)\">\n      <ng-container\n        *ngFor=\"let field of config;\"\n        dynamicField\n        [config]=\"field\"\n        [group]=\"form\">\n      </ng-container>\n    </form>\n  "
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]])
     ], DynamicFormComponent);
@@ -2052,15 +2047,15 @@ var TaskManagementFormComponent = /** @class */ (function () {
     }
     TaskManagementFormComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        var previousValid = this.form.valid;
-        this.form.changes.subscribe(function () {
-            if (_this.form.valid !== previousValid) {
-                previousValid = _this.form.valid;
-                _this.form.setDisabled('submit', !previousValid);
-            }
-        });
+        //let previousValid = this.form.valid;
+        // this.form.changes.subscribe(() => {
+        //   if (this.form.valid !== previousValid) {
+        //     previousValid = this.form.valid;
+        //     this.form.setDisabled('Submit', !previousValid);
+        //   }
+        // });
         setTimeout(function () {
-            _this.form.setDisabled('submit', true);
+            //this.form.setDisabled('Submit', true);
             //this.form.disableAll(true);
             // this.form.setDisabled('description', true);
             // this.form.setDisabled('component', true);
@@ -2072,6 +2067,7 @@ var TaskManagementFormComponent = /** @class */ (function () {
     };
     //isFooterRow = (_, rowData) => rowData.isFooterRow;
     TaskManagementFormComponent.prototype.submit = function (value) {
+        console.log("value", value);
         this.dialogRef.close(Object.assign(this.data, value));
     };
     __decorate([
@@ -2107,27 +2103,24 @@ var CONFIG = [
         label: 'Component name',
         name: 'component',
         placeholder: 'Enter component',
-        colSize: 12,
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4)]
-    },
-    {
+    }, {
         type: 'input',
         label: 'Description',
         name: 'description',
-        colSize: 12,
         placeholder: 'Enter description',
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(140)]
-    },
-    {
+    }, {
         type: 'select',
         colSize: 6,
         label: 'Type',
         name: 'type',
-        options: ['bug', 'feature', 'update'],
+        textField: 'name',
+        valueField: 'value',
+        options: [{ name: 'bug', value: 1 }, { name: 'feature', value: 2 }, { name: 'update', value: 3 }],
         placeholder: '-select type-',
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
-    },
-    {
+    }, {
         type: 'select',
         colSize: 6,
         label: 'Status',
@@ -2135,12 +2128,27 @@ var CONFIG = [
         options: ['Not yet started', 'Done', 'Pending'],
         placeholder: '-select status-',
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
-    },
-    {
-        label: 'Submit',
-        name: 'submit',
-        type: 'button'
-    }
+    }, {
+        type: 'input',
+        inputType: 'radio',
+        colSize: 12,
+        label: 'Gender',
+        value: 'm',
+        name: 'gender',
+        options: [{ value: 'm', label: 'Male', id: 1 }, { value: 'f', label: 'Female', id: 2 }, { value: 'o', label: 'Other', id: 3 }],
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
+    }, {
+        //label: 'Submit',
+        name: 'Submit',
+        type: 'button',
+        colSize: 6,
+        buttonType: 'submit'
+    } /*,{
+      name: 'Revert',
+      colSize : 6,
+      type: 'button',
+      buttonType : 'reset'
+    }*/
 ];
 
 

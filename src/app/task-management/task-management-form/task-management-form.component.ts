@@ -32,15 +32,15 @@ export class TaskManagementFormComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let previousValid = this.form.valid;
-    this.form.changes.subscribe(() => {
-      if (this.form.valid !== previousValid) {
-        previousValid = this.form.valid;
-        this.form.setDisabled('submit', !previousValid);
-      }
-    });
+    //let previousValid = this.form.valid;
+    // this.form.changes.subscribe(() => {
+    //   if (this.form.valid !== previousValid) {
+    //     previousValid = this.form.valid;
+    //     this.form.setDisabled('Submit', !previousValid);
+    //   }
+    // });
     setTimeout(()=>{
-      this.form.setDisabled('submit', true);
+      //this.form.setDisabled('Submit', true);
       //this.form.disableAll(true);
       // this.form.setDisabled('description', true);
       // this.form.setDisabled('component', true);
@@ -54,6 +54,7 @@ export class TaskManagementFormComponent implements AfterViewInit {
   }
   //isFooterRow = (_, rowData) => rowData.isFooterRow;
   submit(value: {[name: string]: any}) {
+    console.log("value",value)
     this.dialogRef.close(Object.assign(this.data,value));
   }
 }

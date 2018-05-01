@@ -8,19 +8,22 @@ a:hover{
 a {
     cursor: pointer;
 }
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched,
+input:focus.ng-invalid.ng-dirty,
+select.ng-invalid.ng-touched,
+select:focus.ng-invalid.ng-dirty {
 	border: 1px solid red;
+}
+button:disabled.btn.btn-success {
+    cursor: not-allowed;
 }
 .redItalic {
 	color: red;
     font-style: italic;
 }
-/*Overwrite Angular-Tree-Component CSS*/
 .toggle-children-wrapper,.toggle-children-placeholder {
     display: none;   
 }
-
-
 .remove-padding {
   padding: 0rem 0rem;
   color: inherit;
