@@ -18,24 +18,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist'))); // Point static path to dist
 
 
-app.use(methodList.checkRoutingParams) // check routes in every webservices
+// app.use(methodList.checkRoutingParams) // check routes in every webservices
 
-app.post("/login", methodList.checkLoginCredintilas)
-app.get("/listUser", methodList.gettingListOfAllUser)
+// app.post("/login", methodList.checkLoginCredintilas)
+// app.get("/listUser", methodList.gettingListOfAllUser)
+
+app.use('/taskmanagement', require('./controller/taskManagement'));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+
 /**
  * Get port from environment and store in Express.
  */
 const port = process.env.PORT || '3000';
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-// const server = http.createServer(app);
-
 /**
  * Listen on provided port, on all network interfaces.
  */

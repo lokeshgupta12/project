@@ -1,17 +1,15 @@
-import { Component, ViewChild, AfterViewInit, Inject } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { CONFIG } from './task-management-form.config';
+import CONFIG  from './task-management-form.config';
 
 import { DynamicFormComponent } from '../../reusable_modules/dynamic-form/containers/dynamic-form/dynamic-form.component';
-//import { FieldConfig } from '../../reusable_components/dynamic-form/models/field-config.interface';
 
 
 @Component({
 	selector : 'app-task-management-form',
-	templateUrl : './task-management-form.component.html',
-	//styleUrls : ['./task-management-form.component.css']
+	templateUrl : './task-management-form.component.html'
 })
 
 export class TaskManagementFormComponent implements AfterViewInit {
@@ -19,42 +17,25 @@ export class TaskManagementFormComponent implements AfterViewInit {
   data = {
     component: "",
     description: "",
-    type: "",
+    typeId: "",
     status: ""
   };
   config = CONFIG;
   title : string = '';
 
   constructor(private dialogRef: MatDialogRef<TaskManagementFormComponent>,
-        @Inject(MAT_DIALOG_DATA) {data, title}) {
+        @Inject(MAT_DIALOG_DATA) {data, title},
+        private cdr : ChangeDetectorRef) {
     data && Object.assign(this.data,data);
     this.title = title;
   }
 
   ngAfterViewInit() {
-    //let previousValid = this.form.valid;
-    // this.form.changes.subscribe(() => {
-    //   if (this.form.valid !== previousValid) {
-    //     previousValid = this.form.valid;
-    //     this.form.setDisabled('Submit', !previousValid);
-    //   }
-    // });
-    setTimeout(()=>{
-      //this.form.setDisabled('Submit', true);
-      //this.form.disableAll(true);
-      // this.form.setDisabled('description', true);
-      // this.form.setDisabled('component', true);
-      // this.form.setDisabled('type', true);
-      // this.form.setDisabled('status', true);
-
       this.form.patchValue(this.data);
-
-      //this.form.setValue('name', 'Todd Motto');
-    },0)
+      this.cdr.detectChanges();
+    // setTimeout(()=>{
+    // },0)
   }
   //isFooterRow = (_, rowData) => rowData.isFooterRow;
-  submit(value: {[name: string]: any}) {
-    console.log("value",value)
-    this.dialogRef.close(Object.assign(this.data,value));
-  }
+  submit = (val) => this.dialogRef.close(Object.assign(this.data,val));
 }

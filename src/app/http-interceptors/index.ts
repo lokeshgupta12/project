@@ -2,7 +2,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SetHeaderInterceptor } from './set-header-interceptor';
-import { CachingInterceptor } from './caching-interceptor';
+// import { CachingInterceptor } from './caching-interceptor';
 
 
 /** Http interceptor providers in outside-in order */

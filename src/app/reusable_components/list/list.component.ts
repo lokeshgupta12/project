@@ -1,6 +1,6 @@
 import {
   Component, ViewChild, Input, Output, OnInit,
-  AfterViewInit, ElementRef, EventEmitter/*, ViewEncapsulation*/
+  AfterViewInit, ElementRef, EventEmitter
 } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort, MatDialog} from '@angular/material';
 import {debounceTime, distinctUntilChanged, tap} from 'rxjs/operators';
@@ -8,16 +8,13 @@ import {merge} from "rxjs/observable/merge";
 import {fromEvent} from 'rxjs/observable/fromEvent';
 
 import { ReusableFunctionsService } from '../../service/reusable_functions.service';
-
 import { NgMatDialogComponent } from '../angular-material-dialog/ng-mat-dialog.component';
-
 import { ListConfig } from './list.model';
 
 @Component({
   selector : "app-list",
 	templateUrl : './list.component.html',
-	styleUrls : ['./list.component.css'],
-  //encapsulation : ViewEncapsulation.None
+	styleUrls : ['./list.component.css']
 })
 
 export class ListComponent implements OnInit, AfterViewInit {
@@ -59,10 +56,6 @@ export class ListComponent implements OnInit, AfterViewInit {
       this.dataSource.sort = this.sort;
     }
   }
-
-  // ngDoCheck() {
-  //   this.dataSource = new MatTableDataSource(this.ds);
-  // }
 
   /**
    * Set the paginator after the view init since this component will

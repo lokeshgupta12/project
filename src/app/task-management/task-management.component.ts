@@ -7,9 +7,14 @@ import { TaskManagementFormComponent } from './task-management-form/task-managem
 import { ReusableFunctionsService } from '../service/reusable_functions.service';
 import { ListConfig } from '../reusable_components/list/list.model';
 
+const typeObj = {
+  1 : "bug",
+  2 : "feature",
+  3 : "update"
+}
+
 @Component({
   selector : 'app-task-management',
-  //styleUrls : ['./task-management.component.css'],
   templateUrl : './task-management.component.html'
 })
 export class TaskManagementComponent {
@@ -47,7 +52,7 @@ export class TaskManagementComponent {
   }
 
   ngOnInit() {
-    this.http.get('/assets/others/bug-feature-update.json').subscribe((data : {}[])=>{
+    this.http.get('/taskmanagement/list').subscribe((data : {}[])=>{
         this.dataSource = data;
     },(err)=>{
         console.log({status:'KO', data : err});
@@ -67,16 +72,23 @@ export class TaskManagementComponent {
     dialogRef.afterClosed().subscribe(
       val => {
         if (this.reusableFunctionsService.isObject(val)) {
-          val.id ? this.dataSource[this.dataSource.findIndex((ob : any)=> (ob.id===val.id))] = val : this.dataSource.unshift(Object.assign(val,{id : +new Date()}));
-          this.listComponent.onDataSourceUpdate();
+          val.type = typeObj[val.typeId];
+          val.typeId = +val.typeId;
+          this.http.post('/taskmanagement/save',val).subscribe(({message, data}:any)=>{
+            this.dataSource = data;
+            console.log(message);
+          })
+          // val.id ? this.dataSource[this.dataSource.findIndex((ob : any)=> (ob.id===val.id))] = val : this.dataSource.unshift(Object.assign(val,{id : +new Date()}));
         }
       }
     );
   }
 
   delete({id}) {
-    this.dataSource.splice(this.dataSource.findIndex((ob : any)=> (ob.id===id)),1);
-    this.listComponent.onDataSourceUpdate();
+    this.http.delete('/taskmanagement/delete/'+id).subscribe(({message, data}:any)=>{
+      this.dataSource = data;
+      console.log(message);
+    })
   }
 
   onInitializeList(event) {

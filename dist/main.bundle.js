@@ -938,6 +938,7 @@ var SideNavbar = /** @class */ (function () {
 /* "Barrel" of Http Interceptors */
 
 
+// import { CachingInterceptor } from './caching-interceptor';
 /** Http interceptor providers in outside-in order */
 var httpInterceptorProviders = [
     { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HTTP_INTERCEPTORS */], useClass: __WEBPACK_IMPORTED_MODULE_1__set_header_interceptor__["a" /* SetHeaderInterceptor */], multi: true },
@@ -952,9 +953,7 @@ var httpInterceptorProviders = [
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SetHeaderInterceptor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__("./node_modules/rxjs/_esm5/operators.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -965,19 +964,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
-
-// import { Observable } from 'rxjs/Rx';
-/*import 'rxjs/add/observable/throw'
-import 'rxjs/add/operator/catch';*/
+/*import { finalize, tap } from 'rxjs/operators';*/
 
 var SetHeaderInterceptor = /** @class */ (function () {
     function SetHeaderInterceptor(commonService) {
         this.commonService = commonService;
     }
     SetHeaderInterceptor.prototype.intercept = function (req, next) {
-        var started = Date.now();
-        var ok;
+        // const started = Date.now();
+        // let ok: string;
         // Clone the request to add the new header.
         var authReq = req.clone({ setHeaders: {
                 'Content-Type': 'application/json',
@@ -986,24 +981,20 @@ var SetHeaderInterceptor = /** @class */ (function () {
             }
         });
         //send the newly created request
-        //return next.handle(authReq);
-        //console.log(process);
+        return next.handle(authReq);
         // extend server response observable with logging
-        return next.handle(authReq)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(
-        // Succeeds when there is a response; ignore other events
-        function (event) { return ok = event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpResponse */] ? 'succeeded' : ''; }, 
-        // Operation failed; error is an HttpErrorResponse
-        function (error) { return ok = 'failed'; }), 
-        // Log when response observable either completes or errors
-        Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["c" /* finalize */])(function () {
-            //const elapsed = Date.now() - started;
-            console.log(req.method + " \"" + req.urlWithParams + "\"\n\t             " + ok + " in " + (Date.now() - started) + " ms.");
-        }));
+        /*return next.handle(authReq)
+          .pipe(
+            // Log when response observable either completes or errors
+            finalize(() => {
+              console.log(`${req.method} "${req.urlWithParams}"
+                 ${ok} in ${Date.now() - started} ms.`);
+            })
+          );*/
     };
     SetHeaderInterceptor = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__service_common_service__["a" /* CommonService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__service_common_service__["a" /* CommonService */]])
     ], SetHeaderInterceptor);
     return SetHeaderInterceptor;
 }());
@@ -1341,9 +1332,6 @@ var ListComponent = /** @class */ (function () {
             this.dataSource.sort = this.sort;
         }
     };
-    // ngDoCheck() {
-    //   this.dataSource = new MatTableDataSource(this.ds);
-    // }
     /**
      * Set the paginator after the view init since this component will
      * be able to query its view for the initialized paginator.
@@ -1353,13 +1341,13 @@ var ListComponent = /** @class */ (function () {
         if (this.config.serverInteraction) {
             this.sort.sortChange.subscribe(function () { return _this.paginator.pageIndex = 0; });
             this.config.filterable && Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__["a" /* fromEvent */])(this.searchInput.nativeElement, 'input')
-                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* debounceTime */])(250), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* distinctUntilChanged */])(), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(function () {
+                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["a" /* debounceTime */])(250), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["b" /* distinctUntilChanged */])(), Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["c" /* tap */])(function () {
                 _this.paginator.pageIndex = 0;
                 _this.passFilterToParent();
             }))
                 .subscribe();
             Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_merge__["a" /* merge */])(this.sort.sortChange, this.paginator.page)
-                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["d" /* tap */])(function () { return _this.passFilterToParent(); }))
+                .pipe(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_operators__["c" /* tap */])(function () { return _this.passFilterToParent(); }))
                 .subscribe();
         }
         else {
@@ -1441,7 +1429,7 @@ var ListComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: "app-list",
             template: __webpack_require__("./src/app/reusable_components/list/list.component.html"),
-            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")],
+            styles: [__webpack_require__("./src/app/reusable_components/list/list.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MatDialog */],
             __WEBPACK_IMPORTED_MODULE_5__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
@@ -1574,6 +1562,13 @@ var FormButtonComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div \n  class=\"dynamic-field form-input col-md-{{config.colSize || '12'}}\" \n  [formGroup]=\"group\">\n  <div [ngSwitch]=\"config.inputType\">\n    <div *ngSwitchCase=\"'radio'\">\n      <label>{{config.label}}</label>\n        <ng-container *ngFor=\"let option of config.options\">\n            <div style=\"display: inline-block;margin-right:10px;\">\n                <input \n                  type=\"radio\" \n                  [formControlName]=\"config.name\"\n                  [value]= \"option.value\"/>{{option.name}}\n            </div>\n        </ng-container>\n    </div>\n    <div *ngSwitchCase=\"'checkbox'\">\n      <label for=\"timeslots\">{{config.label}}</label>\n    </div>\n    <div *ngSwitchDefault>\n      <label>{{ config.label }}</label>\n      <input\n        [attr.type]=\"config.inputType || 'text'\"\n        [attr.placeholder]=\"config.placeholder\"\n        [formControlName]=\"config.name\">\n        <div *ngIf=\"group.controls[config.name].errors && (group.controls[config.name].touched || group.controls[config.name].dirty)\">\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.required\">{{config.label}} is required!</span>\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.minlength\">{{config.label}} must be at least {{group.controls[config.name].errors.minlength.requiredLength}} characters!</span>\n          <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.maxlength\">{{config.label}} must be upto {{group.controls[config.name].errors.maxlength.requiredLength}} characters!</span>\n        </div>\n    </div>\n</div>"
+
+/***/ }),
+
 /***/ "./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.scss":
 /***/ (function(module, exports) {
 
@@ -1601,7 +1596,7 @@ var FormInputComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'form-input',
             styles: [__webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.scss")],
-            template: "\n    <div \n      class=\"dynamic-field form-input col-md-{{config.colSize || '12'}}\" \n      [formGroup]=\"group\">\n      <div [ngSwitch]=\"config.inputType\">\n        <div *ngSwitchCase=\"'radio'\">\n          <label>{{config.label}}</label>\n            <ng-container *ngFor=\"let option of config.options\">\n                <div style=\"display: inline-block;margin-right:10px;\">\n                    <input type=\"radio\" [formControlName]=\"config.name\"                        \n                        [value]= \"option.value\"/>{{option.label}}\n                </div>\n            </ng-container>\n        </div>\n        <div *ngSwitchDefault>\n          <label>{{ config.label }}</label>\n          <input\n            [attr.type]=\"config.inputType || 'text'\"\n            [attr.placeholder]=\"config.placeholder\"\n            [formControlName]=\"config.name\">\n            <div *ngIf=\"group.controls[config.name].errors && (group.controls[config.name].touched || group.controls[config.name].dirty)\">\n              <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.required\">{{config.label}} is required!</span>\n              <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.minlength\">{{config.label}} must be at least {{group.controls[config.name].errors.minlength.requiredLength}} characters!</span>\n              <span class=\"redItalic\" *ngIf=\"group.controls[config.name].errors.maxlength\">{{config.label}} must be upto {{group.controls[config.name].errors.maxlength.requiredLength}} characters!</span>\n            </div>\n        </div>\n    </div>\n  "
+            template: __webpack_require__("./src/app/reusable_modules/dynamic-form/components/form-input/form-input.component.html")
         })
     ], FormInputComponent);
     return FormInputComponent;
@@ -2000,7 +1995,7 @@ var TASK_MANAGEMENT_OBJ = { TaskManagementComponent: __WEBPACK_IMPORTED_MODULE_0
 /***/ "./src/app/task-management/task-management-form/task-management-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<button class=\"btn btn-link close\" (click)=\"dialogRef.close()\">\n\t<mat-icon>cancel</mat-icon>\n</button>\n<div mat-dialog-title>\n\t{{title}}\n</div>\n<dynamic-form\n[config]=\"config\"\n#form=\"dynamicForm\"\n(submit)=\"submit($event)\">\n</dynamic-form>\n  <!-- {{ form.valid }}\n  {{ form.value | json }} -->\n"
+module.exports = "<button tabindex=\"-1\" class=\"btn btn-link close\" (click)=\"dialogRef.close()\">\n\t<mat-icon>cancel</mat-icon>\n</button>\n<div mat-dialog-title>\n\t{{title}}\n</div>\n<dynamic-form\n\t[config]=\"config\"\n\t#form=\"dynamicForm\"\n\t(submit)=\"submit($event)\">\n</dynamic-form>"
 
 /***/ }),
 
@@ -2029,46 +2024,30 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
-//import { FieldConfig } from '../../reusable_components/dynamic-form/models/field-config.interface';
 var TaskManagementFormComponent = /** @class */ (function () {
-    function TaskManagementFormComponent(dialogRef, _a) {
+    function TaskManagementFormComponent(dialogRef, _a, cdr) {
         var data = _a.data, title = _a.title;
+        var _this = this;
         this.dialogRef = dialogRef;
+        this.cdr = cdr;
         this.data = {
             component: "",
             description: "",
-            type: "",
+            typeId: "",
             status: ""
         };
-        this.config = __WEBPACK_IMPORTED_MODULE_2__task_management_form_config__["a" /* CONFIG */];
+        this.config = __WEBPACK_IMPORTED_MODULE_2__task_management_form_config__["a" /* default */];
         this.title = '';
+        //isFooterRow = (_, rowData) => rowData.isFooterRow;
+        this.submit = function (val) { return _this.dialogRef.close(Object.assign(_this.data, val)); };
         data && Object.assign(this.data, data);
         this.title = title;
     }
     TaskManagementFormComponent.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        //let previousValid = this.form.valid;
-        // this.form.changes.subscribe(() => {
-        //   if (this.form.valid !== previousValid) {
-        //     previousValid = this.form.valid;
-        //     this.form.setDisabled('Submit', !previousValid);
-        //   }
-        // });
-        setTimeout(function () {
-            //this.form.setDisabled('Submit', true);
-            //this.form.disableAll(true);
-            // this.form.setDisabled('description', true);
-            // this.form.setDisabled('component', true);
-            // this.form.setDisabled('type', true);
-            // this.form.setDisabled('status', true);
-            _this.form.patchValue(_this.data);
-            //this.form.setValue('name', 'Todd Motto');
-        }, 0);
-    };
-    //isFooterRow = (_, rowData) => rowData.isFooterRow;
-    TaskManagementFormComponent.prototype.submit = function (value) {
-        console.log("value", value);
-        this.dialogRef.close(Object.assign(this.data, value));
+        this.form.patchValue(this.data);
+        this.cdr.detectChanges();
+        // setTimeout(()=>{
+        // },0)
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__reusable_modules_dynamic_form_containers_dynamic_form_dynamic_form_component__["a" /* DynamicFormComponent */]),
@@ -2077,10 +2056,10 @@ var TaskManagementFormComponent = /** @class */ (function () {
     TaskManagementFormComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-task-management-form',
-            template: __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.html"),
+            template: __webpack_require__("./src/app/task-management/task-management-form/task-management-form.component.html")
         }),
         __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["k" /* MatDialogRef */], Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["k" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
     ], TaskManagementFormComponent);
     return TaskManagementFormComponent;
 }());
@@ -2093,28 +2072,26 @@ var TaskManagementFormComponent = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CONFIG; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 
 var CONFIG = [
     {
         type: 'input',
-        //inputType : 'textarea',
         label: 'Component name',
         name: 'component',
         placeholder: 'Enter component',
-        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4)]
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(40)]
     }, {
         type: 'input',
         label: 'Description',
         name: 'description',
         placeholder: 'Enter description',
-        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].minLength(4), __WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(140)]
+        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].maxLength(140)]
     }, {
         type: 'select',
         colSize: 6,
         label: 'Type',
-        name: 'type',
+        name: 'typeId',
         textField: 'name',
         valueField: 'value',
         options: [{ name: 'bug', value: 1 }, { name: 'feature', value: 2 }, { name: 'update', value: 3 }],
@@ -2128,28 +2105,15 @@ var CONFIG = [
         options: ['Not yet started', 'Done', 'Pending'],
         placeholder: '-select status-',
         validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
-    }, {
-        type: 'input',
-        inputType: 'radio',
-        colSize: 12,
-        label: 'Gender',
-        value: 'm',
-        name: 'gender',
-        options: [{ value: 'm', label: 'Male', id: 1 }, { value: 'f', label: 'Female', id: 2 }, { value: 'o', label: 'Other', id: 3 }],
-        validation: [__WEBPACK_IMPORTED_MODULE_0__angular_forms__["Validators"].required]
-    }, {
-        //label: 'Submit',
+    },
+    {
         name: 'Submit',
         type: 'button',
         colSize: 6,
         buttonType: 'submit'
-    } /*,{
-      name: 'Revert',
-      colSize : 6,
-      type: 'button',
-      buttonType : 'reset'
-    }*/
+    }
 ];
+/* harmony default export */ __webpack_exports__["a"] = (CONFIG);
 
 
 /***/ }),
@@ -2187,6 +2151,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+var typeObj = {
+    1: "bug",
+    2: "feature",
+    3: "update"
+};
 var TaskManagementComponent = /** @class */ (function () {
     function TaskManagementComponent(dialog, http, reusableFunctionsService) {
         this.dialog = dialog;
@@ -2219,7 +2188,7 @@ var TaskManagementComponent = /** @class */ (function () {
     }
     TaskManagementComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.http.get('/assets/others/bug-feature-update.json').subscribe(function (data) {
+        this.http.get('/taskmanagement/list').subscribe(function (data) {
             _this.dataSource = data;
         }, function (err) {
             console.log({ status: 'KO', data: err });
@@ -2238,15 +2207,25 @@ var TaskManagementComponent = /** @class */ (function () {
         });
         dialogRef.afterClosed().subscribe(function (val) {
             if (_this.reusableFunctionsService.isObject(val)) {
-                val.id ? _this.dataSource[_this.dataSource.findIndex(function (ob) { return (ob.id === val.id); })] = val : _this.dataSource.unshift(Object.assign(val, { id: +new Date() }));
-                _this.listComponent.onDataSourceUpdate();
+                val.type = typeObj[val.typeId];
+                val.typeId = +val.typeId;
+                _this.http.post('/taskmanagement/save', val).subscribe(function (_a) {
+                    var message = _a.message, data = _a.data;
+                    _this.dataSource = data;
+                    console.log(message);
+                });
+                // val.id ? this.dataSource[this.dataSource.findIndex((ob : any)=> (ob.id===val.id))] = val : this.dataSource.unshift(Object.assign(val,{id : +new Date()}));
             }
         });
     };
     TaskManagementComponent.prototype.delete = function (_a) {
+        var _this = this;
         var id = _a.id;
-        this.dataSource.splice(this.dataSource.findIndex(function (ob) { return (ob.id === id); }), 1);
-        this.listComponent.onDataSourceUpdate();
+        this.http.delete('/taskmanagement/delete/' + id).subscribe(function (_a) {
+            var message = _a.message, data = _a.data;
+            _this.dataSource = data;
+            console.log(message);
+        });
     };
     TaskManagementComponent.prototype.onInitializeList = function (event) {
         switch (event.eventName) {
