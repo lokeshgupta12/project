@@ -12,7 +12,7 @@ export class LoginResolver implements Resolve<any> {
 	}
 
 	resolve(route : ActivatedRouteSnapshot, state : RouterStateSnapshot) {
-		if (!localStorage.getItem('currentUser')) 
+		if (!localStorage['auth-token']) 
 			return true;
 		this.router.navigate(['']);
 	}

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,42 +10,33 @@ import { CommonService } from '../service/common.service';
 export class AuthGuard implements CanActivate {
     constructor(
         private router: Router,
+        private http : HttpClient,
         private commonService : CommonService
         ) { }
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | Promise<boolean> | boolean {
-        if (localStorage.getItem('currentUser')) {
+        if (localStorage['auth-token']) {
             // logged in so return true
             if(this.commonService.appMenus.length)
                 return true;
             else {
-                return new Promise((resolve)=>{
-                    this.commonService.getLoginData('/assets/WSResponses/getLoginDataByToken.json').then((res: {status:string})=>{
+                return true;
+                /*return new Promise((resolve)=>{
+                    this.http.post('/usermanagement/login',localStorage['auth-token']).subscribe((data: any)=>{
+                        // Store auth-token in localstorage
+                        localStorage['auth-token'] = data.token;
+                        // Navigate to home page
                         resolve(true);
-                    },()=>{
+                      },data => {
                         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
                         resolve(false);
                     })
-
-                    /*subscribe((data : any)=>{
-                        this.commonService.appMenus = this.commonService.getNestedChildren(data.appMenus, "id", "parent");
-                        resolve(true);
-                    },(err)=>{
-                        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-                        resolve(false);
-                    })*/
-                })
+                })*/
             }
         } else {
             // not logged in so redirect to login page with the return url
             this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
             return false;
         }
-
     }
 }
-
-
-// interface CanActivate { 
-//   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
-// }

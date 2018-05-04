@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material';
 
 import { ReusableFunctionsService } from '../../../service/reusable_functions.service';
 
-import { CourseDialogComponent } from '../../../course-dialog/course-dialog.component'
 import { ListConfig } from '../../../reusable_components/list/list.model';
 
 @Component({

@@ -1,40 +1,33 @@
-const express = require('express'); // require "express" module for apis
-const path = require('path'); // require "path" module to set the path
-var bcrypt = require('bcryptjs'); // require "bcryptjs" module encrypt password
-const methodList = require('./controller/methods') // require controoler to get methods of All
-const bodyParser = require('body-parser'); // require "body-parser" to json data
-const session = require('express-session'); // require session through "express-session"
-var cors = require('cors') // require "cors" module solve croos-browser request
-const app = express(); // call express module and get instance of it In App
-
-app.use(cors()); // when Any web services call its handle cross origin request
-
-app.use(session({secret: 'project'})); // manage session
-
-app.use(bodyParser.json()); // Parsers for POST data
-app.use(bodyParser.urlencoded({ extended: false }));
-
-
-app.use(express.static(path.join(__dirname, 'dist'))); // Point static path to dist
-
-
-// app.use(methodList.checkRoutingParams) // check routes in every webservices
-
-// app.post("/login", methodList.checkLoginCredintilas)
-// app.get("/listUser", methodList.gettingListOfAllUser)
-
-app.use('/taskmanagement', require('./controller/taskManagement'));
-
+// Generate a random secter key by using crypro module
+var s_key = require('crypto').randomBytes(64).toString('hex');
+// require "express" module for apis
+const express = require('express');
+// require "path" module to set the path
+const path = require('path');
+// require "body-parser" to json data
+const bodyParser = require('body-parser');
+// call express module and get instance of it In App
+const app = module.exports = express();
+// set secret key in app instance
+app.set('s_key',s_key);
+app.set('env', process.env.NODE_ENV === 'production' ? 'dist' : 'src');
+// Parsers for POST data
+app.use(bodyParser.json());
+// Point static path to dist
+app.use(express.static(path.join(__dirname, app.get('env'))));
+// Define usermanagement route
+app.use('/api/usermanagement', require('./controller/userManagement'));
+// Verify token
+app.use('/api/',require('./controller/verify-token'));
+// Define taskmanagement route
+app.use('/api/taskmanagement', require('./controller/taskManagement'));
+// Redirect any route to index.html page
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.status(404).send({message : 'Invalid access!'});
 });
-
-/**
- * Get port from environment and store in Express.
- */
+// Get port from environment and store in Express.
 const port = process.env.PORT || '3000';
+// Set port for application
 app.set('port', port);
-/**
- * Listen on provided port, on all network interfaces.
- */
-app.listen(port, () => console.log(`API running on localhost:${port}`));
+// Listen on provided port, on all network interfaces.
+app.listen(port, () => console.log(`API running on ${port}`));

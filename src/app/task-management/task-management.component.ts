@@ -19,7 +19,7 @@ const typeObj = {
 })
 export class TaskManagementComponent {
   @ViewChild(ListComponent) listComponent;
-
+  // List Copmonent config
   dataSource : {}[] = [];
   listConfig : ListConfig = {
     columns : [
@@ -52,14 +52,14 @@ export class TaskManagementComponent {
   }
 
   ngOnInit() {
-    this.http.get('/taskmanagement/list').subscribe((data : {}[])=>{
+    // Get task list data
+    this.http.get('/api/taskmanagement/list').subscribe((data : {}[])=>{
         this.dataSource = data;
-    },(err)=>{
-        console.log({status:'KO', data : err});
-    })
+    },err=> this.reusableFunctionsService.checkError(err))
   }
 
   add(data?) {
+    // Open dialog on add and edit event
     const dialogRef = this.dialog.open(TaskManagementFormComponent,{
       disableClose : true,
       autoFocus: true,
@@ -69,28 +69,39 @@ export class TaskManagementComponent {
         title : data ? 'Update task' : 'Add task'
       }
     });
+    // On close dialog
     dialogRef.afterClosed().subscribe(
       val => {
         if (this.reusableFunctionsService.isObject(val)) {
           val.type = typeObj[val.typeId];
           val.typeId = +val.typeId;
-          this.http.post('/taskmanagement/save',val).subscribe(({message, data}:any)=>{
+          // Call api to save task data
+          this.http.post('/api/taskmanagement/save',val).subscribe(({message, data}:any)=>{
+            // Update datasource
             this.dataSource = data;
-            console.log(message);
-          })
-          // val.id ? this.dataSource[this.dataSource.findIndex((ob : any)=> (ob.id===val.id))] = val : this.dataSource.unshift(Object.assign(val,{id : +new Date()}));
+            // Show success notification
+            this.reusableFunctionsService.showNotification({
+                message,
+                type : 'success'
+            })
+          }, err=> this.reusableFunctionsService.checkError(err))
         }
       }
     );
   }
-
+  // On delete of task
   delete({id}) {
-    this.http.delete('/taskmanagement/delete/'+id).subscribe(({message, data}:any)=>{
+    this.http.delete('/api/taskmanagement/delete/'+id).subscribe(({message, data}:any)=>{
+      // Update datasource
       this.dataSource = data;
-      console.log(message);
-    })
+      // Show success notification
+      this.reusableFunctionsService.showNotification({
+          message,
+          type : 'success'
+      })
+    }, err=> this.reusableFunctionsService.checkError(err))
   }
-
+  // On initialization of list component
   onInitializeList(event) {
     switch (event.eventName) {
       case "add":

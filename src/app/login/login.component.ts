@@ -3,13 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-// import { DemoService } from '../demo.service';
-import { CommonService } from '../service/common.service';
 import { ReusableFunctionsService } from '../service/reusable_functions.service';
 import { LoginResponse } from '../models/login_response.model';
-
-
-//import { AlertService, AuthenticationService } from '../_services/index';
 
 @Component({
     selector: 'app-login',
@@ -26,18 +21,11 @@ export class LoginComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private commonService : CommonService,
         private http : HttpClient,
-        private reusableFunctionsService : ReusableFunctionsService /*,
-        private demoService : DemoService*/
-        //private authenticationService: AuthenticationService,
-        //private alertService: AlertService
+        private reusableFunctionsService : ReusableFunctionsService
         ) { }
 
     ngOnInit() {
-        // reset login status
-        //this.authenticationService.logout();
-        
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
@@ -45,36 +33,27 @@ export class LoginComponent implements OnInit {
             (this.returnUrl === "login") && (this.returnUrl = '/');
             this.router.navigate([this.returnUrl]);
         }
-
-        // Access the Data Service's getUsers() method we defined
-        // this.demoService.getUsers()
-        //     .subscribe(res => this.demousers = res);
     }
 
     login() {
+        // Set loading true
         this.loading = true;
-        this.commonService.getLoginData('/assets/WSResponses/getLoginDataByMailAndPwd.json').then((res: {status:string, data : LoginResponse})=>{
-                this.loading = false;
-                localStorage.setItem('currentUser',res.data.email);
-                this.router.navigate([this.returnUrl]);
-        },err=> {
+        // Hit login api
+        this.http.post('/api/usermanagement/login',this.loginForm.value).subscribe((data: any)=>{
+            // Set loading false
             this.loading = false;
-            console.log(err);
-        })
-        /*this.http.post('http://localhost:3000/login', {"name":this.loginForm.value.email, "password" : this.loginForm.value.password}).subscribe((data : any) => {
-            this.loading = false;
-            localStorage.setItem('currentUser',this.loginForm.value.email);
-            this.commonService.appMenus = this.reusableFunctionsService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
+            // Store auth-token in localstorage
+            localStorage['auth-token'] = data.token;
+            // Navigate to home page
             this.router.navigate([this.returnUrl]);
-        });*/
-        //this.authenticationService.login(this.model.username, this.model.password)
-            // .subscribe(
-            //     data => {
-            //         this.router.navigate([this.returnUrl]);
-            //     },
-            //     error => {
-            //         this.alertService.error(error);
-            //         this.loading = false;
-            //     });
+          },data => {
+            // Set loading false
+            this.loading = false;
+            // Show error notification
+            this.reusableFunctionsService.showNotification({
+                message : data.error && data.error.message,
+                type : 'error'
+            })
+        })
     }
 }

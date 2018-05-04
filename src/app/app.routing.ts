@@ -17,7 +17,7 @@ let routes : Routes = [
 		{path : 'main', component : MainSection},
 		{path : 'tasks', component : tm.TASK_MANAGEMENT_OBJ.TaskManagementComponent}
 	]},
-	{path : 'login', component : LoginComponent, resolve : LoginResolver},
+	{path : 'login', component : LoginComponent, resolve : {loginResolver : LoginResolver}},
 	{path : '**', redirectTo : '' }
 ]
 @NgModule({

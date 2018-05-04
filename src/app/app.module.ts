@@ -1,13 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 import { TreeModule } from 'angular-tree-component';
-import { DynamicFormsCoreModule } from "@ng-dynamic-forms/core";
-import { DynamicFormsMaterialUIModule } from "@ng-dynamic-forms/ui-material";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './home/header/header.component';
@@ -17,7 +14,6 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { WelcomeComponent } from './home/main-section/welcome/welcome.component';
 /*Demo*/
-import { CourseDialogComponent } from './course-dialog/course-dialog.component'
 import * as tm from './task-management/index';
 
 // import { TaskManagementComponent } from './task-management/task-management.component';
@@ -47,7 +43,6 @@ import { LoginResolver } from './guards/login.resolve';
     HomeComponent,
     WelcomeComponent,
     ...tm.TASK_MANAGEMENT,
-    CourseDialogComponent,
     ListComponent,
     NgMatDialogComponent
   ],
@@ -60,8 +55,6 @@ import { LoginResolver } from './guards/login.resolve';
     MaterialModule,
     TreeModule,
     DynamicFormModule,
-    DynamicFormsCoreModule.forRoot(),
-    DynamicFormsMaterialUIModule
   ],
   providers: [
     httpInterceptorProviders,
@@ -72,6 +65,6 @@ import { LoginResolver } from './guards/login.resolve';
     //{ provide: RequestCache, useClass: RequestCacheWithMap },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CourseDialogComponent, NgMatDialogComponent, tm.TASK_MANAGEMENT_OBJ.TaskManagementFormComponent]
+  entryComponents: [NgMatDialogComponent, tm.TASK_MANAGEMENT_OBJ.TaskManagementFormComponent]
 })
 export class AppModule { }

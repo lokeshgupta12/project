@@ -1,5 +1,19 @@
-export class ReusableFunctionsService {
+import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
+const snackBarDefaultConfig = {
+    message : "xxxxxxxxxxxx",
+    action : "close",
+    duration : 2000,
+    type : 'success'
+};
+@Injectable()
+export class ReusableFunctionsService {
+    constructor(
+        private snackBar : MatSnackBar,
+        private router : Router
+        ){}
 	// Convert Linear to Multi Level
 	getNestedChildren(arr, primKey, ParKey, parent? : any) {
         var out = [];
@@ -46,8 +60,25 @@ export class ReusableFunctionsService {
         }
         return array;
     }
+    // Show notifications
+    showNotification = (obj:{} = {}) => {
+        var config = Object.assign({}, snackBarDefaultConfig, obj);
+        this.snackBar.open(config.message, config.action,{
+          duration: config.duration,
+          extraClasses : [config.type]
+        });
+    }
 
     isObject (value) {
       return value !== null && typeof value === 'object';
+    }
+    // Check Server response error
+    checkError = (err) => {
+        // If server response is 401(unauthorized) then redirect to login page 
+        // also remove auth-token from localstorage
+        if (this.isObject(err) && (err.status === 401)) {
+            localStorage.removeItem('auth-token');
+            this.router.navigate(['/login']);
+        }
     }
 }

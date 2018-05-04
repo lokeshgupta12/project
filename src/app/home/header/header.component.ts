@@ -12,7 +12,7 @@ export class HeaderComponent {
 	}
 
 	logout() {
-		localStorage.removeItem('currentUser');
+		localStorage.removeItem('auth-token');
 		this.commonService.appMenus = [];
 
 		// clear service of controllers as well.
