@@ -38,14 +38,13 @@ router.post('/login', [new Validator(userLogin, true)], function(req, res) {
         // If user found
         if(data) {
             // Create token using JWT
-            var token = jwt.sign({email: data.email}, app.get('s_key'), {
+            data.token = jwt.sign({email: data.email}, app.get('s_key'), {
               expiresIn: 36000 // expires in seconds
             });
             // Send response
             res.send({
                 status: 'ok',
-                email : data.email,
-                token
+                data
             });
         }
         // If user not found
@@ -55,6 +54,35 @@ router.post('/login', [new Validator(userLogin, true)], function(req, res) {
                 message: 'No user found with provided details!'
             });
     })
+})
+
+router.post('/loginByToken',[new Validator({token : {type : String, required : true}}, true)], function(req, res) {
+    jwt.verify(req.validated.token, app.get('s_key'), function(err, decoded) {
+        if (err) {
+            return res.status(401).send({
+                status: 'ko',
+                message: 'Failed to authenticate token.',
+                error : err,
+                data : (err.name === 'TokenExpiredError') ? jwt.decode(req.validated.token) : undefined
+            });
+        } else
+        readFile((data) => {
+            data = JSON.parse(data || '[]');
+            // Find given credential in user list
+            data = data.find(ob => ob.email === decoded.email);
+            // If user found
+            data ? 
+                res.send({
+                    status: 'ok',
+                    data
+                })
+                :
+                res.status(403).send({
+                    status: 'ko',
+                    message: 'No user found with provided details!'
+                });
+        })
+    });
 })
 
 module.exports = router

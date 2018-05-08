@@ -16,7 +16,8 @@ module.exports = function(req, res, next) {
                 return res.status(401).send({
                     status: 'ko',
                     message: 'Failed to authenticate token.',
-                    error : err
+                    error : err,
+                    data : (err.name === 'TokenExpiredError') ? jwt.decode(token) : undefined
                 });
             } else {
                 // if everything is good, save to request for use in other routes

@@ -246,7 +246,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/*import { LoginResponse } from '../models/login_response.model';*/
 var AuthGuard = /** @class */ (function () {
     function AuthGuard(router, http, commonService) {
         this.router = router;
@@ -259,18 +258,8 @@ var AuthGuard = /** @class */ (function () {
             if (this.commonService.appMenus.length)
                 return true;
             else {
-                return true;
-                /*return new Promise((resolve)=>{
-                    this.http.post('/usermanagement/login',localStorage['auth-token']).subscribe((data: any)=>{
-                        // Store auth-token in localstorage
-                        localStorage['auth-token'] = data.token;
-                        // Navigate to home page
-                        resolve(true);
-                      },data => {
-                        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-                        resolve(false);
-                    })
-                })*/
+                this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+                return false;
             }
         }
         else {
@@ -299,6 +288,7 @@ var AuthGuard = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginResolver; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -310,20 +300,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-//import { CommonService } from '../service/common.service';
+
 var LoginResolver = /** @class */ (function () {
-    function LoginResolver(/*private commonService : CommonService, */ router) {
+    function LoginResolver(commonService, router) {
+        this.commonService = commonService;
         this.router = router;
         // code...
     }
     LoginResolver.prototype.resolve = function (route, state) {
         if (!localStorage['auth-token'])
             return true;
-        this.router.navigate(['']);
+        return this.commonService.getLoginData('/api/usermanagement/loginByToken', { token: localStorage['auth-token'] }, route.queryParams['returnUrl']);
+        // return new Promise((resolve)=>{
+        //        this.commonService.getLoginData('/api/usermanagement/loginByToken',{token : localStorage['auth-token']}).then(()=>{
+        //            resolve(false);
+        // 		this.router.navigate(['']);
+        //          },()=> {
+        //             resolve(true);
+        //        })
+        // })
     };
     LoginResolver = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__service_common_service__["a" /* CommonService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
     ], LoginResolver);
     return LoginResolver;
 }());
@@ -886,9 +885,7 @@ var SetHeaderInterceptor = /** @class */ (function () {
         // let ok: string;
         // Clone the request to add the new header.
         var authReq = req.clone({ setHeaders: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': this.commonService.getAuthToken() || ''
+                'x-access-token': this.commonService.getAuthToken()
             }
         });
         //send the newly created request
@@ -938,6 +935,7 @@ module.exports = "<!-- <ul>\n  <li *ngFor=\"let user of demousers\">{{ user.emai
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_common_service__ = __webpack_require__("./src/app/service/common.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -952,35 +950,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
     //demousers : Array<any>;
-    function LoginComponent(route, router, http, reusableFunctionsService) {
+    function LoginComponent(route, router, http, reusableFunctionsService, commonService) {
         this.route = route;
         this.router = router;
         this.http = http;
         this.reusableFunctionsService = reusableFunctionsService;
+        this.commonService = commonService;
         this.loading = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        if (localStorage.getItem('currentUser')) {
-            (this.returnUrl === "login") && (this.returnUrl = '/');
-            this.router.navigate([this.returnUrl]);
-        }
+        // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        // if (localStorage.getItem('currentUser')) {
+        //     (this.returnUrl === "login") && (this.returnUrl = '/');
+        //     this.router.navigate([this.returnUrl]);
+        // }
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
         // Set loading true
         this.loading = true;
-        // Hit login api
-        this.http.post('/api/usermanagement/login', this.loginForm.value).subscribe(function (data) {
+        this.commonService.getLoginData('/api/usermanagement/login', this.loginForm.value, this.route.snapshot.queryParams['returnUrl']).then(function () {
             // Set loading false
             _this.loading = false;
-            // Store auth-token in localstorage
-            localStorage['auth-token'] = data.token;
             // Navigate to home page
-            _this.router.navigate([_this.returnUrl]);
+            //this.router.navigate([this.returnUrl]);
         }, function (data) {
             // Set loading false
             _this.loading = false;
@@ -1004,7 +1001,8 @@ var LoginComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */],
             __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__["a" /* ReusableFunctionsService */]])
+            __WEBPACK_IMPORTED_MODULE_4__service_reusable_functions_service__["a" /* ReusableFunctionsService */],
+            __WEBPACK_IMPORTED_MODULE_5__service_common_service__["a" /* CommonService */]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -1739,35 +1737,60 @@ var DynamicFormModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonService; });
-//import { Injectable } from '@angular/core';
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reusable_functions_service__ = __webpack_require__("./src/app/service/reusable_functions.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
 //import { MatSnackBar } from '@angular/material';
-// import { HttpClient } from '@angular/common/http';
-// import { ReusableFunctionsService } from './reusable_functions.service';
+
+
 // import { LoginResponse } from '../models/login_response.model';
 // Mat Snack Bar default configuration
-//@Injectable()
 var CommonService = /** @class */ (function () {
-    function CommonService() {
+    function CommonService(http, reusableFunctionsService, router) {
+        this.http = http;
+        this.reusableFunctionsService = reusableFunctionsService;
+        this.router = router;
         this.isSideBarExpand = true;
         //authToken : string;
         //Store Application Menus after login and clear after logout
         this.appMenus = [];
-        // getLoginData(url) {
-        //     return new Promise((resolve, reject)=>{
-        //         this.http.get(url).subscribe((data : LoginResponse)=>{
-        //             let isSideBarExpand = localStorage.isSideBarExpand;
-        //             this.isSideBarExpand = (isSideBarExpand !== undefined) ? JSON.parse(localStorage.isSideBarExpand) : !!data.isSideBarExpand;
-        //             this.authToken = data.authToken;
-        //             this.appMenus = this.reusableFunctionsService.getNestedChildren(data.appMenus, "controller_id", "parent_controller_id");
-        //             resolve({status:'OK', data});
-        //         },(err)=>{
-        //             reject({status:'KO', data : err});
-        //         })
-        //     })
-        // }
         // Get auth token from localstorage
         this.getAuthToken = function () { return localStorage['auth-token'] || ''; };
     }
+    CommonService.prototype.getLoginData = function (url, data, ret_url) {
+        var _this = this;
+        (ret_url === '/login') && (ret_url = '');
+        return new Promise(function (resolve, reject) {
+            _this.http.post(url, data).subscribe(function (result) {
+                var isSideBarExpand = localStorage.isSideBarExpand;
+                _this.isSideBarExpand = (isSideBarExpand !== undefined) ? JSON.parse(localStorage.isSideBarExpand) : !!result.data.isSideBarExpand;
+                result.data.token && (localStorage['auth-token'] = result.data.token);
+                _this.appMenus = _this.reusableFunctionsService.getNestedChildren(result.data.appMenus, 'controller_id', 'parent_controller_id');
+                resolve(false /*{status:'OK', data : result}*/);
+                _this.router.navigate([ret_url || '']);
+            }, function (err) {
+                reject({ status: 'KO', data: err });
+            });
+        });
+    };
+    CommonService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__reusable_functions_service__["a" /* ReusableFunctionsService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]])
+    ], CommonService);
     return CommonService;
 }());
 

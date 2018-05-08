@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ReusableFunctionsService } from '../service/reusable_functions.service';
+import { CommonService } from '../service/common.service';
 import { LoginResponse } from '../models/login_response.model';
 
 @Component({
@@ -22,30 +23,28 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private http : HttpClient,
-        private reusableFunctionsService : ReusableFunctionsService
+        private reusableFunctionsService : ReusableFunctionsService,
+        private commonService : CommonService
         ) { }
 
     ngOnInit() {
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-        if (localStorage.getItem('currentUser')) {
-            (this.returnUrl === "login") && (this.returnUrl = '/');
-            this.router.navigate([this.returnUrl]);
-        }
+        // if (localStorage.getItem('currentUser')) {
+        //     (this.returnUrl === "login") && (this.returnUrl = '/');
+        //     this.router.navigate([this.returnUrl]);
+        // }
     }
 
     login() {
         // Set loading true
         this.loading = true;
-        // Hit login api
-        this.http.post('/api/usermanagement/login',this.loginForm.value).subscribe((data: any)=>{
+        this.commonService.getLoginData('/api/usermanagement/login',this.loginForm.value, this.route.snapshot.queryParams['returnUrl']).then(()=>{
             // Set loading false
             this.loading = false;
-            // Store auth-token in localstorage
-            localStorage['auth-token'] = data.token;
             // Navigate to home page
-            this.router.navigate([this.returnUrl]);
+            //this.router.navigate([this.returnUrl]);
           },data => {
             // Set loading false
             this.loading = false;

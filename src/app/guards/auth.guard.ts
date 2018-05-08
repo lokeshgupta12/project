@@ -4,7 +4,6 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { Observable } from 'rxjs/Observable';
 
 import { CommonService } from '../service/common.service';
-/*import { LoginResponse } from '../models/login_response.model';*/
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -20,18 +19,8 @@ export class AuthGuard implements CanActivate {
             if(this.commonService.appMenus.length)
                 return true;
             else {
-                return true;
-                /*return new Promise((resolve)=>{
-                    this.http.post('/usermanagement/login',localStorage['auth-token']).subscribe((data: any)=>{
-                        // Store auth-token in localstorage
-                        localStorage['auth-token'] = data.token;
-                        // Navigate to home page
-                        resolve(true);
-                      },data => {
-                        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-                        resolve(false);
-                    })
-                })*/
+                this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+                return false;
             }
         } else {
             // not logged in so redirect to login page with the return url

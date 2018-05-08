@@ -16,9 +16,7 @@ export class SetHeaderInterceptor implements HttpInterceptor {
 
 		// Clone the request to add the new header.
 		const authReq = req.clone({ setHeaders: { 
-			'Content-Type': 'application/json',
-		    'Access-Control-Allow-Origin':'*',
-		    'Authorization' : this.commonService.getAuthToken() || ''
+			'x-access-token' : this.commonService.getAuthToken()
 		    } 
 		});
 
